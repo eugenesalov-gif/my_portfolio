@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Text */
+  --color-text-primary:   #1D1D26;
+  --color-text-secondary: #626266;
+  --color-text-tertiary:  #888888;
+  --color-text-medium:    #727272;
+  --color-text-white:     #FFFFFF;
+
+  /* Accent */
+  --color-accent:         #0E9AFF;
+
+  /* Backgrounds */
+  --color-bg-page:        #FFFFFF;
+  --color-bg-dark:        #1D1D26;
+  --color-bg-chip:        rgba(255, 255, 255, 0.9);
+  --color-bg-gray:        #F2F2F2;
+  --color-bg-overlay:     rgba(29, 29, 38, 0.8);
+}
+
+body {
+  color: var(--color-text-primary);
+  background: var(--color-bg-page);
+  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
