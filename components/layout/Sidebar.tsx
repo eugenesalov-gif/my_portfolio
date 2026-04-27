@@ -1,7 +1,86 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
+
+type NavPreviewImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className: string;
+};
+
+const bottomNavItems: Array<{
+  href: string;
+  label: string;
+  previewClassName: string;
+  glowClassName?: string;
+  images: NavPreviewImage[];
+}> = [
+  {
+    href: "/about-me",
+    label: "About me",
+    previewClassName: "left-1/2 bottom-[-14px] h-[94px] w-[94px] -translate-x-1/2",
+    images: [
+      {
+        src: "/nav-previews/avatar.png",
+        alt: "",
+        width: 1024,
+        height: 1024,
+        className:
+          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none group-hover/nav-preview:top-[20px] group-hover/nav-preview:rotate-[-2deg]",
+      },
+    ],
+  },
+  {
+    href: "/testimonials",
+    label: "Testimonials",
+    previewClassName: "left-1/2 bottom-[-14px] h-[94px] w-[94px] -translate-x-1/2",
+    images: [
+      {
+        src: "/nav-previews/quote.png",
+        alt: "",
+        width: 1024,
+        height: 1024,
+        className:
+          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none group-hover/nav-preview:top-[20px] group-hover/nav-preview:rotate-[-2deg]",
+      },
+    ],
+  },
+  {
+    href: "/playground",
+    label: "Playground",
+    previewClassName: "left-1/2 bottom-[-14px] h-[70px] w-[56px] -translate-x-1/2",
+    images: [
+      {
+        src: "/nav-previews/arrow.png",
+        alt: "",
+        width: 406,
+        height: 374,
+        className:
+          "left-[0px] top-[28px] w-[25px] rotate-[-20deg] delay-75 group-hover/nav-preview:top-[14px] group-hover/nav-preview:rotate-[-24deg]",
+      },
+      {
+        src: "/nav-previews/figma.png",
+        alt: "",
+        width: 375,
+        height: 370,
+        className:
+          "left-[36px] top-[28px] w-[20px] rotate-[20deg] delay-75 group-hover/nav-preview:top-[14px] group-hover/nav-preview:rotate-[24deg]",
+      },
+      {
+        src: "/nav-previews/spark.png",
+        alt: "",
+        width: 433,
+        height: 420,
+        className:
+          "left-[12px] top-[8px] w-[31px] rotate-[5deg] group-hover/nav-preview:top-0 group-hover/nav-preview:rotate-[8deg]",
+      },
+    ],
+  },
+];
 
 export default function Sidebar() {
   return (
@@ -92,17 +171,54 @@ function Bio() {
 
 function BottomNav() {
   return (
-    <div className="flex gap-6 px-1 pt-2 mt-auto pb-2">
-      <Link href="/about-me" className="text-[16px] font-medium text-text-primary underline">
-        About me
-      </Link>
-      <Link href="/testimonials" className="text-[16px] font-medium text-text-primary underline">
-        Testimonials
-      </Link>
-      <Link href="/playground" className="text-[16px] font-medium text-text-primary underline">
-        Playground
-      </Link>
+    <div className="flex gap-6 px-1 pt-2 mt-auto pb-2 overflow-visible">
+      {bottomNavItems.map((item) => (
+        <PreviewNavLink key={item.href} {...item} />
+      ))}
     </div>
+  );
+}
+
+function PreviewNavLink({
+  href,
+  label,
+  previewClassName,
+  glowClassName,
+  images,
+}: {
+  href: string;
+  label: string;
+  previewClassName: string;
+  glowClassName?: string;
+  images: NavPreviewImage[];
+}) {
+  return (
+    <Link
+      href={href}
+      className="group/nav-preview relative isolate inline-flex text-[16px] font-medium text-text-primary outline-none"
+      aria-label={label}
+    >
+      <span
+        className={`pointer-events-none absolute z-0 opacity-0 transition-opacity duration-200 ease-out group-hover/nav-preview:opacity-100 group-focus-visible/nav-preview:opacity-100 ${previewClassName}`}
+        aria-hidden="true"
+      >
+        {glowClassName && <span className={`absolute ${glowClassName}`} />}
+        {images.map((image) => (
+          <Image
+            key={image.src}
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            draggable={false}
+            className={`absolute h-auto select-none drop-shadow-[0_20px_32px_rgba(29,29,38,0.24)] transition-all duration-300 ease-out [will-change:transform,opacity] group-hover/nav-preview:scale-100 group-focus-visible/nav-preview:scale-100 ${image.className}`}
+          />
+        ))}
+      </span>
+      <span className="relative z-10 underline decoration-[1.5px] underline-offset-[2px]">
+        {label}
+      </span>
+    </Link>
   );
 }
 
