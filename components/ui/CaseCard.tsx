@@ -49,7 +49,11 @@ export default function CaseCard({
           {/* Image with metrics chips */}
           <div className="relative rounded-[20px] overflow-hidden w-full aspect-[16/9]" style={{ backgroundColor: imagePlaceholderColor }}>
             {metrics.length > 0 && (
-              <div className="absolute bottom-3 left-3 flex flex-wrap gap-2">
+              <div
+                className={`absolute bottom-3 right-3 flex flex-nowrap items-start justify-center rounded-[12px] bg-[rgba(150,150,150,0.2)] p-1 backdrop-blur-[12px] ${
+                  href === "/player" || href === "/create" ? "gap-1" : "gap-2"
+                }`}
+              >
                 {metrics.map((m, i) => (
                   <MetricChip key={i} value={m.value} label={m.label} />
                 ))}
@@ -69,11 +73,11 @@ export default function CaseCard({
 function MetricChip({ value, label }: { value: string; label: string }) {
   return (
     <div
-      className="rounded-lg px-2 py-2 flex flex-col"
+      className="flex flex-col items-center justify-start rounded-lg px-2 py-2"
       style={{ backgroundColor: "rgba(255,255,255,0.9)" }}
     >
-      <span className="text-[16px] font-semibold leading-tight text-text-primary">{value}</span>
-      <span className="text-[11px] font-normal text-text-secondary leading-tight">{label}</span>
+      <span className="w-fit text-[16px] font-bold leading-tight text-text-primary">{value}</span>
+      <span className="text-[11px] font-semibold leading-tight tracking-[-0.3px] text-text-secondary">{label}</span>
     </div>
   );
 }

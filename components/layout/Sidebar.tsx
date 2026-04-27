@@ -154,14 +154,14 @@ function ProfileCard() {
               href="https://linkedin.com/in/eugenesalov"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
+              className="underline text-text-primary transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
             >
               linkedin
             </a>
             <span className="text-text-tertiary">·</span>
             <a
               href="mailto:eugensalov@gmail.com"
-              className="underline transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
+              className="underline text-text-primary transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
             >
               email
             </a>
@@ -170,7 +170,7 @@ function ProfileCard() {
               href="https://t.me/eugenesalov"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
+              className="underline text-text-primary transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
             >
               telegram
             </a>
@@ -193,7 +193,7 @@ function Bio() {
       <p className="text-[16px] font-medium leading-5 tracking-[-0.64px] text-text-primary">
         I turn complex user jobs into simple interfaces by following the &ldquo;Shazam&rdquo; approach: do it in one button if possible.
       </p>
-      <div className="flex items-center gap-1.5 mt-1">
+      <div className="flex items-center gap-1.5 mt-1 h-9">
         <PinIcon />
         <span className="text-[13px] leading-[13px] tracking-[-0.6px]">
           <span className="font-semibold text-text-tertiary">36°43′13″ N, 4°25′13″ W</span>
