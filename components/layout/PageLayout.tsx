@@ -10,7 +10,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
         <Sidebar />
       </aside>
       <motion.main
-        className="flex-1 min-w-0 w-full max-w-[1000px]"
+        className="flex-1 min-w-[560px] w-full max-w-[1000px]"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}

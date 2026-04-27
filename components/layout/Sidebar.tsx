@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 type NavPreviewImage = {
   src: string;
@@ -96,47 +97,81 @@ export default function Sidebar() {
 
 function ProfileCard() {
   return (
-    <div className="bg-white rounded-3xl p-5">
-      <div className="flex items-start gap-4">
-        {/* Portrait placeholder */}
-        <div className="w-[80px] h-[80px] rounded-2xl bg-[#F2F2F2] shrink-0" />
+    <div className="relative w-full h-[164px] rounded-[20px] overflow-hidden">
+      <Link href="/" className="absolute left-0 top-0 z-0 block h-full w-full" aria-label="Go to homepage">
+        <Image
+          src="/profilecard.png"
+          alt="Yauheni Salau portrait"
+          width={479}
+          height={200}
+          quality={100}
+          className="h-full w-full object-cover object-left"
+          priority
+        />
+      </Link>
 
-        <div className="flex flex-col gap-1 flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <div>
-              <p className="text-[26px] font-semibold leading-tight tracking-[-0.96px] text-text-primary">
-                Yauheni Salau
-              </p>
-              <p
-                className="text-[14px] font-medium text-text-secondary mt-0.5"
-                style={{ fontFamily: '"SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif' }}
-              >
-                Senior Product Designer
-              </p>
-            </div>
-            <motion.a
-              href="https://drive.google.com/file/d/1wNJ9fGxSyQqS2zsYullXaZ86fLwSPXSH/view"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 bg-bg-dark text-text-white text-[12px] font-medium rounded-2xl px-3 py-1.5 shrink-0 whitespace-nowrap"
-              whileHover={{ scale: 0.97 }}
-              whileTap={{ scale: 0.97 }}
+      <motion.a
+        href="https://drive.google.com/file/d/1wNJ9fGxSyQqS2zsYullXaZ86fLwSPXSH/view"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group absolute left-[304px] top-[5px] z-20 flex h-[32px] w-[142px] items-center justify-center rounded-full bg-bg-dark text-[14px] font-medium text-text-white"
+      >
+        <span
+          className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(180deg,#1D1D26_0%,#686875_100%)] opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
+          aria-hidden="true"
+        />
+        <span className="relative z-10 flex items-center justify-center gap-1.5">
+          <DownloadIcon />
+          Download CV
+        </span>
+      </motion.a>
+
+      <div className="absolute left-[156px] top-[5px] z-10 flex h-[155px] w-[290px] flex-col items-start justify-end pl-4 pb-6">
+        <Image
+          src="/whiteblock_profile.svg"
+          alt=""
+          width={290}
+          height={155}
+          className="absolute inset-0 h-full w-full pointer-events-none select-none"
+          aria-hidden="true"
+          priority
+        />
+        <div className="relative z-10 box-border flex h-full w-full flex-col items-start justify-end gap-2 pl-0 pr-0 pt-0 pb-0">
+          <div className="flex h-fit flex-col items-start gap-1">
+            <p className="text-[26px] font-semibold leading-tight tracking-[-0.96px] text-text-primary">
+              Yauheni Salau
+            </p>
+            <p
+              className="text-[14px] font-medium text-text-secondary"
+              style={{ fontFamily: '"SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif' }}
             >
-              <DownloadIcon />
-              Download CV
-            </motion.a>
+              Senior Product Designer
+            </p>
           </div>
 
-          <div className="flex gap-3 mt-2 text-[14px] font-medium text-text-primary">
-            <a href="https://linkedin.com/in/eugenesalov" target="_blank" rel="noopener noreferrer" className="underline">
+          <div className="flex justify-start gap-1 text-[14px] font-medium text-text-primary">
+            <a
+              href="https://linkedin.com/in/eugenesalov"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
+            >
               linkedin
             </a>
             <span className="text-text-tertiary">·</span>
-            <a href="mailto:eugensalov@gmail.com" className="underline">
+            <a
+              href="mailto:eugensalov@gmail.com"
+              className="underline transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
+            >
               email
             </a>
             <span className="text-text-tertiary">·</span>
-            <a href="https://t.me/eugenesalov" target="_blank" rel="noopener noreferrer" className="underline">
+            <a
+              href="https://t.me/eugenesalov"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
+            >
               telegram
             </a>
           </div>
@@ -224,9 +259,14 @@ function PreviewNavLink({
 
 function DownloadIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    <div className="h-[22px] w-[22px] leading-none">
+      <DotLottieReact
+        src="https://lottie.host/f80c385d-318e-48e4-8435-078b09a4f8c4/sTC5j7ZKLl.lottie"
+        autoplay
+        loop
+        style={{ width: 22, height: 22 }}
+      />
+    </div>
   );
 }
 
