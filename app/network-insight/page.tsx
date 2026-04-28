@@ -21,7 +21,7 @@ export default function NetworkInsightPage() {
             label: "about the project",
             content: (
               <p>
-                Network Insights consolidated messy spreadsheets into a unified data management system for C-level executives, Supply, Demand, and Finance teams — streamlining decision-making and reducing manual work across 6 previously separate platforms.
+                Network Insights was built to get data out of messy spreadsheets and into one place where it’s actually useful. My goal was to make life easier for the C-levels, Supply, Demand and Finance teams, giving them the clarity they need to make quick decisions without the manual grunt work.
               </p>
             ),
           },
@@ -29,48 +29,50 @@ export default function NetworkInsightPage() {
             label: "my role",
             content: (
               <p>
-                I led the comprehensive design from inception — mapping team workflows, designing interfaces for complex data handling, and collaborating with product management and engineering throughout development and launch phases.
+                I led the design from the ground up. I mapped out how the different teams work to create a structure that makes sense for them. I designed the interface to handle complex data and worked side-by-side with the product manager and engineering to build and ship the platform step by step.
               </p>
             ),
           },
           {
             label: "problems to solve",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
+              <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
                 <li>Data fragmented across multiple internal tools, Odoo, SSPs, and Excel spreadsheets.</li>
-                <li>Repetitive manual segment and report creation wasted hours every week.</li>
-                <li>Difficulty demonstrating client value and verifying ad placement.</li>
-                <li>Time-intensive semantic analysis and reporting tasks slowed teams down.</li>
+                <li>Teams were wasting time manually building the same segments, reports, and site lists over and over.</li>
+                <li>It was hard to show value to clients, especially proving exactly where ads ran and confirming that the content was safe.</li>
+                <li>Simple things took too long, and tasks like semantic analysis and reporting could drag on for hours.</li>
               </ul>
             ),
           },
           {
             label: "my goals",
             content: (
-              <p>
-                Bring scattered systems together into one place the team can actually trust. Turn manual busywork into smooth, automated tools. Make the numbers clear.
-              </p>
+              <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
+              <li>Bring scattered systems together into one place the team can actually trust.</li>
+              <li>Turn manual busywork into smooth, automated tools.</li>
+              <li>Make the numbers clear so revenue, margin, and profit are easy to understand.</li>
+              </ul>
             ),
           },
           {
             label: "key decisions",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Rejected monolithic dashboard in favour of focused, modular task-centred tools.</li>
-                <li>Designed distinct interfaces for segmentation, brand safety verification, and reporting.</li>
-                <li>Clear role hierarchy: Viewer, Creator, Admin.</li>
-                <li>Mobile-optimised views for executives on the go.</li>
+              <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
+                <li>Avoided the 'mega dashboard' trap by building a set of focused tools instead of one giant system, allowing us to release features faster and scale without breaking things.</li>
+                <li>Designed the flows around what people actually do, like building segments or verifying brand safety, rather than just dumping raw data on the screen.</li>
+                <li>Cut the chaos with clear roles (<strong>Viewer, Creator, Admin</strong>) so everyone knows exactly what they own, keeping workflows clean and conflict-free.</li>
+                <li>Made a mobile version for quick check-ins, especially for C-levels who needed to track numbers on the go without struggling with complex desktop charts.</li>
               </ul>
             ),
           },
           {
-            label: "results",
+            label: "the results",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Unified 6 internal tools into one single platform.</li>
-                <li>Sustained 300+ monthly active users.</li>
-                <li>Reduced segment and report creation from hours to minutes.</li>
-                <li>Increased daily engagement demonstrating real platform utility.</li>
+              <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
+                <li>Launched a <strong>6 new</strong> internal tools that replaced a mess of different systems and brought everything into one place.</li>
+                <li>Reached <strong>300+ active users</strong> every month across the company.</li>
+                <li>Massive <strong>time savings</strong>, as creating segments and reports now takes just <strong>minutes</strong> instead of <strong>hours</strong>.</li>
+                <li>We've seen real engagement with more users and longer sessions proving the platform is a key daily tool instead of just a reporting portal.</li>
               </ul>
             ),
           },

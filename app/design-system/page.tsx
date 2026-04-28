@@ -15,7 +15,7 @@ export default function DesignSystemPage() {
             label: "about the project",
             content: (
               <p>
-                No single source of truth meant inconsistent UI everywhere — duplicated designer-developer work caused maintenance challenges and development delays across three product teams. I built the SHG Design System from scratch as the single source of truth.
+                I built this design system from scratch to create a scalable foundation that’s now used by 3 different teams. It acts as a single source of truth for our tokens and components, so teams can move fast without worrying about messy code or designs drifting apart.
               </p>
             ),
           },
@@ -23,40 +23,50 @@ export default function DesignSystemPage() {
             label: "my role",
             content: (
               <p>
-                Led the design system end-to-end: token architecture, component library (200+ components), documentation, and roll-out across three product teams.
+                I initiated the system and owned the entire architecture from the token logic to the Figma libraries and how they’re used across products.
               </p>
             ),
           },
           {
             label: "problems to solve",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>No single source of truth → inconsistent UI across products.</li>
-                <li>Duplicated design and development work on every new feature.</li>
-                <li>Slow delivery cycles due to component rebuilds.</li>
-                <li>No support for dark mode at system level.</li>
+              <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
+                <li>No single source of truth → inconsistent UI everywhere.</li>
+                <li>Designers and devs duplicating work.</li>
+                <li>Maintenance becoming a nightmare.</li>
+                <li>Development slowed down due to rework and misalignment.</li>
+              </ul>
+            ),
+          },
+          {
+            label: "my goals",
+            content: (
+              <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
+                <li>Get everyone speaking the same UI language.</li>
+                <li>Speed up the design-to-dev cycle.</li>
+                <li>Maintained high quality.</li>
               </ul>
             ),
           },
           {
             label: "key decisions",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Separated raw values (Primitives) from intended purpose (Semantics) through token architecture.</li>
-                <li>Implemented light/dark modes at system level — instant switching via semantic tokens.</li>
-                <li>Built 200+ components covering all three product surfaces.</li>
-                <li>Centralised governance for efficient maintenance across the ecosystem.</li>
+              <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
+                <li>Built a token architecture to separate raw values (<strong>Primitives</strong>) from their actual purpose (<strong>Semantics</strong>).</li>
+                <li>Baked light and dark modes directly into the system level. By using semantic tokens, products can switch their look and feel instantly. </li>
+                <li>Structured our Figma libraries to make life easier for the team. With standardized variants, designers and engineering can work faster. </li>
+                <li>Created dedicated libraries for specific areas like analytics charts, maps and the video player so we don't have to build ad-hoc solutions every time.</li>
               </ul>
             ),
           },
           {
-            label: "results",
+            label: "the results",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Delivery speed: 21 days → 4 days.</li>
-                <li>200+ components used across 3 product teams.</li>
-                <li>Eliminated design version confusion.</li>
-                <li>Teams now focus on UX rather than implementation details.</li>
+              <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
+                <li><strong>Increased the average delivery time</strong> from <strong>21 days</strong> to <strong>4 days</strong>. </li>
+                <li><strong>One Source of Truth</strong>: No more "which version of the button is this?"</li>
+                <li><strong>Faster Iteration</strong>: Teams can now focus on UX problems instead of pushing pixels.</li>
+                <li><strong>Centralized Governance</strong>: maintenance is cheaper because we fix things in one place, and it updates everywhere.</li>
               </ul>
             ),
           },

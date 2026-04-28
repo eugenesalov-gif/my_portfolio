@@ -18,7 +18,7 @@ export default function AIAgentChatPage() {
             label: "about the project",
             content: (
               <p>
-                AI Agent Chat transforms passive video advertisements into conversational experiences through an interactive end card embedded within the video player. Viewers can engage without ever leaving the ad — the first AI video ad format launched at ShowHeroes.
+                AI Agent Chat turns passive video ads into active conversations. It’s an interactive end card built right into the video player, letting viewers chat with the brand and share their info without ever leaving the ad.
               </p>
             ),
           },
@@ -26,51 +26,50 @@ export default function AIAgentChatPage() {
             label: "my role",
             content: (
               <p>
-                Led UX and UI design for the entire product — from concept through launch. Defined interaction patterns, responsive layout across device sizes, and brand customisation system.
+                I led the design from start to finish, defining how the AI interaction feels and building a flexible UI for chat and rich media. I teamed up with stakeholders and engineering to make sure the format was scalable and ready for pilot launches across CTV and web.
               </p>
             ),
           },
           {
             label: "problems to solve",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Static end cards received minimal viewer attention.</li>
-                <li>Brands needed authentic engagement beyond simple buttons.</li>
-                <li>Cookie deprecation increased the value of direct intent capture.</li>
-                <li>External landing pages reduced conversion rates by breaking the viewing context.</li>
+              <ul className="list-disc list-outline pl-6 flex flex-col gap-2">
+                <li>Traditional end cards were too static, with most viewers glancing at them for just a few seconds before moving on.</li>
+                <li><strong>Brands</strong> were looking for real, meaningful engagement that a simple button couldn't provide.</li>
+                <li>As <strong>Cookies 🍪</strong> fade and targeting gets tougher, capturing user intent directly inside the ad is now a huge competitive advantage.</li>
+                <li>External landing pages were conversion killers, as forcing people to leave the video player to fill out a form caused most of them to drop off.</li>
               </ul>
             ),
           },
           {
             label: "my goals",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Reframe advertisements as two-way conversations.</li>
-                <li>Keep the entire experience inside the player.</li>
-                <li>Enable frictionless information collection.</li>
-                <li>Ensure responsive design across all device sizes.</li>
+              <ul className="list-disc list-outline pl-6 flex flex-col gap-2">
+                <li><strong>Turn ads into a conversation</strong> rather than just another one-way message.</li>
+                <li>I wanted to keep the experience entirely inside the player to make conversion as frictionless as possible.</li>
+                <li>Build a fluid experience that handles questions, curiosity, and actions all in one flow.</li>
+                <li>Design a flexible UI that adapts to any player size, ensuring a seamless experience across both web and mobile browsers.</li>
               </ul>
             ),
           },
           {
             label: "key decisions",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Minimal UI to keep focus on the conversation.</li>
-                <li>Interactive elements (cards, forms, media) embedded within chat bubbles.</li>
-                <li>Full-screen mode for extended interactions.</li>
-                <li>Comprehensive brand customisation without breaking the system.</li>
+              <ul className="list-disc list-outline pl-6 flex flex-col gap-2">
+                <li>I kept the UI super light and minimal to make the chat interface feel like a native part of the player.</li>
+                <li>I added things like cards, forms, and media right inside the chat bubbles. This way, users can explore products or sign up without ever having to leave the conversation.</li>
+                <li>For longer interactions, I introduced a full-screen mode. It gives the conversation space to breathe when things get detailed, without cluttering the small, compact view.</li>
+                <li>Enabled full customization for colors, assets, and tone of voice. This means brands can make the tool feel like their own without us having to rebuild it every time.</li>
               </ul>
             ),
           },
           {
             label: "results",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>8x longer engagement compared to traditional formats.</li>
-                <li>~3 minutes average interaction time.</li>
-                <li>First AI video ad format launched at ShowHeroes.</li>
-                <li>Eliminated conversion barriers through in-player lead generation.</li>
+              <ul className="list-disc list-outline pl-6 flex flex-col gap-2">
+                <li>Users spent <strong>8× more time</strong> with the brand (averaging <strong>3+ minutes</strong>) compared to static cards.</li>
+                <li><strong>Shipped the first AI video ad format at ShowHeroes</strong>, embedding a conversational assistant directly into the player.</li>
+                <li><strong>Removed conversion friction</strong> by moving lead generation from external pages directly into the video player.</li>
               </ul>
             ),
           },

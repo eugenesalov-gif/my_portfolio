@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
@@ -182,6 +183,8 @@ function ProfileCard() {
 }
 
 function Bio() {
+  const [isMapPreviewVisible, setIsMapPreviewVisible] = useState(false);
+
   return (
     <div className="flex flex-col gap-3 px-1">
       <p className="text-[16px] font-medium leading-5 tracking-[-0.64px] text-text-primary">
@@ -193,12 +196,74 @@ function Bio() {
       <p className="text-[16px] font-medium leading-5 tracking-[-0.64px] text-text-primary">
         I turn complex user jobs into simple interfaces by following the &ldquo;Shazam&rdquo; approach: do it in one button if possible.
       </p>
-      <div className="flex items-center gap-1.5 mt-1 h-9">
-        <PinIcon />
-        <span className="text-[13px] leading-[13px] tracking-[-0.6px]">
-          <span className="font-semibold text-text-tertiary">36°43′13″ N, 4°25′13″ W</span>
-          {" "}<span className="font-semibold text-text-primary">/ Now here</span>
-        </span>
+      <div className="relative mt-1 h-9 overflow-visible">
+        <motion.span
+          onHoverStart={() => setIsMapPreviewVisible(true)}
+          onHoverEnd={() => setIsMapPreviewVisible(false)}
+          className="group relative inline-flex h-full items-center gap-1.5"
+        >
+          <PinIcon />
+          <span className="text-[13px] leading-[13px] tracking-[-0.6px]">
+            <span className="font-semibold text-text-tertiary transition-colors duration-200 ease-out group-hover:text-[#626266] group-focus-visible:text-[#626266]">
+              36°43′13″ N, 4°25′13″ W
+            </span>
+            {" "}
+            <span className="relative inline-block font-semibold text-text-primary transition-colors duration-200 ease-out group-hover:text-[#626266] group-focus-visible:text-[#626266]">
+              / Now here
+
+              <motion.span
+                aria-hidden="true"
+                className="pointer-events-none absolute left-[calc(50%-80px)] top-[calc(100%+14px)] z-20 block h-[80px] w-[180px] -translate-x-[18%]"
+                initial={false}
+                animate={
+                  isMapPreviewVisible
+                    ? {
+                        opacity: [0, 1],
+                        y: [8, 17, 14],
+                        scale: [0.92, 1.02, 1],
+                        rotate: [-12, -3, -5],
+                        filter: ["blur(6px)", "blur(0px)"],
+                      }
+                    : {
+                        opacity: 0,
+                        y: 4,
+                        scale: 0.9,
+                        rotate: -5,
+                        filter: "blur(5px)",
+                      }
+                }
+                transition={
+                  isMapPreviewVisible
+                    ? {
+                        duration: 0.58,
+                        times: [0, 0.42, 1],
+                        ease: [0.16, 1, 0.3, 1],
+                        opacity: { duration: 0.2, ease: "easeOut" },
+                        filter: { duration: 0.24, ease: "easeOut" },
+                      }
+                    : {
+                        duration: 0.22,
+                        ease: [0.22, 1, 0.36, 1],
+                      }
+                }
+                style={{ transformOrigin: "14% -12%" }}
+              >
+                <span className="relative block">
+                  <span
+                    className="absolute inset-0 rounded-[18px] opacity-35 blur-[10px]"
+                    style={{ background: "rgba(22, 22, 28, 0.2)", transform: "translate(4px, 7px) scale(1.01)" }}
+                  />
+                  <img
+                    src="/map-preview-malaga.png"
+                    alt="Malaga map preview"
+                    draggable={false}
+                    className="relative z-10 block h-full w-full select-none rounded-[18px] object-cover shadow-[0_18px_40px_rgba(0,0,0,0.12),0_4px_10px_rgba(0,0,0,0.08)]"
+                  />
+                </span>
+              </motion.span>
+            </span>
+          </span>
+        </motion.span>
       </div>
     </div>
   );

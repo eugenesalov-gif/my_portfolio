@@ -31,13 +31,13 @@ export default function CasePage({
       className="flex flex-col gap-8"
     >
       {/* Back button */}
-      <div className="mt-1">
+      <div className="sticky top-6 z-20 mt-1">
         <BackButton />
       </div>
 
       {/* Hero image placeholder */}
       <div
-        className="w-full rounded-[20px] relative"
+        className="-mt-5 w-full rounded-[20px] relative"
         style={{
           backgroundColor: imagePlaceholderColor,
           aspectRatio: "16/9",
@@ -59,17 +59,17 @@ export default function CasePage({
         )}
       </div>
 
-      <h1 className="text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary">
+      <h1 className="mx-auto w-full max-w-[800px] text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary">
         {title}
       </h1>
 
       {/* Sections */}
       {sections.map((section, i) => (
-        <div key={i} className="flex flex-col gap-3">
-          <h2 className="text-[26px] font-semibold leading-8 tracking-[-1.2px] text-accent lowercase">
+        <div key={i} className="mx-auto flex w-full max-w-[800px] flex-col gap-6">
+          <h2 className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] text-accent lowercase">
             {section.label}
           </h2>
-          <div className="text-[19px] font-medium leading-7 tracking-[-0.6px] text-text-primary">
+          <div className="w-full text-[19px] font-medium leading-7 tracking-[-0.6px] text-text-primary">
             {section.content}
           </div>
         </div>

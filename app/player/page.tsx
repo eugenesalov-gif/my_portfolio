@@ -5,7 +5,7 @@ export default function PlayerPage() {
   return (
     <PageLayout>
       <CasePage
-        title="Redesigning a Video Player Ecosystem for Content and Ads"
+        title="Redesigning a Video Player Ecosystem for Content and Ads"
         description="Redesigning a dual-player ecosystem with interactive formats and playlists to drive engagement and revenue."
         tags={["Ad Tech", "B2B", "Video Player", "Design System", "Web App"]}
         metrics={[
@@ -19,57 +19,66 @@ export default function PlayerPage() {
           {
             label: "about the project",
             content: (
-              <p>
-                A comprehensive redesign of two separate video player products — a Content Player and an Ad Player — to create a unified visual system. The initiative modernised an aging interface while enabling new interactive features and playlists.
-              </p>
+              <div className="flex flex-col gap-6">
+                <p>
+                  We were managing two separate products, a Content Player and an Ad Player. They worked, but the UI was starting to show its age, navigation felt cluttered, and they weren't built for the interactive features we wanted to launch.
+                </p>
+                <p>
+                  I led the redesign to create a unified visual system that gave publishers more flexibility and made the entire experience feel like one smooth, connected product.
+                </p>
+              </div>
             ),
           },
           {
             label: "my role",
             content: (
               <p>
-                Led UX and UI design across both players. Defined the unified component library, ran 15 A/B tests for validation, and collaborated with engineering and product throughout the iterative development process.
+                I led the redesign for both players, from the core UI to specific features like the Clipchoice interactive format and playlists. I also helped build a unified component library to keep our design consistent across the board. To make sure we were moving in the right direction, I worked closely with engineering and product through 15 A/B tests to iterate safely and drive KPI growth.
               </p>
             ),
           },
           {
             label: "problems to solve",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Linear architecture prevented launching interactive feature formats.</li>
-                <li>Limited customisation restricted brand adaptation.</li>
-                <li>Outdated UI hindered modern user experience.</li>
+              <ul className="list-disc list-outline pl-6 flex flex-col gap-2">
+                <li>The old player was strictly linear which made it impossible to launch the interactive features we were planning.</li>
+                <li>Limited customization meant brands couldn’t easily adapt the player to match their own unique look and feel.</li>
+                <li>The UI was stuck in the past and the navigation felt too limited, which kept the viewing experience from feeling truly modern.</li>
               </ul>
             ),
           },
           {
             label: "my goals",
             content: (
-              <p>
-                Refresh both players with a modern UI that is much easier for people to use, while integrating new interactive formats and playlist functionality to boost key performance indicators.
-              </p>
+              <ul className="list-disc list-outline pl-6 flex flex-col gap-2">
+                <li>Refresh both players with a modern UI that is much easier for people to use.</li>
+                <li>Integrate the new Clipchoice format to bring interactivity to our video ads.</li>
+                <li>Build a playlist system to help users discover more content and stay on the platform longer.</li>
+                <li>Focus on growing key metrics like unit fill rate and revenue through better design.</li>
+                <li>Create a unified design language to keep the experience consistent across every player.</li>
+              </ul>
             ),
           },
           {
             label: "key decisions",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Streamlined core UI and navigation with emphasis on clarity.</li>
-                <li>Introduced playlist system for improved content discovery.</li>
-                <li>Established unified component library across both players.</li>
-                <li>Conducted 15 A/B tests to validate design decisions.</li>
-                <li>Developed Live Streaming player concept for future roadmap.</li>
+              <ul className="list-disc list-outline pl-6 flex flex-col gap-2">
+                <li>Redesigned the core UI and navigation for both players to prioritize clarity and strip away any unnecessary visual noise.</li>
+                <li>Introduced playlists to make it faster for viewers to move between videos and stay focused on the content for longer.</li>
+                <li>Created a unified component system to align the visual style across both players and finally get rid of all the inconsistencies.</li>
+                <li>We ran 15 A/B tests to validate our hypotheses and make sure every design change actually worked for the users.</li>
+                <li>Also drafted a concept for a Live Streaming player as a future direction, making sure we were prepared for the next step without slowing down our current roadmap.</li>
               </ul>
             ),
           },
           {
-            label: "results",
+            label: "the results",
             content: (
-              <ul className="list-disc list-inside flex flex-col gap-2">
-                <li>Revenue increased by 5%.</li>
-                <li>Content impressions grew 16%.</li>
-                <li>Ad impressions rose 10%.</li>
-                <li>Zero rollbacks over 2.5 years of deployment.</li>
+              <ul className="list-disc list-outline pl-6 flex flex-col gap-2">
+                <li>Boosted <strong>unit fill rate</strong> and <strong>ad impressions by 10%</strong> through a more effective player design.</li>
+                <li>Increased content impressions by <strong>16%</strong> and total revenue by <strong>5%</strong> after the full rollout.</li>
+                <li>Proven reliability with zero rollbacks in <strong>2.5 years</strong> because our experimentation process allowed us to catch and fix issues early.</li>
+                <li>Our iterative approach allowed us to fix early performance issues and turn an initial dip into long-term growth once the new UI and features were fully rolled out.</li>
               </ul>
             ),
           },
