@@ -186,7 +186,7 @@ export default function AboutMePage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="flex flex-col gap-8"
+        className="flex max-w-[900px] flex-col gap-8"
       >
         <div className="flex items-start gap-4">
           <h1 className="text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary">
