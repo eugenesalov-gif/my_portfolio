@@ -12,6 +12,42 @@ export default function AIAgentChatPage() {
           { value: "8x", label: "engagement duration" },
           { value: "~3 min", label: "avg interaction" },
         ]}
+        teamMembers={[
+          {
+            imageSrc: "/images/team/team-member-1.png",
+            imageAlt: "Team member 1",
+            tooltip: "Yauheni Salau",
+            imageClassName: "object-center",
+          },
+          {
+            imageSrc: "/images/team/network-team-member-tom.png",
+            imageAlt: "Team member 2",
+            tooltip: "Tom Power (Global Director of Technology)",
+            profileUrl: "https://www.linkedin.com/in/tom-power/",
+          },
+          {
+            imageSrc: "/images/team/create-team-member-vadim.png",
+            imageAlt: "Team member 3",
+            tooltip: "Vadim Mazzherin (Frontend Team & Tech Lead)",
+            profileUrl: "https://www.linkedin.com/in/vadim-mazzherin/",
+          },
+          {
+            imageSrc: "/images/team/network-team-member-sergey.png",
+            imageAlt: "Team member 4",
+            tooltip: "Sergey Kuraksin (Senior PHP Developer)",
+            profileUrl: "https://www.linkedin.com/in/sergey-kuraksin-746b03137/",
+          },
+        ]}
+        teamExtraCount={2}
+        previousCase={{
+          href: "/design-system",
+          title: "ShowHeroes Design System",
+        }}
+        nextCase={{
+          href: "/player",
+          title: "Redesigning a Video Player Ecosystem for Content and Ads",
+        }}
+        compactExploreCards
         imagePlaceholderColor="#E8F5EA"
         sections={[
           {

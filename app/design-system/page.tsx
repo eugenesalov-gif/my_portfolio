@@ -9,6 +9,29 @@ export default function DesignSystemPage() {
         description="A shared design system built from scratch to keep multiple ShowHeroes products visually consistent and speed up design and development."
         tags={["Design System", "Design Tokens", "Component Library", "Multi-product", "B2B SaaS"]}
         metrics={[]}
+        teamMembers={[
+          {
+            imageSrc: "/images/team/team-member-1.png",
+            imageAlt: "Team member 1",
+            tooltip: "Yauheni Salau",
+            imageClassName: "object-center",
+          },
+          {
+            imageSrc: "/images/team/team-member-4.png",
+            imageAlt: "Team member 4",
+            tooltip: "Kay Schneider (President at ShowHeroes Group)",
+            profileUrl: "https://www.linkedin.com/in/kayschneider/",
+          },
+        ]}
+        previousCase={{
+          href: "/network-insight",
+          title: "Building an Analytics Platform for Contextual Targeting",
+        }}
+        nextCase={{
+          href: "/ai-agent-chat",
+          title: "Creating an AI Agent Chat for Interactive Video Ads",
+        }}
+        compactExploreCards
         imagePlaceholderColor="#EAE8F5"
         sections={[
           {

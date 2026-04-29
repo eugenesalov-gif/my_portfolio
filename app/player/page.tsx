@@ -14,6 +14,42 @@ export default function PlayerPage() {
           { value: "+5%", label: "revenue" },
           { value: "+16%", label: "content impressions" },
         ]}
+        teamMembers={[
+          {
+            imageSrc: "/images/team/team-member-1.png",
+            imageAlt: "Team member 1",
+            tooltip: "Yauheni Salau",
+            imageClassName: "object-center",
+          },
+          {
+            imageSrc: "/images/team/player-team-member-jean-marie.png",
+            imageAlt: "Team member 2",
+            tooltip: "Jean-Marie Salamon (Senior Product Manager)",
+            profileUrl: "https://www.linkedin.com/in/jeanmariesalamon/",
+          },
+          {
+            imageSrc: "/images/team/player-team-member-bruno.png",
+            imageAlt: "Team member 3",
+            tooltip: "Bruno Mikec (Player Engineer)",
+            profileUrl: "https://www.linkedin.com/in/bruno-mikec-ab3175117/",
+          },
+          {
+            imageSrc: "/images/team/player-team-member-emilio.png",
+            imageAlt: "Team member 4",
+            tooltip: "Emilio Vitulano (Lead Software Engineer)",
+            profileUrl: "https://www.linkedin.com/in/evitulano/",
+          },
+        ]}
+        teamExtraCount={3}
+        previousCase={{
+          href: "/ai-agent-chat",
+          title: "Creating an AI Agent Chat for Interactive Video Ads",
+        }}
+        nextCase={{
+          href: "/create",
+          title: "Transforming a complex ad platform into a simple no-code tool",
+        }}
+        compactExploreCards
         imagePlaceholderColor="#F5EEE8"
         sections={[
           {

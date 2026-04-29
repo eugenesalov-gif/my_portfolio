@@ -101,7 +101,7 @@ function ProfileCard() {
     <div className="relative w-full h-[164px] rounded-[20px] overflow-hidden">
       <Link href="/" className="absolute left-0 top-0 z-0 block h-full w-full" aria-label="Go to homepage">
         <Image
-          src="/profilecard.png"
+          src="/images/ui/profilecard.png"
           alt="Yauheni Salau portrait"
           width={479}
           height={200}
@@ -129,7 +129,7 @@ function ProfileCard() {
 
       <div className="absolute left-[156px] top-[5px] z-10 flex h-[155px] w-[290px] flex-col items-start justify-end pl-4 pb-6">
         <Image
-          src="/whiteblock_profile.svg"
+          src="/icons/whiteblock-profile.svg"
           alt=""
           width={290}
           height={155}
@@ -143,7 +143,7 @@ function ProfileCard() {
               Yauheni Salau
             </p>
             <p
-              className="text-[14px] font-medium text-text-secondary"
+              className="text-[14px] font-medium tracking-[-0.2px] text-text-secondary"
               style={{ fontFamily: '"SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif' }}
             >
               Senior Product Designer
@@ -155,14 +155,14 @@ function ProfileCard() {
               href="https://linkedin.com/in/eugenesalov"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline text-text-primary transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
+              className="underline tracking-[-0.2px] text-text-primary transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
             >
               linkedin
             </a>
             <span className="text-text-tertiary">·</span>
             <a
               href="mailto:eugensalov@gmail.com"
-              className="underline text-text-primary transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
+              className="underline tracking-[-0.2px] text-text-primary transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
             >
               email
             </a>
@@ -171,7 +171,7 @@ function ProfileCard() {
               href="https://t.me/eugenesalov"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline text-text-primary transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
+              className="underline tracking-[-0.2px] text-text-primary transition-colors duration-200 ease-out hover:text-[#626266] focus-visible:text-[#626266]"
             >
               telegram
             </a>
@@ -254,7 +254,7 @@ function Bio() {
                     style={{ background: "rgba(22, 22, 28, 0.2)", transform: "translate(4px, 7px) scale(1.01)" }}
                   />
                   <img
-                    src="/map-preview-malaga.png"
+                    src="/images/places/map-preview-malaga.png"
                     alt="Malaga map preview"
                     draggable={false}
                     className="relative z-10 block h-full w-full select-none rounded-[18px] object-cover shadow-[0_18px_40px_rgba(0,0,0,0.12),0_4px_10px_rgba(0,0,0,0.08)]"

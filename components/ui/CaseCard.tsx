@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 interface Metric {
   value: string;
@@ -25,6 +26,8 @@ export default function CaseCard({
   metrics = [],
   imagePlaceholderColor = "#E8E8EE",
 }: CaseCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -32,7 +35,7 @@ export default function CaseCard({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <Link href={href} className="block group">
+      <Link href={href} className="block group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
         <div className="flex flex-col gap-3">
           <h2 className="text-[26px] font-semibold leading-8 tracking-[-1.2px] text-text-primary group-hover:opacity-80 transition-opacity">
             {title}
@@ -48,6 +51,20 @@ export default function CaseCard({
 
           {/* Image with metrics chips */}
           <div className="relative rounded-[20px] overflow-hidden w-full aspect-[16/9]" style={{ backgroundColor: imagePlaceholderColor }}>
+            <motion.div
+              className="pointer-events-none absolute left-[-15px] top-0 z-20"
+              initial={false}
+              animate={{ x: isHovered ? 0 : "-110%" }}
+              transition={{ type: "spring", duration: 0.4, bounce: 0.2 }}
+            >
+              <img src="/icons/checkout-block.svg" alt="" aria-hidden="true" className="block h-auto w-[201px] select-none" draggable={false} />
+              <span className="absolute left-12 top-3.5 inline-flex items-baseline gap-2 text-[14px] font-semibold leading-none tracking-[-0.04em] text-text-primary">
+                Check it out
+                <span aria-hidden="true" className="inline-flex h-4 w-4 items-center justify-center text-[16px] leading-none">
+                  <span className="relative top-[1px]">→</span>
+                </span>
+              </span>
+            </motion.div>
             {metrics.length > 0 && (
               <div
                 className={`absolute bottom-3 right-3 flex flex-nowrap items-start justify-center rounded-[12px] bg-[rgba(150,150,150,0.2)] p-1 backdrop-blur-[12px] ${
@@ -61,9 +78,6 @@ export default function CaseCard({
             )}
           </div>
 
-          <p className="text-[16px] font-medium text-text-primary underline">
-            Check it out
-          </p>
         </div>
       </Link>
     </motion.div>

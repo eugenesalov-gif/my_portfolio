@@ -15,6 +15,41 @@ export default function CreatePage() {
           { value: "+60%", label: "faster reporting" },
           { value: "+2B", label: "impressions growth" },
         ]}
+        teamMembers={[
+          {
+            imageSrc: "/images/team/team-member-1.png",
+            imageAlt: "Team member 1",
+            tooltip: "Yauheni Salau",
+            imageClassName: "object-center",
+          },
+          {
+            imageSrc: "/images/team/team-member-2.png",
+            imageAlt: "Team member 2",
+            tooltip: "Irina Stepanova (Product Designer)",
+            profileUrl: "https://www.linkedin.com/in/irina-stepi/",
+          },
+          {
+            imageSrc: "/images/team/team-member-3.png",
+            imageAlt: "Team member 3",
+            tooltip: "Shahla Velieva (Product Manager)",
+            profileUrl: "https://www.linkedin.com/in/shahlavelieva/",
+          },
+          {
+            imageSrc: "/images/team/team-member-4.png",
+            imageAlt: "Team member 4",
+            tooltip: "Kay Schneider (President at ShowHeroes Group)",
+            profileUrl: "https://www.linkedin.com/in/kayschneider/",
+          },
+        ]}
+        teamExtraCount={4}
+        previousCase={{
+          href: "/player",
+          title: "Redesigning a Video Player Ecosystem for Content and Ads",
+        }}
+        nextCase={{
+          href: "/network-insight",
+          title: "Building an Analytics Platform for Contextual Targeting",
+        }}
         imagePlaceholderColor="#E8E8EE"
         sections={[
           {
@@ -23,6 +58,24 @@ export default function CreatePage() {
               <p>
                 Create is the ad campaign platform that brings advertisers and publishers together to build interactive ads without code. It takes the messy parts (templates, collaboration, analytics, reporting) and puts them in one place, so non-technical teams can launch campaigns without depending on developers for every step.
               </p>
+            ),
+          },
+          {
+            content: (
+              <div className="flex w-full items-start justify-between gap-8 px-10">
+                <div className="flex flex-col justify-start items-center gap-1">
+                  <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">+147%</p>
+                  <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">revenue growth YoY</p>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">~€500K</p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">annual savings</p>
+                </div>
+                <div className="flex flex-col justify-start items-center gap-1">
+                  <p className="text-[32px] font-semibold leading-none tracking-[-1px] text-accent">+30%</p>
+                  <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">conversion rate</p>
+                </div>
+              </div>
             ),
           },
           {

@@ -15,6 +15,42 @@ export default function NetworkInsightPage() {
           { value: "300", label: "MAU" },
           { value: "2h→6m", label: "reporting" },
         ]}
+        teamMembers={[
+          {
+            imageSrc: "/images/team/team-member-1.png",
+            imageAlt: "Team member 1",
+            tooltip: "Yauheni Salau",
+            imageClassName: "object-center",
+          },
+          {
+            imageSrc: "/images/team/create-team-member-maike.png",
+            imageAlt: "Team member 2",
+            tooltip: "Maike Selle (Senior Product Manager)",
+            profileUrl: "https://www.linkedin.com/in/maike-selle-showheroes/",
+          },
+          {
+            imageSrc: "/images/team/create-team-member-ken.png",
+            imageAlt: "Team member 3",
+            tooltip: "Ken Lim (Global Director Platform & Data Solutions)",
+            profileUrl: "https://www.linkedin.com/in/limliken/",
+          },
+          {
+            imageSrc: "/images/team/create-team-member-vadim.png",
+            imageAlt: "Team member 4",
+            tooltip: "Vadim Mazzherin (Frontend Team & Tech Lead)",
+            profileUrl: "https://www.linkedin.com/in/vadim-mazzherin/",
+          },
+        ]}
+        teamExtraCount={4}
+        previousCase={{
+          href: "/create",
+          title: "Transforming a complex ad platform into a simple no-code tool",
+        }}
+        nextCase={{
+          href: "/design-system",
+          title: "ShowHeroes Design System",
+        }}
+        compactExploreCards
         imagePlaceholderColor="#E0EAF5"
         sections={[
           {
