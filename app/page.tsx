@@ -68,8 +68,16 @@ export default function Home() {
   return (
     <PageLayout>
       <div className="flex flex-col gap-16">
-        {cases.map((c) => (
-          <CaseCard key={c.href} {...c} />
+        {cases.map((c, index) => (
+          <div key={c.href} className="flex flex-col gap-16">
+            <CaseCard {...c} />
+            {index < cases.length - 1 && (
+              <div
+                aria-hidden="true"
+                className="h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)]"
+              />
+            )}
+          </div>
         ))}
       </div>
     </PageLayout>

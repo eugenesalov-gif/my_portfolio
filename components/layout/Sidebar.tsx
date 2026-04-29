@@ -101,10 +101,11 @@ function ProfileCard() {
     <div className="relative w-full h-[164px] rounded-[20px] overflow-hidden">
       <Link href="/" className="absolute left-0 top-0 z-0 block h-full w-full" aria-label="Go to homepage">
         <Image
-          src="/images/ui/profilecard.png"
+          src="/images/ui/profilecard-original.png"
           alt="Yauheni Salau portrait"
           width={479}
           height={200}
+          unoptimized
           quality={100}
           className="h-full w-full object-cover object-left"
           priority
