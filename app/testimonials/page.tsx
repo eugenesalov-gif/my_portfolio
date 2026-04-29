@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import PageLayout from "@/components/layout/PageLayout";
-import BackButton from "@/components/ui/BackButton";
 import { motion } from "framer-motion";
 
 const testimonials = [
@@ -90,9 +89,6 @@ export default function TestimonialsPage() {
         className="flex flex-col gap-8"
       >
         <div className="flex items-start gap-4">
-          <div className="mt-1">
-            <BackButton />
-          </div>
           <h1 className="text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary">
             Testimonials
           </h1>
