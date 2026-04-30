@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -27,6 +28,17 @@ export default function CaseCard({
   imagePlaceholderColor = "#E8E8EE",
 }: CaseCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const isCreateCard = href === "/create";
+  const isNetworkInsightCard = href === "/network-insight";
+  const isDesignSystemCard = href === "/design-system";
+  const isPlayerCard = href === "/player";
+  const isAiAgentChatCard = href === "/ai-agent-chat";
+  const shouldUseAutoHeightMedia =
+    isCreateCard ||
+    isNetworkInsightCard ||
+    isDesignSystemCard ||
+    isPlayerCard ||
+    isAiAgentChatCard;
 
   return (
     <motion.div
@@ -50,7 +62,69 @@ export default function CaseCard({
           )}
 
           {/* Image with metrics chips */}
-          <div className="relative rounded-[20px] overflow-hidden w-full aspect-[16/9]" style={{ backgroundColor: imagePlaceholderColor }}>
+          <div
+            className={`relative rounded-[20px] overflow-hidden w-full ${shouldUseAutoHeightMedia ? "" : "aspect-[16/9]"}`}
+            style={{ backgroundColor: imagePlaceholderColor }}
+          >
+            {isCreateCard && (
+              <video
+                src="/videos/about/create.webm"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="block h-auto w-full object-contain"
+              />
+            )}
+            {isNetworkInsightCard && (
+              <Image
+                src="/images/cases/network-insight.png"
+                alt="Network Insight interface preview"
+                width={1024}
+                height={640}
+                className="block h-auto w-full object-contain"
+                sizes="(min-width: 1200px) 640px, (min-width: 768px) 60vw, 100vw"
+                unoptimized
+                priority={false}
+              />
+            )}
+            {isDesignSystemCard && (
+              <Image
+                src="/images/cases/design-system.png"
+                alt="Design system components overview"
+                width={1024}
+                height={656}
+                className="block h-auto w-full object-contain"
+                sizes="(min-width: 1200px) 640px, (min-width: 768px) 60vw, 100vw"
+                unoptimized
+                priority={false}
+              />
+            )}
+            {isPlayerCard && (
+              <Image
+                src="/images/cases/Player.png"
+                alt="Player product interface preview"
+                width={5424}
+                height={3480}
+                className="block h-auto w-full object-contain"
+                sizes="(min-width: 1200px) 640px, (min-width: 768px) 60vw, 100vw"
+                unoptimized
+                priority={false}
+              />
+            )}
+            {isAiAgentChatCard && (
+              <Image
+                src="/images/cases/AI.png"
+                alt="AI agent chat interface preview"
+                width={5424}
+                height={3480}
+                className="block h-auto w-full object-contain"
+                sizes="(min-width: 1200px) 640px, (min-width: 768px) 60vw, 100vw"
+                unoptimized
+                priority={false}
+              />
+            )}
             <motion.div
               className="pointer-events-none absolute left-[-15px] top-0 z-20"
               initial={false}

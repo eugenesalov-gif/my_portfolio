@@ -99,7 +99,7 @@ export default function Sidebar() {
 function ProfileCard() {
   return (
     <div className="relative w-full h-[164px] rounded-[20px] overflow-hidden">
-      <Link href="/" className="absolute left-0 top-0 z-0 block h-full w-full" aria-label="Go to homepage">
+      <Link href="/" className="peer/profile-image absolute left-0 top-0 z-0 block h-full w-full" aria-label="Go to homepage">
         <Image
           src="/images/ui/profilecard-original.png"
           alt="Yauheni Salau portrait"
@@ -109,6 +109,20 @@ function ProfileCard() {
           quality={100}
           className="h-full w-full object-cover object-left"
           priority
+        />
+      </Link>
+      <Link
+        href="/"
+        aria-label="Go to homepage"
+        className="group/home-pulse absolute bottom-3 left-[70px] z-30 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(85,85,85,0.4)] opacity-0 backdrop-blur-[3px] shadow-[inset_1px_1px_2px_-1px_rgba(255,255,255,1),inset_-1px_-1px_2px_-1px_rgba(255,255,255,1)] transition-[opacity,transform] duration-[600ms] ease-out translate-y-2 scale-95 hover/home-pulse:translate-y-0 hover/home-pulse:scale-[1.06] hover/home-pulse:opacity-100 focus-visible/home-pulse:translate-y-0 focus-visible/home-pulse:scale-[1.06] focus-visible/home-pulse:opacity-100 peer-hover/profile-image:translate-y-0 peer-hover/profile-image:scale-100 peer-hover/profile-image:opacity-100 peer-focus-visible/profile-image:translate-y-0 peer-focus-visible/profile-image:scale-100 peer-focus-visible/profile-image:opacity-100"
+      >
+        <Image
+          src="/icons/home-07.svg"
+          alt=""
+          width={16}
+          height={16}
+          aria-hidden="true"
+          className="h-4 w-4 select-none brightness-0 invert"
         />
       </Link>
 
@@ -338,9 +352,11 @@ function DownloadIcon() {
 
 function PinIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7 1C4.79 1 3 2.79 3 5c0 3.25 4 8 4 8s4-4.75 4-8c0-2.21-1.79-4-4-4z" stroke="#888888" strokeWidth="1.2" fill="none" />
-      <circle cx="7" cy="5" r="1.2" fill="#888888" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path
+        d="M12 1.25C17.275 1.25 21.75 5.61 21.75 10.926C21.75 13.639 20.6 15.921 18.987 17.804C17.379 19.68 15.285 21.193 13.318 22.396L13.307 22.403L13.296 22.41C12.9 22.633 12.454 22.75 12 22.75C11.546 22.75 11.1 22.633 10.704 22.41L10.691 22.402L10.678 22.394C8.718 21.181 6.625 19.673 5.017 17.802C3.402 15.924 2.25 13.648 2.25 10.926C2.25 5.61 6.725 1.25 12 1.25ZM3.75 10.926C3.75 13.191 4.7 15.133 6.154 16.825C7.612 18.52 9.549 19.93 11.453 21.11C11.62 21.202 11.808 21.25 12 21.25C12.192 21.25 12.381 21.201 12.548 21.109C14.453 19.942 16.391 18.528 17.848 16.828C19.301 15.131 20.25 13.183 20.25 10.926C20.25 6.456 16.466 2.75 12 2.75C7.534 2.75 3.75 6.456 3.75 10.926ZM12 6.75C14.347 6.75 16.25 8.653 16.25 11C16.25 13.347 14.347 15.25 12 15.25C9.653 15.25 7.75 13.347 7.75 11C7.75 8.653 9.653 6.75 12 6.75ZM9.25 11C9.25 12.519 10.481 13.75 12 13.75C13.519 13.75 14.75 12.519 14.75 11C14.75 9.481 13.519 8.25 12 8.25C10.481 8.25 9.25 9.481 9.25 11Z"
+        fill="#888888"
+      />
     </svg>
   );
 }

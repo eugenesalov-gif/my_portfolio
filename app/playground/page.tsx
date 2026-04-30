@@ -78,10 +78,16 @@ export default function PlaygroundPage() {
             <div className="group absolute right-5 top-5 z-20">
               <button
                 type="button"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#d7d7d7] bg-white text-[#777] transition-colors hover:bg-[#f3f3f3]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border-0 border-transparent border-none bg-transparent text-[rgba(249,249,249,1)] [background:unset] [background-color:unset] [background-clip:unset] [-webkit-background-clip:unset] [border-image:none] transition-colors hover:bg-transparent"
                 aria-label="About Photo booth stack"
               >
-                i
+                <img
+                  src="/icons/information-circle.svg"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-6 w-6 select-none bg-transparent [background:unset] [background-color:unset]"
+                  draggable={false}
+                />
               </button>
               <div className="pointer-events-none absolute right-0 top-10 flex w-fit flex-col gap-4 rounded-[14px] border border-[#ececec] bg-white p-4 opacity-0 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-opacity duration-200 group-hover:opacity-100">
                 <p className="mb-2 text-[20px] font-semibold leading-[0.95] tracking-[-1.2px] text-text-primary">

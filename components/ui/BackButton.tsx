@@ -40,7 +40,7 @@ export default function BackButton() {
   return (
     <motion.button
       onClick={() => router.push("/")}
-      className="flex h-10 shrink-0 items-center justify-center gap-1 overflow-hidden rounded-3xl bg-[rgba(85,85,85,0.4)] pl-3 pr-4 text-white backdrop-blur-[3px] shadow-[inset_1px_1px_2px_0px_rgba(255,255,255,1),inset_-1px_-1px_2px_0px_rgba(255,255,255,1)]"
+      className="flex h-10 shrink-0 items-center justify-center gap-1 overflow-hidden rounded-3xl bg-[rgba(85,85,85,0.4)] pl-3 pr-4 text-white backdrop-blur-[3px] shadow-[inset_1px_1px_2px_-1px_rgba(255,255,255,1),inset_-1px_-1px_2px_-1px_rgba(255,255,255,1)]"
       animate={{ y: isVisible ? 0 : -20, opacity: isVisible ? 1 : 0 }}
       whileHover={{ x: -3 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
