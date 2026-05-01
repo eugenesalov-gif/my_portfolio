@@ -79,7 +79,7 @@ export default function CaseCard({
             )}
             {isNetworkInsightCard && (
               <Image
-                src="/images/cases/network-insight.png"
+                src="/images/cases/network-insight/main.png"
                 alt="Network Insight interface preview"
                 width={1024}
                 height={640}
@@ -91,7 +91,7 @@ export default function CaseCard({
             )}
             {isDesignSystemCard && (
               <Image
-                src="/images/cases/design-system.png"
+                src="/images/cases/design-system/main.png"
                 alt="Design system components overview"
                 width={1024}
                 height={656}
@@ -103,7 +103,7 @@ export default function CaseCard({
             )}
             {isPlayerCard && (
               <Image
-                src="/images/cases/Player.png"
+                src="/images/cases/player/main.png"
                 alt="Player product interface preview"
                 width={5424}
                 height={3480}
@@ -115,7 +115,7 @@ export default function CaseCard({
             )}
             {isAiAgentChatCard && (
               <Image
-                src="/images/cases/AI.png"
+                src="/images/cases/ai-agent-chat/main.png"
                 alt="AI agent chat interface preview"
                 width={5424}
                 height={3480}

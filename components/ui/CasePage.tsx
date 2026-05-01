@@ -8,6 +8,10 @@ import BackButton from "./BackButton";
 interface Section {
   label?: string;
   content: React.ReactNode;
+  contentMaxWidthClassName?: string;
+  containerClassName?: string;
+  labelClassName?: string;
+  labelStyle?: React.CSSProperties;
 }
 
 interface TeamMember {
@@ -29,6 +33,7 @@ interface CasePageProps {
   tags: string[];
   metrics?: { value: string; label: string }[];
   imagePlaceholderColor?: string;
+  heroContent?: React.ReactNode;
   sections: Section[];
   teamMembers?: TeamMember[];
   teamExtraCount?: number;
@@ -41,6 +46,7 @@ export default function CasePage({
   title,
   metrics = [],
   imagePlaceholderColor = "#E8E8EE",
+  heroContent,
   sections,
   teamMembers = [
     { imageSrc: "/images/team/team-member-1.png", imageAlt: "Team member 1", tooltip: "Team member 1", imageClassName: "object-center" },
@@ -69,28 +75,32 @@ export default function CasePage({
       </div>
 
       {/* Hero image placeholder */}
-      <div
-        className="-mt-5 w-full rounded-[20px] relative"
-        style={{
-          backgroundColor: imagePlaceholderColor,
-          aspectRatio: "16/9",
-        }}
-      >
-        {metrics.length > 0 && (
-          <div className="absolute bottom-3 left-3 flex flex-wrap gap-2">
-            {metrics.map((m, i) => (
-              <div
-                key={i}
-                className="rounded-lg px-2 py-2 flex flex-col"
-                style={{ backgroundColor: "rgba(255,255,255,0.9)" }}
-              >
-                <span className="text-[16px] font-semibold leading-tight text-text-primary">{m.value}</span>
-                <span className="text-[11px] font-normal text-text-secondary leading-tight">{m.label}</span>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      {heroContent ? (
+        <div className="-mt-5 w-full relative">{heroContent}</div>
+      ) : (
+        <div
+          className="-mt-5 w-full rounded-[20px] relative"
+          style={{
+            backgroundColor: imagePlaceholderColor,
+            aspectRatio: "16/9",
+          }}
+        >
+          {metrics.length > 0 && (
+            <div className="absolute bottom-3 left-3 flex flex-wrap gap-2">
+              {metrics.map((m, i) => (
+                <div
+                  key={i}
+                  className="rounded-lg px-2 py-2 flex flex-col"
+                  style={{ backgroundColor: "rgba(255,255,255,0.9)" }}
+                >
+                  <span className="text-[16px] font-semibold leading-tight text-text-primary">{m.value}</span>
+                  <span className="text-[11px] font-normal text-text-secondary leading-tight">{m.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       <h1 className="mx-auto w-full max-w-[800px] text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary">
         {title}
@@ -98,11 +108,14 @@ export default function CasePage({
 
       {/* Sections */}
       {sections.map((section, i) => (
-        <div key={i} className="mx-auto flex w-full max-w-[800px] flex-col gap-6">
+        <div
+          key={i}
+          className={`mx-auto flex w-full flex-col gap-5 ${section.contentMaxWidthClassName ?? "max-w-[800px]"} ${section.containerClassName ?? ""}`}
+        >
           {section.label && (
             <h2
-              className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase"
-              style={{ color: "rgba(14, 154, 255, 1)" }}
+              className={`w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase ${section.labelClassName ?? ""}`}
+              style={section.labelStyle ?? { color: "rgba(14, 154, 255, 1)" }}
             >
               {section.label}
             </h2>

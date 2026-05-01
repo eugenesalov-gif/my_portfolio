@@ -50,6 +50,19 @@ export default function CreatePage() {
           href: "/network-insight",
           title: "Building an Analytics Platform for Contextual Targeting",
         }}
+        heroContent={(
+          <div className="relative w-full overflow-hidden rounded-[20px]" style={{ backgroundColor: "#E8E8EE" }}>
+            <video
+              src="/videos/about/create.webm"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="block h-auto w-full object-contain"
+            />
+          </div>
+        )}
         imagePlaceholderColor="#E8E8EE"
         sections={[
           {
@@ -65,16 +78,32 @@ export default function CreatePage() {
               <div className="flex w-full items-start justify-between gap-8 px-10">
                 <div className="flex flex-col justify-start items-center gap-1">
                   <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">+147%</p>
-                  <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">revenue growth YoY</p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">revenue growth YoY</p>
                 </div>
                 <div className="flex flex-col gap-1">
                   <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">~€500K</p>
                   <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">annual savings</p>
                 </div>
                 <div className="flex flex-col justify-start items-center gap-1">
-                  <p className="text-[32px] font-semibold leading-none tracking-[-1px] text-accent">+30%</p>
+                  <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">+30%</p>
                   <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">conversion rate</p>
                 </div>
+              </div>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-3">
+                <div className="w-full overflow-visible rounded-[12px]">
+                  <img
+                    src="/images/cases/create/editor.png"
+                    alt="Create platform editor interface"
+                    className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                    draggable={false}
+                  />
+                </div>
+                <p className="text-center text-[13px] text-[#626266]">Create editor shown in dark theme</p>
               </div>
             ),
           },
@@ -84,6 +113,50 @@ export default function CreatePage() {
               <p>
                 I led the UX/UI redesign from the ground up. This included user research, core navigation, permissions, and the analytics dashboard. I also onboarded and mentored another designer on the project, while working closely with product and engineering to keep everything aligned.
               </p>
+            ),
+          },
+          {
+            label: "before",
+            contentMaxWidthClassName: "max-w-[900px]",
+            containerClassName:
+              "rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5 gap-5",
+            labelStyle: { color: "rgba(255, 255, 255, 1)" },
+            content: (
+              <div className="flex w-full flex-col gap-4">
+                <div className="w-full overflow-hidden rounded-[12px]">
+                  <img
+                    src="/images/cases/create/createbefore1.png"
+                    alt="Create interface before redesign overview"
+                    className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                    draggable={false}
+                  />
+                </div>
+                <div className="w-full overflow-hidden rounded-[12px]">
+                  <img
+                    src="/images/cases/create/createbefore2.png"
+                    alt="Create interface before redesign details"
+                    className="block h-auto w-full rounded-[12px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                    draggable={false}
+                  />
+                </div>
+              </div>
+            ),
+          },
+          {
+            label: "after",
+            contentMaxWidthClassName: "max-w-[900px]",
+            containerClassName:
+              "rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5 gap-5",
+            labelStyle: { color: "rgba(255, 255, 255, 1)" },
+            content: (
+              <div className="w-full overflow-hidden rounded-[4px]">
+                <img
+                  src="/images/cases/create/createlist.png"
+                  alt="Create interface after redesign"
+                  className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                  draggable={false}
+                />
+              </div>
             ),
           },
           {
