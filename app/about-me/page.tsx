@@ -93,7 +93,7 @@ function GalleryBlock({ blockId, cards }: GalleryBlockProps) {
       className="grid w-full max-w-[900px] grid-cols-1 gap-6 md:grid-cols-3"
       data-gallery-block={blockId}
     >
-      {cards.map((card, index) => (
+      {cards.map((card) => (
         <div
           key={card.id}
           className="relative overflow-hidden rounded-[20px]"

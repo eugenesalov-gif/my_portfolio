@@ -116,46 +116,64 @@ export default function CreatePage() {
             ),
           },
           {
-            label: "before",
             contentMaxWidthClassName: "max-w-[900px]",
-            containerClassName:
-              "rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5 gap-5",
-            labelStyle: { color: "rgba(255, 255, 255, 1)" },
             content: (
-              <div className="flex w-full flex-col gap-4">
-                <div className="w-full overflow-hidden rounded-[12px]">
-                  <img
-                    src="/images/cases/create/createbefore1.png"
-                    alt="Create interface before redesign overview"
-                    className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
-                    draggable={false}
-                  />
+              <div className="flex w-full flex-col gap-3">
+                <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
+                  <h2
+                    className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase"
+                    style={{ color: "rgba(255, 255, 255, 1)" }}
+                  >
+                    before
+                  </h2>
+                  <div className="flex w-full flex-col gap-4">
+                    <div className="w-full overflow-hidden rounded-[12px]">
+                      <img
+                        src="/images/cases/create/createbefore1.png"
+                        alt="Create interface before redesign overview"
+                        className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                        draggable={false}
+                      />
+                    </div>
+                    <div className="w-full overflow-hidden rounded-[12px]">
+                      <img
+                        src="/images/cases/create/createbefore2.png"
+                        alt="Create interface before redesign details"
+                        className="block h-auto w-full rounded-[12px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                        draggable={false}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="w-full overflow-hidden rounded-[12px]">
-                  <img
-                    src="/images/cases/create/createbefore2.png"
-                    alt="Create interface before redesign details"
-                    className="block h-auto w-full rounded-[12px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
-                    draggable={false}
-                  />
-                </div>
+                <p className="text-center text-[13px] text-[#626266]">
+                  Legacy Create interface before redesign — creatives list and editing screen
+                </p>
               </div>
             ),
           },
           {
-            label: "after",
             contentMaxWidthClassName: "max-w-[900px]",
-            containerClassName:
-              "rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5 gap-5",
-            labelStyle: { color: "rgba(255, 255, 255, 1)" },
             content: (
-              <div className="w-full overflow-hidden rounded-[4px]">
-                <img
-                  src="/images/cases/create/createlist.png"
-                  alt="Create interface after redesign"
-                  className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
-                  draggable={false}
-                />
+              <div className="flex w-full flex-col gap-3">
+                <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
+                  <h2
+                    className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase"
+                    style={{ color: "rgba(255, 255, 255, 1)" }}
+                  >
+                    after
+                  </h2>
+                  <div className="w-full overflow-hidden rounded-[4px]">
+                    <img
+                      src="/images/cases/create/createlist.png"
+                      alt="Create interface after redesign"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                </div>
+                <p className="text-center text-[13px] text-[#626266]">
+                  New Create interface after redesign — homepage with creatives list
+                </p>
               </div>
             ),
           },
@@ -171,6 +189,36 @@ export default function CreatePage() {
             ),
           },
           {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-3">
+                <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
+                  <div className="flex w-full flex-col gap-4">
+                    <div className="w-full overflow-hidden rounded-[12px]">
+                      <img
+                        src="/images/cases/create/interviewRi.png"
+                        alt="Create case study — user interview materials (interviewRi)"
+                        className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                        draggable={false}
+                      />
+                    </div>
+                    <div className="w-full overflow-hidden rounded-[12px]">
+                      <img
+                        src="/images/cases/create/interviewRu.png"
+                        alt="Create case study — user interview materials (interviewRu)"
+                        className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                        draggable={false}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <p className="text-center text-[13px] text-[#626266]">
+                  Conducting user interviews and interface research
+                </p>
+              </div>
+            ),
+          },
+          {
             label: "my goals",
             content: (
               <ul className="list-disc list-outside pl-6 flex flex-col gap-3">
@@ -182,15 +230,94 @@ export default function CreatePage() {
             ),
           },
           {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-6">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/create/template.png"
+                      alt="Create template library with subgroups for navigation"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] text-[#626266]">
+                    14 new templates added and organized into subgroups for easier navigation
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/create/poll.png"
+                      alt="Brand Lift Study creation with poll setup and answer options in Create"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] text-[#626266]">
+                    Brand Lift Study creation with poll setup and answer options
+                  </p>
+                </div>
+              </div>
+            ),
+          },
+          {
             label: "key decisions",
             content: (
               <ul className="list-disc list-outside pl-6 flex flex-col gap-3">
                 <li>Created a scalable template library from 3 to 14 formats and organized them into subgroups so they’re easy to find and reuse.</li>
-                <li>Simplified the creation flow so users can go from "idea" to "launch" without getting lost in technical complexity.</li>
+                <li>Simplified the creation flow so users can go from &ldquo;idea&rdquo; to &ldquo;launch&rdquo; without getting lost in technical complexity.</li>
                 <li>Built a foundation for teamwork with roles, permissions, and a folder system so teams can manage their own projects without needing a developer for every small change.</li>
                 <li>Integrated analytics directly into the UI with event tracking and fast exports, making performance transparent and reducing reporting time by 60%.</li>
                 <li>Supported complex ad formats for CTV and Brand Lift studies, allowing users to handle advanced campaigns inside the same platform.</li>
               </ul>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-6">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/create/related.png"
+                      alt="Format Statistics — related creatives with CTR, attention time, completion rate and impressions"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] text-[#626266]">
+                    Format Statistics with related creatives window showing CTR, attention time, completion rate and impressions
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/create/format.png"
+                      alt="Format Statistics — market overview of formats and performance results"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] text-[#626266]">
+                    Format Statistics with market overview of formats and performance results
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/create/managelocation.png"
+                      alt="CTV template with location management and QR code generation"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] text-[#626266]">
+                    CTV template with location management and QR code generation
+                  </p>
+                </div>
+              </div>
             ),
           },
           {
@@ -202,6 +329,39 @@ export default function CreatePage() {
                 <li><strong>Efficiency:</strong> Cut reporting from <strong>5h to 2h</strong> (60% faster) and onboarding from <strong>5d to 3d</strong> (40% less time).</li>
                 <li><strong>Team impact:</strong> Increased project efficiency by <strong>35%</strong> through better collaboration and clearer roles.</li>
               </ul>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-6">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/create/analytics.png"
+                      alt="Analytics dashboard with time spent metrics and user engagement data"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] text-[#626266]">
+                    Analytics dashboard with time spent metrics and user engagement data
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/create/teams.png"
+                      alt="Team and Members with team management and member role settings"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] text-[#626266]">
+                    Team & Members with team management and member role settings
+                  </p>
+                </div>
+              </div>
             ),
           },
         ]}

@@ -71,7 +71,7 @@ export default function AIAgentChatPage() {
             content: (
               <ul className="list-disc list-outline pl-6 flex flex-col gap-2">
                 <li>Traditional end cards were too static, with most viewers glancing at them for just a few seconds before moving on.</li>
-                <li><strong>Brands</strong> were looking for real, meaningful engagement that a simple button couldn't provide.</li>
+                <li><strong>Brands</strong> were looking for real, meaningful engagement that a simple button could not provide.</li>
                 <li>As <strong>Cookies 🍪</strong> fade and targeting gets tougher, capturing user intent directly inside the ad is now a huge competitive advantage.</li>
                 <li>External landing pages were conversion killers, as forcing people to leave the video player to fill out a form caused most of them to drop off.</li>
               </ul>

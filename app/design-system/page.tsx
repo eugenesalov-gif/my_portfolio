@@ -78,7 +78,7 @@ export default function DesignSystemPage() {
                 <li>Built a token architecture to separate raw values (<strong>Primitives</strong>) from their actual purpose (<strong>Semantics</strong>).</li>
                 <li>Baked light and dark modes directly into the system level. By using semantic tokens, products can switch their look and feel instantly. </li>
                 <li>Structured our Figma libraries to make life easier for the team. With standardized variants, designers and engineering can work faster. </li>
-                <li>Created dedicated libraries for specific areas like analytics charts, maps and the video player so we don't have to build ad-hoc solutions every time.</li>
+                <li>Created dedicated libraries for specific areas like analytics charts, maps and the video player so we don&apos;t have to build ad-hoc solutions every time.</li>
               </ul>
             ),
           },
@@ -87,7 +87,7 @@ export default function DesignSystemPage() {
             content: (
               <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
                 <li><strong>Increased the average delivery time</strong> from <strong>21 days</strong> to <strong>4 days</strong>. </li>
-                <li><strong>One Source of Truth</strong>: No more "which version of the button is this?"</li>
+                <li><strong>One Source of Truth</strong>: No more &ldquo;which version of the button is this?&rdquo;</li>
                 <li><strong>Faster Iteration</strong>: Teams can now focus on UX problems instead of pushing pixels.</li>
                 <li><strong>Centralized Governance</strong>: maintenance is cheaper because we fix things in one place, and it updates everywhere.</li>
               </ul>

@@ -1,5 +1,7 @@
+import Image from "next/image";
 import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
+import ImageCarousel from "@/components/ui/ImageCarousel";
 
 export default function NetworkInsightPage() {
   return (
@@ -51,6 +53,20 @@ export default function NetworkInsightPage() {
           title: "ShowHeroes Design System",
         }}
         compactExploreCards
+        heroContent={(
+          <div className="relative w-full overflow-hidden rounded-[20px]" style={{ backgroundColor: "#E0EAF5" }}>
+            <Image
+              src="/images/cases/network-insight/main.png"
+              alt="Network Insight interface preview"
+              width={1024}
+              height={640}
+              className="block h-auto w-full object-contain"
+              sizes="(min-width: 1200px) 640px, (min-width: 768px) 60vw, 100vw"
+              unoptimized
+              priority
+            />
+          </div>
+        )}
         imagePlaceholderColor="#E0EAF5"
         sections={[
           {
@@ -62,11 +78,135 @@ export default function NetworkInsightPage() {
             ),
           },
           {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-5">
+                <div className="flex w-full items-start justify-between gap-8 px-10">
+                  <div className="flex flex-col justify-start items-center gap-1">
+                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">6-in-1</p>
+                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                      platforms combined
+                    </p>
+                  </div>
+                  <div className="flex flex-col justify-start items-center gap-1">
+                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">300+</p>
+                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                      monthly active users
+                    </p>
+                  </div>
+                  <div className="flex flex-col justify-start items-center gap-1">
+                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">2h → 6m</p>
+                    <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">
+                      faster reporting
+                    </p>
+                  </div>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/customsegment.png"
+                      alt="Detailed view of the selected segment showing performance trends and campaign details"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] text-[#626266]">
+                    Detailed view of the selected segment showing performance trends and campaign details
+                  </p>
+                </div>
+              </div>
+            ),
+          },
+          {
             label: "my role",
             content: (
               <p>
                 I led the design from the ground up. I mapped out how the different teams work to create a structure that makes sense for them. I designed the interface to handle complex data and worked side-by-side with the product manager and engineering to build and ship the platform step by step.
               </p>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-3">
+                <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(222,222,222,1)_0%,rgba(235,235,235,1)_100%)] p-5">
+                  <h2 className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase text-[rgba(29,29,38,1)]">
+                    before
+                  </h2>
+                  <div className="flex w-full flex-col gap-4">
+                    <div className="w-full overflow-hidden rounded-[12px]">
+                      <img
+                        src="/images/cases/network-insight/oldlist.png"
+                        alt="Legacy Network Insights interface — list view"
+                        className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                        draggable={false}
+                      />
+                    </div>
+                    <div className="w-full overflow-hidden rounded-[12px]">
+                      <img
+                        src="/images/cases/network-insight/oldlistb.png"
+                        alt="Legacy Network Insights interface — secondary screen"
+                        className="block h-auto w-full rounded-[12px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                        draggable={false}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-5">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
+                    <h2
+                      className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase"
+                      style={{ color: "rgba(255, 255, 255, 1)" }}
+                    >
+                      after
+                    </h2>
+                    <div className="w-full overflow-hidden rounded-[4px]">
+                      <img
+                        src="/images/cases/network-insight/bt.png"
+                        alt="New Network Insights interface with global map and regional revenue analytics"
+                        className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                        draggable={false}
+                      />
+                    </div>
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    New Network Insights interface with global map and regional revenue analytics
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/btbelow.png"
+                      alt="Updated Network Insights dashboard with new demand, supply and margin metrics providing deeper insight into market performance"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    Updated Network Insights dashboard with new demand, supply and margin metrics providing deeper insight into market performance
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/mobile.png"
+                      alt="Network Insights mobile view with dashboards and comments"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    Mobile version with optimized dashboards and comments for quick access to analytics on the go
+                  </p>
+                </div>
+              </div>
             ),
           },
           {
@@ -81,6 +221,34 @@ export default function NetworkInsightPage() {
             ),
           },
           {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-5">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/comments.png"
+                      alt="New comments section for sharing analytics and collaboration"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    New comments section for sharing analytics and real-time, enabling top management to track performance and highlight key insights
+                  </p>
+                </div>
+                <div className="w-full overflow-visible rounded-[12px]">
+                  <img
+                    src="/images/cases/network-insight/tam.png"
+                    alt="Network Insights TAM analytics view"
+                    className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                    draggable={false}
+                  />
+                </div>
+              </div>
+            ),
+          },
+          {
             label: "my goals",
             content: (
               <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
@@ -91,14 +259,104 @@ export default function NetworkInsightPage() {
             ),
           },
           {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-6">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/segment.png"
+                      alt="Custom Segment section for creating and managing campaign segments"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    Custom Segment section for creating and managing campaign segments
+                  </p>
+                </div>
+                <ImageCarousel
+                  slides={[
+                    {
+                      src: "/images/cases/network-insight/cs1.png",
+                      alt: "Custom Segment interface, screen 1",
+                    },
+                    {
+                      src: "/images/cases/network-insight/cs2.png",
+                      alt: "Custom Segment interface, screen 2",
+                    },
+                    {
+                      src: "/images/cases/network-insight/cs3.png",
+                      alt: "Custom Segment interface, screen 3",
+                    },
+                    {
+                      src: "/images/cases/network-insight/cs4.png",
+                      alt: "Custom Segment interface, screen 4",
+                    },
+                    {
+                      src: "/images/cases/network-insight/cs5.png",
+                      alt: "Custom Segment interface, screen 5",
+                    },
+                  ]}
+                />
+              </div>
+            ),
+          },
+          {
             label: "key decisions",
             content: (
               <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
-                <li>Avoided the 'mega dashboard' trap by building a set of focused tools instead of one giant system, allowing us to release features faster and scale without breaking things.</li>
+                <li>Avoided the &apos;mega dashboard&apos; trap by building a set of focused tools instead of one giant system, allowing us to release features faster and scale without breaking things.</li>
                 <li>Designed the flows around what people actually do, like building segments or verifying brand safety, rather than just dumping raw data on the screen.</li>
                 <li>Cut the chaos with clear roles (<strong>Viewer, Creator, Admin</strong>) so everyone knows exactly what they own, keeping workflows clean and conflict-free.</li>
                 <li>Made a mobile version for quick check-ins, especially for C-levels who needed to track numbers on the go without struggling with complex desktop charts.</li>
               </ul>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-5">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/members.png"
+                      alt="User Management section with role configuration, access permissions and member overview"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    User Management section with role configuration, access permissions and member overview
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/contentvideo.png"
+                      alt="Campaign section with content video analytics and key campaign performance metrics"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    Campaign section with content video analytics and key campaign performance metrics
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/inventory.png"
+                      alt="Inventory section for analyzing top keywords, categories and segments by domain, country and language"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    Inventory section for analyzing top keywords, categories and segments by domain, country and language
+                  </p>
+                </div>
+              </div>
             ),
           },
           {
@@ -108,8 +366,54 @@ export default function NetworkInsightPage() {
                 <li>Launched a <strong>6 new</strong> internal tools that replaced a mess of different systems and brought everything into one place.</li>
                 <li>Reached <strong>300+ active users</strong> every month across the company.</li>
                 <li>Massive <strong>time savings</strong>, as creating segments and reports now takes just <strong>minutes</strong> instead of <strong>hours</strong>.</li>
-                <li>We've seen real engagement with more users and longer sessions proving the platform is a key daily tool instead of just a reporting portal.</li>
+                <li>We&apos;ve seen real engagement with more users and longer sessions proving the platform is a key daily tool instead of just a reporting portal.</li>
               </ul>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-5">
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/iab.png"
+                      alt="IAB Overview section for analyzing content categories and subcategories with view and engagement data"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    IAB Overview section for analyzing content categories and subcategories with view and engagement data
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/olv.png"
+                      alt="OLV Site List section for managing and optimizing site lists by campaign and performance parameter"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    OLV Site List section for managing and optimizing site lists by campaign and performance parameter
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/network-insight/export.png"
+                      alt="Results table after report setup with data export options and filtering by categories and regions"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                    Results table after report setup, featuring data export options and flexible filtering by categories and regions
+                  </p>
+                </div>
+              </div>
             ),
           },
         ]}

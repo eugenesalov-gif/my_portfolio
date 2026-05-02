@@ -67,11 +67,10 @@ function Wrapper1({
 type WrapperProps = {
   additionalClassNames?: string;
   onClick?: () => void;
-  active?: boolean;
   disabled?: boolean;
 };
 
-function Wrapper({ children, additionalClassNames = "", onClick, active, disabled = false }: React.PropsWithChildren<WrapperProps>) {
+function Wrapper({ children, additionalClassNames = "", onClick, disabled = false }: React.PropsWithChildren<WrapperProps>) {
   return (
     <div
       className={clsx(
@@ -212,7 +211,7 @@ export default function PhotoBoothApp() {
       const apiUrl = "https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=WDXL+Lubrifont+SC&display=swap";
       const cssRes = await fetch(apiUrl);
       const css = await cssRes.text();
-      const fontUrls = [...css.matchAll(/url\(([^)]+)\)/g)].map((m) => m[1].replace(/['"]/g, ""));
+      const fontUrls = Array.from(css.matchAll(/url\(([^)]+)\)/g)).map((m) => m[1].replace(/['"]/g, ""));
       let embeddedCSS = css;
       for (const fontUrl of fontUrls) {
         const fontRes = await fetch(fontUrl);

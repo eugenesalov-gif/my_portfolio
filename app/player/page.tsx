@@ -57,7 +57,7 @@ export default function PlayerPage() {
             content: (
               <div className="flex flex-col gap-6">
                 <p>
-                  We were managing two separate products, a Content Player and an Ad Player. They worked, but the UI was starting to show its age, navigation felt cluttered, and they weren't built for the interactive features we wanted to launch.
+                  We were managing two separate products, a Content Player and an Ad Player. They worked, but the UI was starting to show its age, navigation felt cluttered, and they weren&apos;t built for the interactive features we wanted to launch.
                 </p>
                 <p>
                   I led the redesign to create a unified visual system that gave publishers more flexibility and made the entire experience feel like one smooth, connected product.
