@@ -1,3 +1,4 @@
+import Image from "next/image";
 import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
 
@@ -32,6 +33,20 @@ export default function DesignSystemPage() {
           title: "Creating an AI Agent Chat for Interactive Video Ads",
         }}
         compactExploreCards
+        heroContent={(
+          <div className="relative w-full overflow-hidden rounded-[20px]" style={{ backgroundColor: "#EAE8F5" }}>
+            <Image
+              src="/images/cases/design-system/main.png"
+              alt="Design system components overview"
+              width={1024}
+              height={656}
+              className="block h-auto w-full object-contain"
+              sizes="(min-width: 1200px) 640px, (min-width: 768px) 60vw, 100vw"
+              unoptimized
+              priority
+            />
+          </div>
+        )}
         imagePlaceholderColor="#EAE8F5"
         sections={[
           {
@@ -43,11 +58,63 @@ export default function DesignSystemPage() {
             ),
           },
           {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-5">
+                <div className="flex w-full items-start justify-between gap-8 px-10">
+                  <div className="flex flex-col justify-start items-center gap-1">
+                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">21d → 4d</p>
+                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                      delivery speed boost
+                    </p>
+                  </div>
+                  <div className="flex flex-col justify-start items-center gap-1">
+                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">3</p>
+                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                      products
+                    </p>
+                  </div>
+                  <div className="flex flex-col justify-start items-center gap-1">
+                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">200+</p>
+                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                      components
+                    </p>
+                  </div>
+                </div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="w-full overflow-visible rounded-[12px]">
+                    <img
+                      src="/images/cases/design-system/listds.png"
+                      alt="Design system library — components list and documentation"
+                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                      draggable={false}
+                    />
+                  </div>
+                </div>
+              </div>
+            ),
+          },
+          {
             label: "my role",
             content: (
               <p>
                 I initiated the system and owned the entire architecture from the token logic to the Figma libraries and how they’re used across products.
               </p>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-3">
+                <div className="w-full overflow-visible rounded-[12px]">
+                  <img
+                    src="/images/cases/design-system/variables.avif"
+                    alt="Design tokens — primitive and semantic variables in the design system"
+                    className="block h-auto w-full rounded-[8px] object-contain"
+                    draggable={false}
+                  />
+                </div>
+              </div>
             ),
           },
           {
@@ -72,6 +139,21 @@ export default function DesignSystemPage() {
             ),
           },
           {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-3">
+                <div className="w-full overflow-visible rounded-[12px]">
+                  <img
+                    src="/images/cases/design-system/colords.webp"
+                    alt="Design system color tokens and scales for light and dark modes"
+                    className="block h-auto w-full rounded-[8px] object-contain"
+                    draggable={false}
+                  />
+                </div>
+              </div>
+            ),
+          },
+          {
             label: "key decisions",
             content: (
               <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
@@ -83,6 +165,25 @@ export default function DesignSystemPage() {
             ),
           },
           {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-3">
+                <div className="relative w-full overflow-visible rounded-[12px] [background:unset]">
+                  <img
+                    src="/images/cases/design-system/icons.avif"
+                    alt="Design system icon library and component set"
+                    className="relative z-0 block h-auto w-full rounded-[8px] object-contain"
+                    draggable={false}
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 z-10 rounded-[8px] bg-[linear-gradient(to_top,white_0%,rgba(255,255,255,0.92)_22%,transparent_58%)]"
+                  />
+                </div>
+              </div>
+            ),
+          },
+          {
             label: "the results",
             content: (
               <ul className="list-disc list-outside pl-6 flex flex-col gap-2">
@@ -91,6 +192,33 @@ export default function DesignSystemPage() {
                 <li><strong>Faster Iteration</strong>: Teams can now focus on UX problems instead of pushing pixels.</li>
                 <li><strong>Centralized Governance</strong>: maintenance is cheaper because we fix things in one place, and it updates everywhere.</li>
               </ul>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-3">
+                <div className="w-full overflow-visible rounded-[12px]">
+                  <img
+                    src="/images/cases/design-system/dsbutton.avif"
+                    alt="Design system button components — variants and states"
+                    className="block h-auto w-full rounded-[8px] object-contain"
+                    draggable={false}
+                  />
+                </div>
+                <div className="relative w-full overflow-visible rounded-[12px] [background:unset]">
+                  <img
+                    src="/images/cases/design-system/informer.avif"
+                    alt="Design system informer and notification patterns"
+                    className="relative z-0 block h-auto w-full rounded-[8px] object-contain"
+                    draggable={false}
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 z-10 rounded-[8px] bg-[linear-gradient(to_top,white_0%,rgba(255,255,255,0.92)_22%,transparent_58%)]"
+                  />
+                </div>
+              </div>
             ),
           },
         ]}
