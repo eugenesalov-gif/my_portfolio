@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
+import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function AIAgentChatPage() {
   return (
@@ -76,33 +77,48 @@ export default function AIAgentChatPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-5">
-                <div className="flex w-full items-start justify-around gap-8 px-4 sm:px-10">
-                  <div className="flex flex-col items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">8x</p>
-                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
-                      engagement time
-                    </p>
-                  </div>
-                  <div className="flex flex-col items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">~3 min</p>
-                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
-                      interaction time
-                    </p>
-                  </div>
+              <div className="flex w-full items-start justify-around gap-8 px-4 sm:px-10">
+                <div className="flex flex-col items-center gap-1">
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="8x"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0}
+                    />
+                  </p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                    engagement time
+                  </p>
                 </div>
-                <div className="isolate w-full overflow-hidden rounded-[20px]">
-                  <video
-                    src="/videos/ai-agent-chat/Aiformat.mp4"
-                    className="block h-auto w-full object-contain rounded-[20px] [clip-path:inset(0_round_20px)]"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-label="AI Agent Chat format in the video player"
-                  />
+                <div className="flex flex-col items-center gap-1">
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="~3 min"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0.1}
+                    />
+                  </p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                    interaction time
+                  </p>
                 </div>
+              </div>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="isolate w-full overflow-hidden rounded-[20px]">
+                <video
+                  src="/videos/ai-agent-chat/Aiformat.mp4"
+                  className="block h-auto w-full object-contain rounded-[20px] [clip-path:inset(0_round_20px)]"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="AI Agent Chat format in the video player"
+                />
               </div>
             ),
           },

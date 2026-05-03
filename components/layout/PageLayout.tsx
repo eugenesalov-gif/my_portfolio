@@ -11,7 +11,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <div className="w-full max-w-[1600px] mx-auto flex gap-[60px] px-6 py-6 pb-16 items-start">
-      <aside className="w-[450px] shrink-0 self-start">
+      <aside className="relative w-[450px] shrink-0 self-start min-h-[calc(100svh-48px)]">
         <div className="fixed top-6 left-[max(24px,calc((100vw-1600px)/2+24px))] h-[calc(100svh-48px)] w-[450px]">
           <Sidebar />
         </div>

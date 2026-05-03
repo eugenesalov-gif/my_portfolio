@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
+import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function DesignSystemPage() {
   return (
@@ -60,36 +61,57 @@ export default function DesignSystemPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-5">
-                <div className="flex w-full items-start justify-between gap-8 px-10">
-                  <div className="flex flex-col justify-start items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">21d → 4d</p>
-                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
-                      delivery speed boost
-                    </p>
-                  </div>
-                  <div className="flex flex-col justify-start items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">3</p>
-                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
-                      products
-                    </p>
-                  </div>
-                  <div className="flex flex-col justify-start items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">200+</p>
-                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
-                      components
-                    </p>
-                  </div>
-                </div>
-                <div className="flex w-full flex-col gap-3">
-                  <div className="w-full overflow-visible rounded-[12px]">
-                    <img
-                      src="/images/cases/design-system/listds.png"
-                      alt="Design system library — components list and documentation"
-                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
-                      draggable={false}
+              <div className="flex w-full items-start justify-between gap-8 px-10">
+                <div className="flex flex-col justify-start items-center gap-1">
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="21d → 4d"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0}
                     />
-                  </div>
+                  </p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                    delivery speed boost
+                  </p>
+                </div>
+                <div className="flex flex-col justify-start items-center gap-1">
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="3"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0.1}
+                    />
+                  </p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                    products
+                  </p>
+                </div>
+                <div className="flex flex-col justify-start items-center gap-1">
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="200+"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0.2}
+                    />
+                  </p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                    components
+                  </p>
+                </div>
+              </div>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-3">
+                <div className="w-full overflow-visible rounded-[12px]">
+                  <img
+                    src="/images/cases/design-system/listds.png"
+                    alt="Design system library — components list and documentation"
+                    className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                    draggable={false}
+                  />
                 </div>
               </div>
             ),

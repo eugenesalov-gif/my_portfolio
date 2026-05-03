@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import BackButton from "./BackButton";
 
 interface Section {
@@ -61,14 +61,20 @@ export default function CasePage({
 }: CasePageProps) {
   const isCompactPreviousCard = compactExploreCards || previousCase?.href === "/player";
   const isCompactNextCard = compactExploreCards || nextCase?.href === "/network-insight";
+  const reduceMotion = useReducedMotion();
+
+  const scrollReveal = (delay = 0) =>
+    reduceMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y: 20 },
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true, margin: "-60px" },
+          transition: { duration: 0.4, ease: "easeOut" as const, delay },
+        };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="flex flex-col gap-10"
-    >
+    <div className="flex flex-col gap-10">
       {/* Back button */}
       <div className="sticky top-6 z-20 mt-1">
         <BackButton />
@@ -76,14 +82,17 @@ export default function CasePage({
 
       {/* Hero image placeholder */}
       {heroContent ? (
-        <div className="-mt-5 w-full relative">{heroContent}</div>
+        <motion.div className="-mt-5 w-full relative" {...scrollReveal(0)}>
+          {heroContent}
+        </motion.div>
       ) : (
-        <div
+        <motion.div
           className="-mt-5 w-full rounded-[20px] relative"
           style={{
             backgroundColor: imagePlaceholderColor,
             aspectRatio: "16/9",
           }}
+          {...scrollReveal(0)}
         >
           {metrics.length > 0 && (
             <div className="absolute bottom-3 left-3 flex flex-wrap gap-2">
@@ -99,18 +108,22 @@ export default function CasePage({
               ))}
             </div>
           )}
-        </div>
+        </motion.div>
       )}
 
-      <h1 className="mx-auto w-full max-w-[800px] text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary">
+      <motion.h1
+        className="mx-auto w-full max-w-[800px] text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary"
+        {...scrollReveal(0)}
+      >
         {title}
-      </h1>
+      </motion.h1>
 
       {/* Sections */}
       {sections.map((section, i) => (
-        <div
+        <motion.div
           key={i}
-          className={`mx-auto flex w-full flex-col gap-5 ${section.contentMaxWidthClassName ?? "max-w-[800px]"} ${section.containerClassName ?? ""}`}
+          className={`mx-auto flex w-full flex-col gap-10 ${section.contentMaxWidthClassName ?? "max-w-[800px]"} ${section.containerClassName ?? ""}`}
+          {...scrollReveal(Math.min(i * 0.05, 0.25))}
         >
           {section.label && (
             <h2
@@ -123,14 +136,15 @@ export default function CasePage({
           <div className="w-full text-[19px] font-medium leading-7 tracking-[-0.6px] text-text-primary">
             {section.content}
           </div>
-        </div>
+        </motion.div>
       ))}
 
-      <div
+      <motion.div
         aria-hidden="true"
         className="h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)]"
+        {...scrollReveal(0)}
       />
-      <div className="mx-auto flex w-full max-w-[800px] flex-col items-center gap-3 py-1">
+      <motion.div className="mx-auto flex w-full max-w-[800px] flex-col items-center gap-3 py-1" {...scrollReveal(0)}>
         <p className="text-[20px] font-semibold leading-none text-text-primary">Team</p>
         <div className="flex items-center gap-3">
           {teamMembers.map((member, index) => {
@@ -183,13 +197,14 @@ export default function CasePage({
             </div>
           )}
         </div>
-      </div>
-      <div
+      </motion.div>
+      <motion.div
         aria-hidden="true"
         className="h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)]"
+        {...scrollReveal(0)}
       />
       {(previousCase || nextCase) && (
-        <div className="mx-auto flex w-full max-w-[800px] flex-col gap-6 pt-2">
+        <motion.div className="mx-auto flex w-full max-w-[800px] flex-col gap-6 pt-2" {...scrollReveal(0)}>
           <h3 className="text-[26px] font-semibold leading-[0.95] tracking-[-1.2px] text-text-primary lowercase">
             explore more
           </h3>
@@ -279,8 +294,8 @@ export default function CasePage({
               <div />
             )}
           </div>
-        </div>
+        </motion.div>
       )}
-    </motion.div>
+    </div>
   );
 }

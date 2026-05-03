@@ -2,6 +2,7 @@ import Image from "next/image";
 import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
 import ImageCarousel from "@/components/ui/ImageCarousel";
+import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function NetworkInsightPage() {
   return (
@@ -80,40 +81,61 @@ export default function NetworkInsightPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-5">
-                <div className="flex w-full items-start justify-between gap-8 px-10">
-                  <div className="flex flex-col justify-start items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">6-in-1</p>
-                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
-                      platforms combined
-                    </p>
-                  </div>
-                  <div className="flex flex-col justify-start items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">300+</p>
-                    <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
-                      monthly active users
-                    </p>
-                  </div>
-                  <div className="flex flex-col justify-start items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">2h → 6m</p>
-                    <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">
-                      faster reporting
-                    </p>
-                  </div>
-                </div>
-                <div className="flex w-full flex-col gap-3">
-                  <div className="w-full overflow-visible rounded-[12px]">
-                    <img
-                      src="/images/cases/network-insight/customsegment.png"
-                      alt="Detailed view of the selected segment showing performance trends and campaign details"
-                      className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
-                      draggable={false}
+              <div className="flex w-full items-start justify-between gap-8 px-10">
+                <div className="flex flex-col justify-start items-center gap-1">
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="6-in-1"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0}
                     />
-                  </div>
-                  <p className="text-center text-[13px] text-[#626266]">
-                    Detailed view of the selected segment showing performance trends and campaign details
+                  </p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                    platforms combined
                   </p>
                 </div>
+                <div className="flex flex-col justify-start items-center gap-1">
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="300+"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0.1}
+                    />
+                  </p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">
+                    monthly active users
+                  </p>
+                </div>
+                <div className="flex flex-col justify-start items-center gap-1">
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="2h → 6m"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0.2}
+                    />
+                  </p>
+                  <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">
+                    faster reporting
+                  </p>
+                </div>
+              </div>
+            ),
+          },
+          {
+            contentMaxWidthClassName: "max-w-[900px]",
+            content: (
+              <div className="flex w-full flex-col gap-3">
+                <div className="w-full overflow-visible rounded-[12px]">
+                  <img
+                    src="/images/cases/network-insight/customsegment.png"
+                    alt="Detailed view of the selected segment showing performance trends and campaign details"
+                    className="block h-auto w-full rounded-[8px] object-contain shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+                    draggable={false}
+                  />
+                </div>
+                <p className="text-center text-[13px] text-[#626266]">
+                  Detailed view of the selected segment showing performance trends and campaign details
+                </p>
               </div>
             ),
           },

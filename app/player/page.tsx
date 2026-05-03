@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
+import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function PlayerPage() {
   return (
@@ -74,19 +75,37 @@ export default function PlayerPage() {
                 </div>
                 <div className="flex w-full flex-wrap items-start justify-around gap-8 px-4 sm:px-10">
                   <div className="flex min-w-[140px] flex-col items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">+5%</p>
+                    <p className="flex min-h-[32px] items-end justify-center">
+                      <BottomUpLetters
+                        text="+5%"
+                        className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                        blockDelay={0}
+                      />
+                    </p>
                     <p className="text-center text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">
                       revenue
                     </p>
                   </div>
                   <div className="flex min-w-[140px] flex-col items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">+16%</p>
+                    <p className="flex min-h-[32px] items-end justify-center">
+                      <BottomUpLetters
+                        text="+16%"
+                        className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                        blockDelay={0.1}
+                      />
+                    </p>
                     <p className="text-center text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">
                       content impressions
                     </p>
                   </div>
                   <div className="flex min-w-[140px] flex-col items-center gap-1">
-                    <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">+10%</p>
+                    <p className="flex min-h-[32px] items-end justify-center">
+                      <BottomUpLetters
+                        text="+10%"
+                        className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                        blockDelay={0.2}
+                      />
+                    </p>
                     <p className="text-center text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">
                       ad impressions
                     </p>

@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { motion, useReducedMotion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 type NavPreviewImage = {
@@ -83,6 +84,57 @@ const bottomNavItems: Array<{
     ],
   },
 ];
+
+const HOME_BOTTOM_NAV_RISE_KEY = "portfolio-home-bottom-nav-per-char-rise";
+
+const riseEase = [0.22, 1, 0.36, 1] as const;
+
+/** Same per-glyph boxes on every route so BottomNav doesn’t jump; motion only when `animate` (home). */
+function BottomNavLabel({
+  text,
+  animate,
+  play,
+  baseDelay,
+}: {
+  text: string;
+  animate: boolean;
+  play: boolean;
+  baseDelay: number;
+}) {
+  const chars = Array.from(text);
+  const stagger = 0.028;
+
+  return (
+    <>
+      {chars.map((char, i) => (
+        <span
+          key={`${i}-${char}`}
+          className="inline-block align-baseline"
+          style={{ height: "1.45em" }}
+        >
+          {animate ? (
+            <span className="inline-block h-full overflow-hidden">
+              <motion.span
+                className="inline-block leading-[1.25]"
+                initial={false}
+                animate={play ? { y: 0, opacity: 1 } : { y: 18, opacity: 0 }}
+                transition={{
+                  delay: baseDelay + i * stagger,
+                  duration: 0.34,
+                  ease: riseEase,
+                }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            </span>
+          ) : (
+            <span className="inline-block leading-[1.25]">{char === " " ? "\u00A0" : char}</span>
+          )}
+        </span>
+      ))}
+    </>
+  );
+}
 
 export default function Sidebar() {
   return (
@@ -285,11 +337,52 @@ function Bio() {
 }
 
 function BottomNav() {
+  const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
+  const [risePlay, setRisePlay] = useState(false);
+
+  const shouldRise = pathname === "/" && !reduceMotion;
+
+  useEffect(() => {
+    if (!shouldRise) {
+      return;
+    }
+    try {
+      if (typeof window !== "undefined" && sessionStorage.getItem(HOME_BOTTOM_NAV_RISE_KEY) === "1") {
+        setRisePlay(true);
+        return;
+      }
+    } catch {
+      /* ignore */
+    }
+    const id = requestAnimationFrame(() => {
+      setRisePlay(true);
+      try {
+        sessionStorage.setItem(HOME_BOTTOM_NAV_RISE_KEY, "1");
+      } catch {
+        /* ignore */
+      }
+    });
+    return () => cancelAnimationFrame(id);
+  }, [shouldRise]);
+
+  let charOffset = 0;
+  const charStagger = 0.028;
+  const gapBetweenLabels = 0.07;
+
   return (
-    <div className="flex gap-6 px-1 pt-2 mt-auto pb-2 overflow-visible">
-      {bottomNavItems.map((item) => (
-        <PreviewNavLink key={item.href} {...item} />
-      ))}
+    <div className="mt-auto flex min-h-[48px] shrink-0 items-baseline gap-6 overflow-visible px-1 pb-2 pt-2">
+      {bottomNavItems.map((item) => {
+        const baseDelay = charOffset;
+        charOffset += Array.from(item.label).length * charStagger + gapBetweenLabels;
+        return (
+          <PreviewNavLink
+            key={item.href}
+            {...item}
+            homeRise={shouldRise ? { play: risePlay, baseDelay } : null}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -300,17 +393,22 @@ function PreviewNavLink({
   previewClassName,
   glowClassName,
   images,
+  homeRise,
 }: {
   href: string;
   label: string;
   previewClassName: string;
   glowClassName?: string;
   images: NavPreviewImage[];
+  /** Set only on `/` when reduced-motion is off — per-character entrance animation. */
+  homeRise: { play: boolean; baseDelay: number } | null;
 }) {
+  const animate = homeRise !== null;
+
   return (
     <Link
       href={href}
-      className="group/nav-preview relative isolate inline-flex text-[16px] font-medium text-text-primary outline-none"
+      className="group/nav-preview relative isolate inline-flex items-baseline text-[16px] font-medium text-text-primary outline-none underline decoration-[1.5px] underline-offset-[2px]"
       aria-label={label}
     >
       <span
@@ -330,8 +428,13 @@ function PreviewNavLink({
           />
         ))}
       </span>
-      <span className="relative z-10 underline decoration-[1.5px] underline-offset-[2px]">
-        {label}
+      <span className="relative z-10">
+        <BottomNavLabel
+          text={label}
+          animate={animate}
+          play={homeRise?.play ?? true}
+          baseDelay={homeRise?.baseDelay ?? 0}
+        />
       </span>
     </Link>
   );

@@ -1,5 +1,6 @@
 import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
+import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function CreatePage() {
   return (
@@ -77,15 +78,33 @@ export default function CreatePage() {
             content: (
               <div className="flex w-full items-start justify-between gap-8 px-10">
                 <div className="flex flex-col justify-start items-center gap-1">
-                  <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">+147%</p>
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="+147%"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0}
+                    />
+                  </p>
                   <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">revenue growth YoY</p>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">~€500K</p>
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="~€500K"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0.1}
+                    />
+                  </p>
                   <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary">annual savings</p>
                 </div>
                 <div className="flex flex-col justify-start items-center gap-1">
-                  <p className="text-[32px] font-bold leading-none tracking-[-1px] text-accent">+30%</p>
+                  <p className="flex min-h-[32px] items-end justify-center">
+                    <BottomUpLetters
+                      text="+30%"
+                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      blockDelay={0.2}
+                    />
+                  </p>
                   <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">conversion rate</p>
                 </div>
               </div>
