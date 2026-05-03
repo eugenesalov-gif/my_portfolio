@@ -67,7 +67,7 @@ export default function CasePage({
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="flex flex-col gap-8"
+      className="flex flex-col gap-10"
     >
       {/* Back button */}
       <div className="sticky top-6 z-20 mt-1">
