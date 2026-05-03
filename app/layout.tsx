@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Yauheni Salau — Senior Product Designer",
   description: "Senior Product Designer with 5+ years of experience building B2B, SaaS solutions.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
