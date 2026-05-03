@@ -1,5 +1,8 @@
 import PageLayout from "@/components/layout/PageLayout";
 import CaseCard from "@/components/ui/CaseCard";
+import Link from "next/link";
+
+const changelogText = "CHANGELOG: 03/05/2026";
 
 const cases = [
   {
@@ -80,6 +83,30 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <div
+        aria-hidden="true"
+        className="mt-16 h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)]"
+      />
+      <footer className="mx-auto flex w-full flex-col items-center gap-1 pt-8 pb-0 text-center text-[13px] font-light tracking-[-0.3px] text-[#888888]">
+        <p>Made with love by me and a bit of Next.js magic</p>
+        <Link
+          href="https://github.com/eugenesalov-gif/my_portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="top-down-letters-link"
+          aria-label="Open changelog repository on GitHub"
+        >
+          {changelogText.split("").map((char, index) => (
+            <span
+              key={`${char}-${index}`}
+              className="top-down-letter"
+              style={{ animationDelay: `${index * 18}ms` }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
+        </Link>
+      </footer>
     </PageLayout>
   );
 }
