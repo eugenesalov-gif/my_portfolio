@@ -74,7 +74,7 @@ export default function CasePage({
         };
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-8 min-[810px]:gap-10">
       {/* Back button */}
       <div className="sticky top-6 z-20 mt-1">
         <BackButton />
@@ -112,7 +112,7 @@ export default function CasePage({
       )}
 
       <motion.h1
-        className="mx-auto w-full max-w-[800px] text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary"
+        className="mx-auto w-full max-w-[800px] text-[28px] font-semibold leading-[34px] tracking-[-0.9px] text-text-primary min-[810px]:text-[32px] min-[810px]:leading-10 min-[810px]:tracking-[-1.2px]"
         {...scrollReveal(0)}
       >
         {title}
@@ -122,18 +122,18 @@ export default function CasePage({
       {sections.map((section, i) => (
         <motion.div
           key={i}
-          className={`mx-auto flex w-full flex-col gap-10 ${section.contentMaxWidthClassName ?? "max-w-[800px]"} ${section.containerClassName ?? ""}`}
+          className={`mx-auto flex w-full flex-col gap-8 min-[810px]:gap-10 ${section.contentMaxWidthClassName ?? "max-w-[800px]"} ${section.containerClassName ?? ""}`}
           {...scrollReveal(Math.min(i * 0.05, 0.25))}
         >
           {section.label && (
             <h2
-              className={`w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase ${section.labelClassName ?? ""}`}
+              className={`w-full text-[23px] font-semibold leading-7 tracking-[-0.8px] lowercase min-[810px]:text-[26px] min-[810px]:leading-8 min-[810px]:tracking-[-1.2px] ${section.labelClassName ?? ""}`}
               style={section.labelStyle ?? { color: "rgba(14, 154, 255, 1)" }}
             >
               {section.label}
             </h2>
           )}
-          <div className="w-full text-[19px] font-medium leading-7 tracking-[-0.6px] text-text-primary">
+          <div className="w-full text-[17px] font-medium leading-7 tracking-[-0.45px] text-text-primary min-[810px]:text-[19px] min-[810px]:tracking-[-0.6px]">
             {section.content}
           </div>
         </motion.div>
@@ -205,10 +205,10 @@ export default function CasePage({
       />
       {(previousCase || nextCase) && (
         <motion.div className="mx-auto flex w-full max-w-[800px] flex-col gap-6 pt-2" {...scrollReveal(0)}>
-          <h3 className="text-[26px] font-semibold leading-[0.95] tracking-[-1.2px] text-text-primary lowercase">
+          <h3 className="text-[24px] font-semibold leading-[0.95] tracking-[-0.8px] text-text-primary lowercase min-[810px]:text-[26px] min-[810px]:tracking-[-1.2px]">
             explore more
           </h3>
-          <div className="grid w-full gap-5 md:grid-cols-2">
+          <div className="grid w-full gap-4 min-[810px]:gap-5 min-[810px]:grid-cols-2">
             {previousCase ? (
               <Link
                 href={previousCase.href}

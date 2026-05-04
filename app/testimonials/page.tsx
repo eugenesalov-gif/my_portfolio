@@ -3,6 +3,7 @@
 import Image from "next/image";
 import PageLayout from "@/components/layout/PageLayout";
 import { motion } from "framer-motion";
+import BackButton from "@/components/ui/BackButton";
 
 const testimonials = [
   {
@@ -88,6 +89,9 @@ export default function TestimonialsPage() {
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="flex max-w-[900px] flex-col gap-8"
       >
+        <div className="sticky top-3 z-20 w-fit min-[810px]:hidden">
+          <BackButton />
+        </div>
         <div className="flex items-start gap-4">
           <h1 className="text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary">
             Testimonials

@@ -70,9 +70,9 @@ const cases = [
 export default function Home() {
   return (
     <PageLayout>
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-12 min-[810px]:gap-16">
         {cases.map((c, index) => (
-          <div key={c.href} className="flex flex-col gap-16">
+          <div key={c.href} className="flex flex-col gap-12 min-[810px]:gap-16">
             <CaseCard {...c} />
             {index < cases.length - 1 && (
               <div
@@ -85,9 +85,9 @@ export default function Home() {
       </div>
       <div
         aria-hidden="true"
-        className="mt-16 h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)]"
+        className="mt-12 h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)] min-[810px]:mt-16"
       />
-      <footer className="mx-auto flex w-full flex-col items-center gap-1 pt-8 pb-0 text-center text-[13px] font-light tracking-[-0.3px] text-[#888888]">
+      <footer className="mx-auto flex w-full flex-col items-center gap-1 pt-6 pb-0 text-center text-[12px] font-light tracking-[-0.2px] text-[#888888] min-[810px]:pt-8 min-[810px]:text-[13px] min-[810px]:tracking-[-0.3px]">
         <p>Made with love by me and a bit of Next.js magic</p>
         <Link
           href="https://github.com/eugenesalov-gif/my_portfolio"

@@ -49,14 +49,14 @@ export default function CaseCard({
     >
       <Link href={href} className="block group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
         <div className="flex flex-col gap-3">
-          <h2 className="text-[26px] font-semibold leading-8 tracking-[-1.2px] text-text-primary group-hover:opacity-80 transition-opacity">
+          <h2 className="text-[24px] font-semibold leading-[30px] tracking-[-0.9px] text-text-primary group-hover:opacity-80 transition-opacity min-[810px]:text-[26px] min-[810px]:leading-8 min-[810px]:tracking-[-1.2px]">
             {title}
           </h2>
-          <p className="text-[16px] font-medium leading-5 tracking-[-0.64px] text-text-secondary">
+          <p className="text-[15px] font-medium leading-5 tracking-[-0.5px] text-text-secondary min-[810px]:text-[16px] min-[810px]:tracking-[-0.64px]">
             {description}
           </p>
           {tags.length > 0 && (
-            <p className="text-[13px] font-medium text-text-tertiary tracking-[-0.52px]">
+            <p className="text-[12px] font-medium text-text-tertiary tracking-[-0.42px] min-[810px]:text-[13px] min-[810px]:tracking-[-0.52px]">
               {tags.join(" • ")}
             </p>
           )}
@@ -141,7 +141,7 @@ export default function CaseCard({
             </motion.div>
             {metrics.length > 0 && (
               <div
-                className={`absolute bottom-3 right-3 flex flex-nowrap items-start justify-center rounded-[12px] bg-[rgba(150,150,150,0.2)] p-1 backdrop-blur-[12px] ${
+                className={`absolute bottom-2 right-2 hidden flex-wrap items-start justify-center rounded-[12px] bg-[rgba(150,150,150,0.2)] p-1 backdrop-blur-[12px] min-[810px]:bottom-3 min-[810px]:right-3 min-[810px]:flex min-[810px]:flex-nowrap ${
                   href === "/player" || href === "/create" ? "gap-1" : "gap-2"
                 }`}
               >

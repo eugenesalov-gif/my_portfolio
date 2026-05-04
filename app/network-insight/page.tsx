@@ -81,12 +81,12 @@ export default function NetworkInsightPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full items-start justify-between gap-8 px-10">
+              <div className="flex w-full items-start justify-between gap-8 px-4 min-[810px]:px-10">
                 <div className="flex flex-col justify-start items-center gap-1">
                   <p className="flex min-h-[32px] items-end justify-center">
                     <BottomUpLetters
                       text="6-in-1"
-                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      className="text-[24px] font-bold leading-none tracking-[-0.8px] text-accent min-[810px]:text-[32px] min-[810px]:tracking-[-1px]"
                       blockDelay={0}
                     />
                   </p>
@@ -98,7 +98,7 @@ export default function NetworkInsightPage() {
                   <p className="flex min-h-[32px] items-end justify-center">
                     <BottomUpLetters
                       text="300+"
-                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      className="text-[24px] font-bold leading-none tracking-[-0.8px] text-accent min-[810px]:text-[32px] min-[810px]:tracking-[-1px]"
                       blockDelay={0.1}
                     />
                   </p>
@@ -110,11 +110,11 @@ export default function NetworkInsightPage() {
                   <p className="flex min-h-[32px] items-end justify-center">
                     <BottomUpLetters
                       text="2h → 6m"
-                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      className="flex-nowrap text-[22px] font-bold leading-none tracking-[-0.9px] text-accent min-[810px]:flex-wrap min-[810px]:text-[32px] min-[810px]:tracking-[-1px]"
                       blockDelay={0.2}
                     />
                   </p>
-                  <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary min-[810px]:text-left">
                     faster reporting
                   </p>
                 </div>

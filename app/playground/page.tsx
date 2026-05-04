@@ -4,6 +4,7 @@ import { useState } from "react";
 import PageLayout from "@/components/layout/PageLayout";
 import { motion } from "framer-motion";
 import PhotoBoothApp from "@/components/playground/PhotoBoothApp";
+import BackButton from "@/components/ui/BackButton";
 
 export default function PlaygroundPage() {
   const [isPhotoBoothOpen, setIsPhotoBoothOpen] = useState(false);
@@ -17,6 +18,9 @@ export default function PlaygroundPage() {
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="flex flex-col gap-8"
       >
+        <div className="sticky top-3 z-20 w-fit min-[810px]:hidden">
+          <BackButton />
+        </div>
         <div className="flex items-start gap-4">
           <h1 className="text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary">
             Playground

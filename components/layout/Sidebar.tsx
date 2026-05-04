@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
@@ -138,8 +138,8 @@ function BottomNavLabel({
 
 export default function Sidebar() {
   return (
-    <div className="h-full flex flex-col">
-      <div className="flex flex-col gap-6">
+    <div className="h-full flex flex-col px-1 min-[810px]:px-0">
+      <div className="flex flex-col gap-5 min-[810px]:gap-6">
         <ProfileCard />
         <Bio />
       </div>
@@ -150,7 +150,7 @@ export default function Sidebar() {
 
 function ProfileCard() {
   return (
-    <div className="relative w-full h-[164px] rounded-[20px] overflow-hidden">
+    <div className="relative w-full h-[146px] rounded-[20px] overflow-hidden min-[810px]:h-[164px] min-[810px]:w-[450px]">
       <Link href="/" className="peer/profile-image absolute left-0 top-0 z-0 block h-full w-full" aria-label="Go to homepage">
         <Image
           src="/images/ui/profilecard-original.png"
@@ -166,7 +166,7 @@ function ProfileCard() {
       <Link
         href="/"
         aria-label="Go to homepage"
-        className="group/home-pulse absolute bottom-3 left-[70px] z-30 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(85,85,85,0.4)] opacity-0 backdrop-blur-[3px] shadow-[inset_1px_1px_2px_-1px_rgba(255,255,255,1),inset_-1px_-1px_2px_-1px_rgba(255,255,255,1)] transition-[opacity,transform] duration-[600ms] ease-out translate-y-2 scale-95 hover/home-pulse:translate-y-0 hover/home-pulse:scale-[1.06] hover/home-pulse:opacity-100 focus-visible/home-pulse:translate-y-0 focus-visible/home-pulse:scale-[1.06] focus-visible/home-pulse:opacity-100 peer-hover/profile-image:translate-y-0 peer-hover/profile-image:scale-100 peer-hover/profile-image:opacity-100 peer-focus-visible/profile-image:translate-y-0 peer-focus-visible/profile-image:scale-100 peer-focus-visible/profile-image:opacity-100"
+        className="group/home-pulse absolute bottom-2 left-[58px] z-30 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(85,85,85,0.4)] opacity-0 backdrop-blur-[3px] shadow-[inset_1px_1px_2px_-1px_rgba(255,255,255,1),inset_-1px_-1px_2px_-1px_rgba(255,255,255,1)] transition-[opacity,transform] duration-[600ms] ease-out translate-y-2 scale-95 hover/home-pulse:translate-y-0 hover/home-pulse:scale-[1.06] hover/home-pulse:opacity-100 focus-visible/home-pulse:translate-y-0 focus-visible/home-pulse:scale-[1.06] focus-visible/home-pulse:opacity-100 peer-hover/profile-image:translate-y-0 peer-hover/profile-image:scale-100 peer-hover/profile-image:opacity-100 peer-focus-visible/profile-image:translate-y-0 peer-focus-visible/profile-image:scale-100 peer-focus-visible/profile-image:opacity-100 min-[810px]:bottom-3 min-[810px]:left-[70px]"
       >
         <Image
           src="/icons/home-07.svg"
@@ -182,7 +182,7 @@ function ProfileCard() {
         href="https://drive.google.com/file/d/1wNJ9fGxSyQqS2zsYullXaZ86fLwSPXSH/view"
         target="_blank"
         rel="noopener noreferrer"
-        className="group absolute left-[304px] top-[5px] z-20 flex h-[32px] w-[142px] items-center justify-center rounded-full bg-bg-dark text-[14px] font-medium text-text-white"
+        className="group absolute left-auto right-[5px] top-[5px] z-20 flex h-[28px] w-[112px] items-center justify-center rounded-full bg-bg-dark text-[13px] font-medium text-text-white min-[810px]:left-auto min-[810px]:right-[4px] min-[810px]:h-[32px] min-[810px]:w-[142px] min-[810px]:text-[14px] min-[1200px]:right-auto min-[1200px]:left-[304px]"
       >
         <span
           className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(180deg,#1D1D26_0%,#686875_100%)] opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
@@ -190,11 +190,12 @@ function ProfileCard() {
         />
         <span className="relative z-10 flex items-center justify-center gap-1.5">
           <DownloadIcon />
-          Download CV
+          <span className="min-[810px]:hidden">CV</span>
+          <span className="hidden min-[810px]:inline">Download CV</span>
         </span>
       </motion.a>
 
-      <div className="absolute left-[156px] top-[5px] z-10 flex h-[155px] w-[290px] flex-col items-start justify-end pl-4 pb-6">
+      <div className="absolute left-auto right-[4px] top-[5px] z-10 flex h-[136px] w-[235px] flex-col items-start justify-end pl-2 pb-4 min-[810px]:left-auto min-[810px]:right-[4px] min-[810px]:h-[155px] min-[810px]:w-[290px] min-[810px]:pl-4 min-[810px]:pb-6 min-[1200px]:left-[156px] min-[1200px]:right-auto">
         <Image
           src="/icons/whiteblock-profile.svg"
           alt=""
@@ -206,18 +207,18 @@ function ProfileCard() {
         />
         <div className="relative z-10 box-border flex h-full w-full flex-col items-start justify-end gap-2 pl-0 pr-0 pt-0 pb-0">
           <div className="flex h-fit flex-col items-start gap-1">
-            <p className="text-[26px] font-semibold leading-tight tracking-[-0.96px] text-text-primary">
+            <p className="text-[22px] font-semibold leading-tight tracking-[-0.7px] text-text-primary min-[810px]:text-[26px] min-[810px]:tracking-[-0.96px]">
               Yauheni Salau
             </p>
             <p
-              className="text-[14px] font-medium tracking-[-0.2px] text-text-secondary"
+              className="text-[12px] font-medium tracking-[-0.2px] text-text-secondary min-[810px]:text-[14px]"
               style={{ fontFamily: '"SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif' }}
             >
               Senior Product Designer
             </p>
           </div>
 
-          <div className="flex justify-start gap-1 text-[14px] font-medium text-text-primary">
+          <div className="flex justify-start gap-1 text-[12px] font-medium text-text-primary min-[810px]:text-[14px]">
             <a
               href="https://linkedin.com/in/eugenesalov"
               target="_blank"
@@ -251,22 +252,76 @@ function ProfileCard() {
 
 function Bio() {
   const [isMapPreviewVisible, setIsMapPreviewVisible] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const hidePreviewTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const toggleMobileMapPreview = () => {
+    if (!isMobileViewport) {
+      return;
+    }
+    if (hidePreviewTimeoutRef.current) {
+      clearTimeout(hidePreviewTimeoutRef.current);
+      hidePreviewTimeoutRef.current = null;
+    }
+
+    if (isMapPreviewVisible) {
+      setIsMapPreviewVisible(false);
+      return;
+    }
+
+    setIsMapPreviewVisible(true);
+    hidePreviewTimeoutRef.current = setTimeout(() => {
+      setIsMapPreviewVisible(false);
+      hidePreviewTimeoutRef.current = null;
+    }, 3000);
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const mediaQuery = window.matchMedia("(max-width: 809px)");
+    const updateViewport = () => setIsMobileViewport(mediaQuery.matches);
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateViewport);
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (hidePreviewTimeoutRef.current) {
+        clearTimeout(hidePreviewTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="flex flex-col gap-3 px-1">
-      <p className="text-[16px] font-medium leading-5 tracking-[-0.64px] text-text-primary">
+      <p className="text-[15px] font-medium leading-5 tracking-[-0.5px] text-text-primary min-[810px]:text-[16px] min-[810px]:tracking-[-0.64px]">
         Hola 👋
       </p>
-      <p className="text-[16px] font-medium leading-5 tracking-[-0.64px] text-text-primary">
+      <p className="text-[15px] font-medium leading-5 tracking-[-0.5px] text-text-primary min-[810px]:text-[16px] min-[810px]:tracking-[-0.64px]">
         Senior Product Designer with 5+ years of experience building B2B, SaaS solutions across analytics platforms, automation platforms and video players.
       </p>
-      <p className="text-[16px] font-medium leading-5 tracking-[-0.64px] text-text-primary">
+      <p className="text-[15px] font-medium leading-5 tracking-[-0.5px] text-text-primary min-[810px]:text-[16px] min-[810px]:tracking-[-0.64px]">
         I turn complex user jobs into simple interfaces by following the &ldquo;Shazam&rdquo; approach: do it in one button if possible.
       </p>
       <div className="relative mt-1 h-9 overflow-visible">
         <motion.span
-          onHoverStart={() => setIsMapPreviewVisible(true)}
-          onHoverEnd={() => setIsMapPreviewVisible(false)}
+          onHoverStart={() => {
+            if (!isMobileViewport) {
+              setIsMapPreviewVisible(true);
+            }
+          }}
+          onHoverEnd={() => {
+            if (!isMobileViewport) {
+              setIsMapPreviewVisible(false);
+            }
+          }}
+          onTap={toggleMobileMapPreview}
           className="group relative inline-flex h-full items-center gap-1.5"
         >
           <PinIcon />
@@ -371,7 +426,7 @@ function BottomNav() {
   const gapBetweenLabels = 0.07;
 
   return (
-    <div className="mt-auto flex min-h-[48px] shrink-0 items-baseline gap-6 overflow-visible px-1 pb-2 pt-2">
+    <div className="mt-10 flex min-h-[48px] shrink-0 flex-wrap items-baseline gap-x-5 gap-y-2 overflow-visible px-1 pb-2 pt-3 min-[810px]:mt-20 min-[810px]:flex-nowrap min-[810px]:gap-6 min-[810px]:pt-2 min-[1200px]:mt-auto">
       {bottomNavItems.map((item) => {
         const baseDelay = charOffset;
         charOffset += Array.from(item.label).length * charStagger + gapBetweenLabels;

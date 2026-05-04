@@ -76,12 +76,12 @@ export default function CreatePage() {
           },
           {
             content: (
-              <div className="flex w-full items-start justify-between gap-8 px-10">
+              <div className="flex w-full items-start justify-between gap-8 px-4 min-[810px]:px-10">
                 <div className="flex flex-col justify-start items-center gap-1">
                   <p className="flex min-h-[32px] items-end justify-center">
                     <BottomUpLetters
                       text="+147%"
-                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      className="text-[24px] font-bold leading-none tracking-[-0.8px] text-accent min-[810px]:text-[32px] min-[810px]:tracking-[-1px]"
                       blockDelay={0}
                     />
                   </p>
@@ -91,7 +91,7 @@ export default function CreatePage() {
                   <p className="flex min-h-[32px] items-end justify-center">
                     <BottomUpLetters
                       text="~€500K"
-                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      className="text-[22px] font-bold leading-none tracking-[-0.9px] text-accent min-[810px]:text-[32px] min-[810px]:tracking-[-1px]"
                       blockDelay={0.1}
                     />
                   </p>
@@ -101,11 +101,13 @@ export default function CreatePage() {
                   <p className="flex min-h-[32px] items-end justify-center">
                     <BottomUpLetters
                       text="+30%"
-                      className="text-[32px] font-bold leading-none tracking-[-1px] text-accent"
+                      className="text-[24px] font-bold leading-none tracking-[-0.8px] text-accent min-[810px]:text-[32px] min-[810px]:tracking-[-1px]"
                       blockDelay={0.2}
                     />
                   </p>
-                  <p className="text-[16px] font-bold leading-tight tracking-[-0.4px] text-text-secondary">conversion rate</p>
+                  <p className="text-[16px] font-bold text-center leading-tight tracking-[-0.4px] text-text-secondary min-[810px]:text-left">
+                    conversion rate
+                  </p>
                 </div>
               </div>
             ),

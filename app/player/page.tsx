@@ -126,7 +126,7 @@ export default function PlayerPage() {
                       unoptimized
                     />
                   </div>
-                  <p className="text-center text-[15px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
+                  <p className="text-center text-[13px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
                     Redesigned Player Interface
                   </p>
                 </div>
