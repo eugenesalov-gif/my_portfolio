@@ -3,8 +3,33 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://eugenesalov.com"),
   title: "Yauheni Salau — Senior Product Designer",
-  description: "Senior Product Designer with 5+ years of experience building B2B, SaaS solutions.",
+  description:
+    "Senior Product Designer with 5+ years of experience building B2B, SaaS solutions across analytics platforms, automation platforms and AI-powered features.",
+  openGraph: {
+    title: "Yauheni Salau — Senior Product Designer",
+    description:
+      "Senior Product Designer with 5+ years of experience building B2B, SaaS solutions across analytics platforms, automation platforms and AI-powered features.",
+    url: "https://eugenesalov.com",
+    siteName: "Yauheni Salau Portfolio",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Yauheni Salau — Senior Product Designer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yauheni Salau — Senior Product Designer",
+    description:
+      "Senior Product Designer with 5+ years of experience building B2B, SaaS solutions across analytics platforms, automation platforms and AI-powered features.",
+    images: ["/og-image.png"],
+  },
   icons: {
     icon: "/icon.png",
   },
