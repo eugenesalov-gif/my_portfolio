@@ -138,7 +138,7 @@ function BottomNavLabel({
 
 export default function Sidebar() {
   return (
-    <div className="h-full flex flex-col px-1 min-[810px]:px-0">
+    <div className="h-full flex flex-col px-0 min-[810px]:px-0">
       <div className="flex flex-col gap-5 min-[810px]:gap-6">
         <ProfileCard />
         <Bio />
@@ -159,7 +159,7 @@ function ProfileCard() {
           height={200}
           unoptimized
           quality={100}
-          className="h-full w-full object-cover object-left"
+          className="h-full w-full object-cover object-[24%_center] min-[810px]:object-left"
           priority
         />
       </Link>
