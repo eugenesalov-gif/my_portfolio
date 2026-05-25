@@ -200,7 +200,7 @@ function ProfileCard() {
           priority
         />
         <Image
-          src="/images/ui/profilecard-dark.png"
+          src="/images/ui/profilecard-original-dark.png"
           alt=""
           width={1024}
           height={376}
