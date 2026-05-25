@@ -2,7 +2,7 @@ import PageLayout from "@/components/layout/PageLayout";
 import CaseCard from "@/components/ui/CaseCard";
 import Link from "next/link";
 
-const changelogText = "CHANGELOG: 05/05/2026";
+const changelogText = "CHANGELOG: 25/05/2026";
 
 const cases = [
   {
@@ -74,20 +74,12 @@ export default function Home() {
         {cases.map((c, index) => (
           <div key={c.href} className="flex flex-col gap-12 min-[810px]:gap-16">
             <CaseCard {...c} />
-            {index < cases.length - 1 && (
-              <div
-                aria-hidden="true"
-                className="h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)]"
-              />
-            )}
+            {index < cases.length - 1 && <div aria-hidden="true" className="divider-line" />}
           </div>
         ))}
       </div>
-      <div
-        aria-hidden="true"
-        className="mt-12 h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)] min-[810px]:mt-16"
-      />
-      <footer className="mx-auto flex w-full flex-col items-center gap-1 pt-6 pb-0 text-center text-[12px] font-light tracking-[-0.2px] text-[#888888] min-[810px]:pt-8 min-[810px]:text-[13px] min-[810px]:tracking-[-0.3px]">
+      <div aria-hidden="true" className="divider-line mt-12 min-[810px]:mt-16" />
+      <footer className="mx-auto flex w-full flex-col items-center gap-1 pt-6 pb-0 text-center text-[12px] font-light tracking-[-0.2px] text-text-tertiary min-[810px]:pt-8 min-[810px]:text-[13px] min-[810px]:tracking-[-0.3px]">
         <p>Made with love by me and a bit of Next.js magic</p>
         <Link
           href="https://github.com/eugenesalov-gif/my_portfolio"

@@ -133,7 +133,7 @@ export default function NetworkInsightPage() {
                     draggable={false}
                   />
                 </div>
-                <p className="text-center text-[13px] text-[#626266]">
+                <p className="text-center text-[13px] text-text-secondary">
                   Detailed view of the selected segment showing performance trends and campaign details
                 </p>
               </div>
@@ -198,7 +198,7 @@ export default function NetworkInsightPage() {
                       />
                     </div>
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     New Network Insights interface with global map and regional revenue analytics
                   </p>
                 </div>
@@ -211,7 +211,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Updated Network Insights dashboard with new demand, supply and margin metrics providing deeper insight into market performance
                   </p>
                 </div>
@@ -224,7 +224,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Mobile version with optimized dashboards and comments for quick access to analytics on the go
                   </p>
                 </div>
@@ -255,7 +255,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     New comments section for sharing analytics and real-time, enabling top management to track performance and highlight key insights
                   </p>
                 </div>
@@ -293,7 +293,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Custom Segment section for creating and managing campaign segments
                   </p>
                 </div>
@@ -348,7 +348,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     User Management section with role configuration, access permissions and member overview
                   </p>
                 </div>
@@ -361,7 +361,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Campaign section with content video analytics and key campaign performance metrics
                   </p>
                 </div>
@@ -374,7 +374,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Inventory section for analyzing top keywords, categories and segments by domain, country and language
                   </p>
                 </div>
@@ -405,7 +405,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     IAB Overview section for analyzing content categories and subcategories with view and engagement data
                   </p>
                 </div>
@@ -418,7 +418,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     OLV Site List section for managing and optimizing site lists by campaign and performance parameter
                   </p>
                 </div>
@@ -431,7 +431,7 @@ export default function NetworkInsightPage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+                  <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Results table after report setup, featuring data export options and flexible filtering by categories and regions
                   </p>
                 </div>

@@ -89,7 +89,7 @@ export default function TestimonialsPage() {
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="flex max-w-[900px] flex-col gap-8"
       >
-        <div className="sticky top-3 z-20 w-fit min-[810px]:hidden">
+        <div className="sticky top-3 z-20 mt-1 w-fit min-[810px]:top-6 min-[1200px]:hidden">
           <BackButton />
         </div>
         <div className="flex items-start gap-4">
@@ -122,7 +122,7 @@ export default function TestimonialsPage() {
                   >
                     {t.name}
                   </a>
-                  <p className="text-[16px] font-normal leading-[1.25] text-[#626266]">{t.title}</p>
+                  <p className="text-[16px] font-normal leading-[1.25] text-text-secondary">{t.title}</p>
                 </div>
               </div>
             </motion.div>

@@ -124,7 +124,7 @@ export default function CreatePage() {
                     draggable={false}
                   />
                 </div>
-                <p className="text-center text-[13px] text-[#626266]">Create editor shown in dark theme</p>
+                <p className="text-center text-[13px] text-text-secondary">Create editor shown in dark theme</p>
               </div>
             ),
           },
@@ -166,7 +166,7 @@ export default function CreatePage() {
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-[13px] text-[#626266]">
+                <p className="text-center text-[13px] text-text-secondary">
                   Legacy Create interface before redesign — creatives list and editing screen
                 </p>
               </div>
@@ -192,7 +192,7 @@ export default function CreatePage() {
                     />
                   </div>
                 </div>
-                <p className="text-center text-[13px] text-[#626266]">
+                <p className="text-center text-[13px] text-text-secondary">
                   New Create interface after redesign — homepage with creatives list
                 </p>
               </div>
@@ -233,7 +233,7 @@ export default function CreatePage() {
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-[13px] text-[#626266]">
+                <p className="text-center text-[13px] text-text-secondary">
                   Conducting user interviews and interface research
                 </p>
               </div>
@@ -263,7 +263,7 @@ export default function CreatePage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] text-[#626266]">
+                  <p className="text-center text-[13px] text-text-secondary">
                     14 new templates added and organized into subgroups for easier navigation
                   </p>
                 </div>
@@ -276,7 +276,7 @@ export default function CreatePage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] text-[#626266]">
+                  <p className="text-center text-[13px] text-text-secondary">
                     Brand Lift Study creation with poll setup and answer options
                   </p>
                 </div>
@@ -308,7 +308,7 @@ export default function CreatePage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] text-[#626266]">
+                  <p className="text-center text-[13px] text-text-secondary">
                     Format Statistics with related creatives window showing CTR, attention time, completion rate and impressions
                   </p>
                 </div>
@@ -321,7 +321,7 @@ export default function CreatePage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] text-[#626266]">
+                  <p className="text-center text-[13px] text-text-secondary">
                     Format Statistics with market overview of formats and performance results
                   </p>
                 </div>
@@ -334,7 +334,7 @@ export default function CreatePage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] text-[#626266]">
+                  <p className="text-center text-[13px] text-text-secondary">
                     CTV template with location management and QR code generation
                   </p>
                 </div>
@@ -365,7 +365,7 @@ export default function CreatePage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] text-[#626266]">
+                  <p className="text-center text-[13px] text-text-secondary">
                     Analytics dashboard with time spent metrics and user engagement data
                   </p>
                 </div>
@@ -378,7 +378,7 @@ export default function CreatePage() {
                       draggable={false}
                     />
                   </div>
-                  <p className="text-center text-[13px] text-[#626266]">
+                  <p className="text-center text-[13px] text-text-secondary">
                     Team & Members with team management and member role settings
                   </p>
                 </div>

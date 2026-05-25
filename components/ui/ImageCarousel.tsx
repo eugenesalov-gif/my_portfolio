@@ -91,9 +91,9 @@ export default function ImageCarousel({
                 aria-label={`Show image ${i + 1}: ${slide.alt}`}
                 onClick={() => setIndex(i)}
                 className={clsx(
-                  "relative shrink-0 rounded-[8px] outline-none transition-[box-shadow,opacity,transform] focus-visible:ring-2 focus-visible:ring-[#0E9AFF] focus-visible:ring-offset-2",
+                  "relative shrink-0 rounded-[8px] outline-none transition-[box-shadow,opacity,transform] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
                   selected
-                    ? "z-[1] opacity-100 shadow-[0_0_0_2px_#0E9AFF,0_4px_12px_rgba(14,154,255,0.25)]"
+                    ? "z-[1] opacity-100 shadow-[0_0_0_2px_var(--color-accent),0_4px_12px_rgba(14,154,255,0.25)]"
                     : "opacity-[0.72] hover:opacity-100",
                 )}
               >
@@ -112,7 +112,7 @@ export default function ImageCarousel({
       </div>
 
       {footerCaption ? (
-        <p className="text-center text-[13px] leading-[130%] text-[#626266]">
+        <p className="text-center text-[13px] leading-[130%] text-text-secondary">
           {footerCaption}
         </p>
       ) : hasPerSlideCaptions ? (
@@ -123,7 +123,7 @@ export default function ImageCarousel({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: reduceMotion ? 0.12 : 0.22, ease: "easeOut" }}
-            className="text-center text-[13px] leading-[130%] text-[#626266]"
+            className="text-center text-[13px] leading-[130%] text-text-secondary"
           >
             {slides[safeIndex]?.caption}
           </motion.p>

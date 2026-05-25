@@ -5,6 +5,7 @@ import PageLayout from "@/components/layout/PageLayout";
 import { motion } from "framer-motion";
 import PhotoBoothApp from "@/components/playground/PhotoBoothApp";
 import BackButton from "@/components/ui/BackButton";
+import CheckoutBadge from "@/components/ui/CheckoutBadge";
 
 export default function PlaygroundPage() {
   const [isPhotoBoothOpen, setIsPhotoBoothOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function PlaygroundPage() {
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="flex flex-col gap-8"
       >
-        <div className="sticky top-3 z-20 w-fit min-[810px]:hidden">
+        <div className="sticky top-3 z-20 mt-1 w-fit min-[810px]:top-6 min-[1200px]:hidden">
           <BackButton />
         </div>
         <div className="flex items-start gap-4">
@@ -51,20 +52,7 @@ export default function PlaygroundPage() {
                 draggable={false}
               />
 
-              <motion.div
-                className="pointer-events-none absolute left-[-15px] top-0 z-20"
-                initial={false}
-                animate={{ x: isPhotoBoothCardHovered ? 0 : "-110%" }}
-                transition={{ type: "spring", duration: 0.4, bounce: 0.2 }}
-              >
-                <img src="/icons/checkout-block.svg" alt="" aria-hidden="true" className="block h-auto w-[201px] select-none" draggable={false} />
-                <span className="absolute left-12 top-3.5 inline-flex items-baseline gap-2 text-[14px] font-semibold leading-none tracking-[-0.04em] text-text-primary">
-                  Check it out
-                  <span aria-hidden="true" className="inline-flex h-4 w-4 items-center justify-center text-[16px] leading-none">
-                    <span className="relative top-[1px]">→</span>
-                  </span>
-                </span>
-              </motion.div>
+              <CheckoutBadge visible={isPhotoBoothCardHovered} />
             </div>
           </button>
         </div>

@@ -97,11 +97,7 @@ export default function CasePage({
           {metrics.length > 0 && (
             <div className="absolute bottom-3 left-3 flex flex-wrap gap-2">
               {metrics.map((m, i) => (
-                <div
-                  key={i}
-                  className="rounded-lg px-2 py-2 flex flex-col"
-                  style={{ backgroundColor: "rgba(255,255,255,0.9)" }}
-                >
+                <div key={i} className="flex flex-col rounded-lg bg-bg-chip px-2 py-2">
                   <span className="text-[16px] font-semibold leading-tight text-text-primary">{m.value}</span>
                   <span className="text-[11px] font-normal text-text-secondary leading-tight">{m.label}</span>
                 </div>
@@ -127,8 +123,8 @@ export default function CasePage({
         >
           {section.label && (
             <h2
-              className={`w-full text-[23px] font-semibold leading-7 tracking-[-0.8px] lowercase min-[810px]:text-[26px] min-[810px]:leading-8 min-[810px]:tracking-[-1.2px] ${section.labelClassName ?? ""}`}
-              style={section.labelStyle ?? { color: "rgba(14, 154, 255, 1)" }}
+              className={`w-full text-[23px] font-semibold leading-7 tracking-[-0.8px] lowercase text-accent min-[810px]:text-[26px] min-[810px]:leading-8 min-[810px]:tracking-[-1.2px] ${section.labelClassName ?? ""}`}
+              style={section.labelStyle}
             >
               {section.label}
             </h2>
@@ -141,7 +137,7 @@ export default function CasePage({
 
       <motion.div
         aria-hidden="true"
-        className="h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)]"
+        className="divider-line"
         {...scrollReveal(0)}
       />
       <motion.div className="mx-auto flex w-full max-w-[800px] flex-col items-center gap-3 py-1" {...scrollReveal(0)}>
@@ -159,7 +155,7 @@ export default function CasePage({
                 rel="noopener noreferrer"
                 aria-label={`${member.tooltip} LinkedIn profile`}
               >
-                <div className="pointer-events-none absolute -inset-1 rounded-full border-2 border-[#0E9AFF] opacity-0 scale-95 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100" />
+                <div className="pointer-events-none absolute -inset-1 rounded-full border-2 border-accent opacity-0 scale-95 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100" />
                 <div className="h-8 w-8 overflow-hidden rounded-full">
                   <Image
                     src={member.imageSrc}
@@ -169,13 +165,16 @@ export default function CasePage({
                     className={`h-full w-full object-cover ${member.imageClassName ?? ""}`.trim()}
                   />
                 </div>
-                <div className="pointer-events-none absolute -top-8 left-1/2 flex h-6 -translate-x-1/2 items-center whitespace-nowrap rounded-[5px] bg-[#4A4A56] px-3 text-[13px] font-medium leading-none text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                <div
+                  className="pointer-events-none absolute -top-8 left-1/2 flex h-6 -translate-x-1/2 items-center whitespace-nowrap rounded-[5px] px-3 text-[13px] font-medium leading-none text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                  style={{ backgroundColor: "var(--color-tooltip-bg)" }}
+                >
                   {member.tooltip}
                 </div>
               </a>
             ) : (
               <div key={`${member.imageSrc}-${index}`} className={commonClassName}>
-                <div className="pointer-events-none absolute -inset-1 rounded-full border-2 border-[#0E9AFF] opacity-0 scale-95 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100" />
+                <div className="pointer-events-none absolute -inset-1 rounded-full border-2 border-accent opacity-0 scale-95 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100" />
                 <div className="h-8 w-8 overflow-hidden rounded-full">
                   <Image
                     src={member.imageSrc}
@@ -185,14 +184,17 @@ export default function CasePage({
                     className={`h-full w-full object-cover ${member.imageClassName ?? ""}`.trim()}
                   />
                 </div>
-                <div className="pointer-events-none absolute -top-8 left-1/2 flex h-6 -translate-x-1/2 items-center whitespace-nowrap rounded-[5px] bg-[#4A4A56] px-3 text-[13px] font-medium leading-none text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                <div
+                  className="pointer-events-none absolute -top-8 left-1/2 flex h-6 -translate-x-1/2 items-center whitespace-nowrap rounded-[5px] px-3 text-[13px] font-medium leading-none text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                  style={{ backgroundColor: "var(--color-tooltip-bg)" }}
+                >
                   {member.tooltip}
                 </div>
               </div>
             );
           })}
           {typeof teamExtraCount === "number" && teamExtraCount > 0 && (
-            <div className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full bg-[#F0F0F0] text-[12px] font-semibold leading-none text-text-secondary">
+            <div className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full bg-bg-muted text-[12px] font-semibold leading-none text-text-secondary">
               +{teamExtraCount}
             </div>
           )}
@@ -200,7 +202,7 @@ export default function CasePage({
       </motion.div>
       <motion.div
         aria-hidden="true"
-        className="h-px w-full bg-[linear-gradient(90deg,#FFFFFF00_0%,#EBEBEB_50%,#FFFFFF00_100%)]"
+        className="divider-line"
         {...scrollReveal(0)}
       />
       {(previousCase || nextCase) && (
@@ -212,7 +214,7 @@ export default function CasePage({
             {previousCase ? (
               <Link
                 href={previousCase.href}
-                className={`group flex flex-col justify-center rounded-[20px] bg-[#F0F0F0] py-5 transition-colors duration-200 hover:bg-[#EBEBEB] ${
+                className={`group flex flex-col justify-center rounded-[20px] bg-bg-muted py-5 transition-colors duration-200 hover:bg-bg-muted-hover ${
                   isCompactPreviousCard ? "h-[99px] px-5" : "min-h-[112px] px-6"
                 }`}
               >
@@ -254,7 +256,7 @@ export default function CasePage({
             {nextCase ? (
               <Link
                 href={nextCase.href}
-                className={`group flex flex-col justify-center rounded-[20px] bg-[#F0F0F0] py-5 transition-colors duration-200 hover:bg-[#EBEBEB] ${
+                className={`group flex flex-col justify-center rounded-[20px] bg-bg-muted py-5 transition-colors duration-200 hover:bg-bg-muted-hover ${
                   isCompactNextCard ? "h-[99px] gap-0 px-5" : "min-h-[112px] gap-3 px-6"
                 }`}
               >

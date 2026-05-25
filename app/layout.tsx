@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import ThemeScript from "@/components/theme/ThemeScript";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -41,9 +43,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
-        {children}
+        <ThemeScript />
+        <ThemeProvider>{children}</ThemeProvider>
         <Script id="hotjar-tracking" strategy="afterInteractive">
           {`(function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
