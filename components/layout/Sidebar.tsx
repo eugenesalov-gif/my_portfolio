@@ -161,10 +161,10 @@ function CvDownloadButton({ className = "" }: { className?: string }) {
       href="https://drive.google.com/file/d/1wNJ9fGxSyQqS2zsYullXaZ86fLwSPXSH/view"
       target="_blank"
       rel="noopener noreferrer"
-      className={`profile-cv-button group relative flex items-center justify-center rounded-full text-[13px] font-medium min-[810px]:text-[14px] ${className}`}
+      className={`profile-cv-button group relative flex items-center justify-center rounded-[10px] text-[13px] font-medium min-[810px]:rounded-[12px] min-[810px]:text-[14px] ${className}`}
     >
       <span
-        className="profile-cv-button__hover pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
+        className="profile-cv-button__hover pointer-events-none absolute inset-0 rounded-[10px] opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100 min-[810px]:rounded-[12px]"
         aria-hidden="true"
       />
       <span className="relative z-10 flex items-center justify-center gap-1.5">
@@ -244,7 +244,7 @@ function ProfileCard() {
             d="M0 16C0 7.163 7.163 0 16 0h112c8.837 0 16 7.163 16 16v4c0 8.837 7.163 16 16 16h114c8.837 0 16 7.163 16 16v87c0 8.837-7.163 16-16 16H16C7.163 155 0 147.837 0 139V16z"
           />
         </svg>
-        <div className="absolute right-[4px] top-0 z-20 flex items-start gap-2 min-[810px]:hidden">
+        <div className="absolute right-[2px] top-0 z-20 flex items-start gap-2 min-[810px]:hidden">
           <ThemeToggle className="mt-[2px]" />
           <CvDownloadButton className="h-[28px] w-[112px] shrink-0" />
         </div>
