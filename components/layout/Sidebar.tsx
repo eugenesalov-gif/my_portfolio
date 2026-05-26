@@ -244,11 +244,10 @@ function ProfileCard() {
             d="M0 16C0 7.163 7.163 0 16 0h112c8.837 0 16 7.163 16 16v4c0 8.837 7.163 16 16 16h114c8.837 0 16 7.163 16 16v87c0 8.837-7.163 16-16 16H16C7.163 155 0 147.837 0 139V16z"
           />
         </svg>
-        <div className="absolute right-[2px] top-0 z-20 flex items-start gap-2 min-[810px]:hidden">
-          <ThemeToggle className="mt-[2px]" />
+        <div className="absolute right-[2px] top-0 z-20 min-[810px]:hidden">
           <CvDownloadButton className="h-[28px] w-[112px] shrink-0" />
         </div>
-        <ThemeToggle className="absolute left-[108px] top-[4px] z-20 hidden min-[810px]:inline-flex" />
+        <ThemeToggle className="absolute right-[8px] bottom-[8px] z-20" />
         <div className="relative z-10 box-border flex h-full w-full flex-col items-start justify-end gap-2 pl-0 pr-0 pt-0 pb-0">
           <div className="flex h-fit flex-col items-start gap-1">
             <p className="text-[22px] font-semibold leading-tight tracking-[-0.7px] text-text-primary min-[810px]:text-[26px] min-[810px]:tracking-[-0.96px]">
