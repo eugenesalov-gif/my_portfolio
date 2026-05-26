@@ -2,7 +2,7 @@ import PageLayout from "@/components/layout/PageLayout";
 import CaseCard from "@/components/ui/CaseCard";
 import Link from "next/link";
 
-const changelogText = "CHANGELOG: 25/05/2026";
+const changelogText = "CHANGELOG: 26/05/2026";
 
 const cases = [
   {
