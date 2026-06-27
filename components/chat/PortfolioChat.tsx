@@ -12,6 +12,7 @@ import {
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useChatLayout } from "@/components/chat/ChatLayoutContext";
+import { CHAT_MAX_MESSAGE_LENGTH } from "@/lib/chat-limits";
 import { homeRiseHidden, homeRiseTransition, homeRiseVisible } from "@/lib/motion";
 import styles from "./PortfolioChat.module.css";
 
@@ -628,7 +629,7 @@ export default function PortfolioChat() {
   }, [messages, isLoading, isAssistantTyping, isChatExpanded, messagesMaxHeight, updateMessagesScrollState]);
 
   const sendMessage = async (content: string) => {
-    const trimmed = content.trim();
+    const trimmed = content.trim().slice(0, CHAT_MAX_MESSAGE_LENGTH);
     if (!trimmed || isLoading || isAssistantTyping) {
       return;
     }
@@ -641,6 +642,9 @@ export default function PortfolioChat() {
     setIsMessagesHidden(false);
     setIsLoading(true);
 
+    const fallbackReply =
+      "Something went wrong — please try again or reach out directly.";
+
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -650,16 +654,19 @@ export default function PortfolioChat() {
       const data = await res.json();
 
       const reply =
-        data.reply ||
-        "Something went wrong — please try again or reach out directly.";
+        typeof data.error === "string" && data.error
+          ? data.error
+          : typeof data.reply === "string" && data.reply
+            ? data.reply
+            : fallbackReply;
 
       setMessages([...updatedMessages, { role: "assistant", content: reply }]);
       setTypingMessageIndex(updatedMessages.length);
     } catch {
-      const reply =
-        "Something went wrong — please try again or reach out directly.";
-
-      setMessages([...updatedMessages, { role: "assistant", content: reply }]);
+      setMessages([
+        ...updatedMessages,
+        { role: "assistant", content: fallbackReply },
+      ]);
       setTypingMessageIndex(updatedMessages.length);
     } finally {
       setIsLoading(false);
@@ -987,6 +994,7 @@ export default function PortfolioChat() {
             onBlur={() => setIsFocused(false)}
             placeholder="Ask about my experience or projects"
             autoComplete="off"
+            maxLength={CHAT_MAX_MESSAGE_LENGTH}
             disabled={isLoading || isAssistantTyping}
             className={`${styles.input} text-[14px] font-medium tracking-[-0.3px] text-text-primary placeholder:font-medium placeholder:text-text-tertiary`}
           />
