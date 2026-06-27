@@ -32,9 +32,6 @@ export const metadata: Metadata = {
       "Senior Product Designer with 5+ years of experience building B2B, SaaS solutions across analytics platforms, automation platforms and AI-powered features.",
     images: ["/og-image.png"],
   },
-  icons: {
-    icon: "/icon.png",
-  },
 };
 
 export default function RootLayout({
