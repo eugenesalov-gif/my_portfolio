@@ -18,13 +18,17 @@ const MAX_INPUT_HEIGHT = 80;
 const MIN_INPUT_HEIGHT = 32;
 const CHAT_STACK_GAP = 8;
 const OVERLAY_GAP = 8;
+const SUGGESTIONS_TOP_MARGIN = 16;
+const SUGGESTIONS_MIN_HEIGHT = 112;
 const DESKTOP_MEDIA_QUERY = "(min-width: 1200px)";
 
 const SUGGESTED_QUESTIONS = [
-  "What's your experience with AdTech?",
+  "Tell me a bit about yourself",
   "What are you looking for next?",
-  "Tell me about your key projects",
-  "What's your design philosophy?",
+  "Which project are you most proud of?",
+  "What's your take on AI tools in design?",
+  "What's something people wouldn't guess about you?",
+  "What do you like to do outside of work?",
 ];
 
 const messagesPanelExitTransition = { duration: 0.28, ease: "easeOut" as const };
@@ -310,6 +314,10 @@ export default function PortfolioChat() {
   const [isFocused, setIsFocused] = useState(false);
   const [isMessagesHidden, setIsMessagesHidden] = useState(false);
   const [messagesMaxHeight, setMessagesMaxHeight] = useState<number | null>(null);
+  const [suggestionsMaxHeight, setSuggestionsMaxHeight] = useState<number | null>(
+    null,
+  );
+  const [suggestionsExitInstant, setSuggestionsExitInstant] = useState(false);
   const [hasMessagesOverflow, setHasMessagesOverflow] = useState(false);
   const [typingMessageIndex, setTypingMessageIndex] = useState<number | null>(null);
   const [isDesktopChat, setIsDesktopChat] = useState(false);
@@ -486,6 +494,65 @@ export default function PortfolioChat() {
     updateMessagesScrollState();
   }, [messages, isLoading, isAssistantTyping, messagesMaxHeight, isPanelScrollable, updateMessagesScrollState]);
 
+  const updateSuggestionsLayout = useCallback(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const card = cardRef.current;
+    if (!card) {
+      return;
+    }
+
+    const cardTop = card.getBoundingClientRect().top;
+    const bioRect = chatLayout?.bioRef.current?.getBoundingClientRect();
+    const topBoundary = bioRect
+      ? bioRect.bottom + CHAT_STACK_GAP
+      : SUGGESTIONS_TOP_MARGIN;
+
+    const available = cardTop - OVERLAY_GAP - topBoundary;
+    setSuggestionsMaxHeight(Math.max(SUGGESTIONS_MIN_HEIGHT, available));
+  }, [chatLayout]);
+
+  const handleSuggestionSelect = (question: string) => {
+    setSuggestionsExitInstant(true);
+    sendMessage(question);
+  };
+
+  useEffect(() => {
+    if (showSuggestions) {
+      setSuggestionsExitInstant(false);
+    }
+  }, [showSuggestions]);
+
+  useLayoutEffect(() => {
+    if (!showSuggestions) {
+      return;
+    }
+
+    updateSuggestionsLayout();
+
+    const resizeObserver = new ResizeObserver(updateSuggestionsLayout);
+    const observed = [
+      cardRef.current,
+      chatLayout?.bioRef.current,
+      chatLayout?.profileCardRef.current,
+    ];
+
+    for (const node of observed) {
+      if (node) {
+        resizeObserver.observe(node);
+      }
+    }
+
+    window.addEventListener("resize", updateSuggestionsLayout);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateSuggestionsLayout);
+    };
+  }, [showSuggestions, updateSuggestionsLayout]);
+
   useEffect(() => {
     if (!chatLayout?.bioHidden) {
       return;
@@ -641,14 +708,23 @@ export default function PortfolioChat() {
       <div className={styles.overlay}>
         {reduceMotion ? (
           showSuggestions && (
-            <div className={styles.suggestions}>
+            <div
+              className={`${styles.suggestions} ${
+                suggestionsMaxHeight !== null ? styles.suggestionsScrollable : ""
+              }`}
+              style={
+                suggestionsMaxHeight !== null
+                  ? { maxHeight: suggestionsMaxHeight }
+                  : undefined
+              }
+            >
               {SUGGESTED_QUESTIONS.map((question) => (
                 <button
                   key={question}
                   type="button"
                   onMouseDown={(event) => {
                     event.preventDefault();
-                    sendMessage(question);
+                    handleSuggestionSelect(question);
                   }}
                   className={`${styles.suggestionItem} group text-[13px] leading-5`}
                 >
@@ -660,12 +736,19 @@ export default function PortfolioChat() {
               ))}
             </div>
           )
-        ) : (
+        ) : suggestionsExitInstant ? null : (
           <AnimatePresence>
             {showSuggestions && (
               <motion.div
                 key="suggestions"
-                className={styles.suggestions}
+                className={`${styles.suggestions} ${
+                  suggestionsMaxHeight !== null ? styles.suggestionsScrollable : ""
+                }`}
+                style={
+                  suggestionsMaxHeight !== null
+                    ? { maxHeight: suggestionsMaxHeight }
+                    : undefined
+                }
                 variants={suggestionContainerVariants}
                 initial="hidden"
                 animate="visible"
@@ -677,7 +760,7 @@ export default function PortfolioChat() {
                     type="button"
                     onMouseDown={(event) => {
                       event.preventDefault();
-                      sendMessage(question);
+                      handleSuggestionSelect(question);
                     }}
                     className={`${styles.suggestionItem} group text-[13px] leading-5`}
                     variants={suggestionItemVariants}

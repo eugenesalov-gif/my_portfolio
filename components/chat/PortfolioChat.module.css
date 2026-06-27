@@ -16,11 +16,39 @@
   flex-direction: column;
 }
 
+.suggestionsScrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.suggestionsScrollable:hover {
+  scrollbar-color: rgba(29, 29, 38, 0.18) transparent;
+}
+
+.suggestionsScrollable::-webkit-scrollbar {
+  width: 4px;
+}
+
+.suggestionsScrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.suggestionsScrollable::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 999px;
+}
+
+.suggestionsScrollable:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(29, 29, 38, 0.18);
+}
+
 .suggestionItem {
   display: block;
   width: 100%;
-  height: 64px;
-  padding: 12px 8px;
+  height: 56px;
+  padding: 8px;
   border: 0;
   border-bottom: 1px solid rgba(29, 29, 38, 0.06);
   background: transparent;
@@ -225,8 +253,13 @@
   }
 }
 
-:global([data-theme="dark"]) .messagesPanelScrollable:hover {
+:global([data-theme="dark"]) .messagesPanelScrollable:hover,
+:global([data-theme="dark"]) .suggestionsScrollable:hover {
   scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+
+:global([data-theme="dark"]) .suggestionsScrollable:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.16);
 }
 
 :global([data-theme="dark"]) .messagesPanelScrollable:hover::-webkit-scrollbar-thumb {
