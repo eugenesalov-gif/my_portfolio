@@ -39,9 +39,18 @@ html {
   --color-divider:        #EBEBEB;
   --color-tooltip-bg:     #4A4A56;
   --color-profile-block:  #FFFFFF;
+  --color-profile-toggle-bg: #FFFFFF;
+  --color-profile-toggle-hover: #F5F5F5;
+  --color-profile-toggle-icon: #1D1D26;
   --color-cv-btn-bg:      #1D1D26;
   --color-cv-btn-text:    #FFFFFF;
   --color-cv-btn-overlay: linear-gradient(180deg, #1D1D26 0%, #686875 100%);
+}
+
+[data-theme="light"] {
+  --color-profile-toggle-bg: #FFFFFF;
+  --color-profile-toggle-hover: #F5F5F5;
+  --color-profile-toggle-icon: #1D1D26;
 }
 
 [data-theme="dark"] {
@@ -71,6 +80,9 @@ html {
   --color-divider:        #1C1D21;
   --color-tooltip-bg:     #3A3A46;
   --color-profile-block:  #141518;
+  --color-profile-toggle-bg: #141518;
+  --color-profile-toggle-hover: #1A1B1F;
+  --color-profile-toggle-icon: #F0F0F4;
   --color-cv-btn-bg:        #F0F0F4;
   --color-cv-btn-text:      #1D1D26;
   --color-cv-btn-overlay:   linear-gradient(180deg, #F0F0F4 0%, #D0D0D8 100%);

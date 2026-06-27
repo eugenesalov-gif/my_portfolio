@@ -4,6 +4,7 @@ import { useTheme } from "./ThemeProvider";
 
 type ThemeToggleProps = {
   className?: string;
+  variant?: "default" | "profile";
 };
 
 function Sun03Icon({ className }: { className?: string }) {
@@ -48,22 +49,28 @@ function Moon02Icon({ className }: { className?: string }) {
   );
 }
 
-export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
+export default function ThemeToggle({ className = "", variant = "default" }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
+  const iconClassName =
+    variant === "profile"
+      ? "h-4 w-4 shrink-0"
+      : isDark
+        ? "h-5 w-5 shrink-0"
+        : "h-[18px] w-[18px] shrink-0";
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      className={`inline-flex h-6 w-8 shrink-0 items-center justify-center transition-colors duration-200 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-outline)] ${isDark ? "text-text-secondary hover:text-text-primary" : "text-text-tertiary hover:text-text-secondary"} ${className}`}
+      className={`inline-flex h-6 w-8 shrink-0 items-center justify-center transition-[color,background-color,opacity] duration-200 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-outline)] ${variant === "profile" ? "" : isDark ? "text-text-secondary hover:text-text-primary" : "text-text-tertiary hover:text-text-secondary"} ${className}`}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       title={isDark ? "Light mode" : "Dark mode"}
     >
       {isDark ? (
-        <Sun03Icon className="h-5 w-5 shrink-0" />
+        <Sun03Icon className={iconClassName} />
       ) : (
-        <Moon02Icon className="h-[18px] w-[18px] shrink-0" />
+        <Moon02Icon className={iconClassName} />
       )}
     </button>
   );

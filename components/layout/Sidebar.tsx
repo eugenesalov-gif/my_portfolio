@@ -6,8 +6,15 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import PortfolioChat from "@/components/chat/PortfolioChat";
+import {
+  ChatLayoutProvider,
+  useChatLayout,
+} from "@/components/chat/ChatLayoutContext";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { useTheme } from "@/components/theme/ThemeProvider";
+import { PROFILE_CARD_SHAPE_DEFAULT, PROFILE_CARD_SHAPE_DESKTOP } from "@/lib/profile-card-shapes";
+import { homeRiseHidden, homeRiseTransition, homeRiseVisible } from "@/lib/motion";
 
 const CV_LOTTIE_LIGHT =
   "https://lottie.host/f80c385d-318e-48e4-8435-078b09a4f8c4/sTC5j7ZKLl.lottie";
@@ -40,7 +47,7 @@ const bottomNavItems: Array<{
         width: 1024,
         height: 1024,
         className:
-          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none group-hover/nav-preview:top-[20px] group-hover/nav-preview:rotate-[-2deg]",
+          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none group-hover/nav-preview:top-[12px] group-hover/nav-preview:rotate-[-2deg]",
       },
     ],
   },
@@ -55,7 +62,7 @@ const bottomNavItems: Array<{
         width: 1024,
         height: 1024,
         className:
-          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none group-hover/nav-preview:top-[20px] group-hover/nav-preview:rotate-[-2deg]",
+          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none group-hover/nav-preview:top-[12px] group-hover/nav-preview:rotate-[-2deg]",
       },
     ],
   },
@@ -70,7 +77,7 @@ const bottomNavItems: Array<{
         width: 406,
         height: 374,
         className:
-          "left-[0px] top-[28px] w-[25px] rotate-[-20deg] delay-75 group-hover/nav-preview:top-[14px] group-hover/nav-preview:rotate-[-24deg]",
+          "left-[0px] top-[28px] w-[25px] rotate-[-20deg] delay-75 group-hover/nav-preview:top-[6px] group-hover/nav-preview:rotate-[-24deg]",
       },
       {
         src: "/nav-previews/figma.png",
@@ -78,7 +85,7 @@ const bottomNavItems: Array<{
         width: 375,
         height: 370,
         className:
-          "left-[36px] top-[28px] w-[20px] rotate-[20deg] delay-75 group-hover/nav-preview:top-[14px] group-hover/nav-preview:rotate-[24deg]",
+          "left-[36px] top-[28px] w-[20px] rotate-[20deg] delay-75 group-hover/nav-preview:top-[6px] group-hover/nav-preview:rotate-[24deg]",
       },
       {
         src: "/nav-previews/spark.png",
@@ -86,71 +93,97 @@ const bottomNavItems: Array<{
         width: 433,
         height: 420,
         className:
-          "left-[12px] top-[8px] w-[31px] rotate-[5deg] group-hover/nav-preview:top-0 group-hover/nav-preview:rotate-[8deg]",
+          "left-[12px] top-[8px] w-[31px] rotate-[5deg] group-hover/nav-preview:-top-[8px] group-hover/nav-preview:rotate-[8deg]",
       },
     ],
   },
 ];
 
-const HOME_BOTTOM_NAV_RISE_KEY = "portfolio-home-bottom-nav-per-char-rise";
+function BottomNavLabel({ text }: { text: string }) {
+  return <span className="block leading-[1.25]">{text}</span>;
+}
 
-const riseEase = [0.22, 1, 0.36, 1] as const;
-
-/** Same per-glyph boxes on every route so BottomNav doesn’t jump; motion only when `animate` (home). */
-function BottomNavLabel({
-  text,
-  animate,
-  play,
-  baseDelay,
+function HomeRiseBlock({
+  children,
+  delay = 0,
+  className = "",
 }: {
-  text: string;
-  animate: boolean;
-  play: boolean;
-  baseDelay: number;
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
 }) {
-  const chars = Array.from(text);
-  const stagger = 0.028;
+  const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
+  const isHomePage = pathname === "/";
+
+  if (!isHomePage || reduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
-    <>
-      {chars.map((char, i) => (
-        <span
-          key={`${i}-${char}`}
-          className="inline-block align-baseline"
-          style={{ height: "1.45em" }}
-        >
-          {animate ? (
-            <span className="inline-block h-full overflow-hidden">
-              <motion.span
-                className="inline-block leading-[1.25]"
-                initial={false}
-                animate={play ? { y: 0, opacity: 1 } : { y: 18, opacity: 0 }}
-                transition={{
-                  delay: baseDelay + i * stagger,
-                  duration: 0.34,
-                  ease: riseEase,
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            </span>
-          ) : (
-            <span className="inline-block leading-[1.25]">{char === " " ? "\u00A0" : char}</span>
-          )}
-        </span>
-      ))}
-    </>
+    <motion.div
+      className={className}
+      initial={homeRiseHidden}
+      animate={homeRiseVisible}
+      transition={{ ...homeRiseTransition, delay }}
+    >
+      {children}
+    </motion.div>
   );
 }
 
 export default function Sidebar() {
   return (
+    <ChatLayoutProvider>
+      <SidebarContent />
+    </ChatLayoutProvider>
+  );
+}
+
+function SidebarContent() {
+  const chatLayout = useChatLayout();
+  const reduceMotion = useReducedMotion();
+
+  if (!chatLayout) {
+    return null;
+  }
+
+  const { bioRef, profileCardRef, bioHidden } = chatLayout;
+
+  return (
     <div className="h-full flex flex-col px-0 min-[810px]:px-0">
-      <div className="flex flex-col gap-5 min-[810px]:gap-6">
-        <ProfileCard />
-        <Bio />
+      <div className="flex flex-col">
+        <div ref={profileCardRef}>
+          <ProfileCard />
+        </div>
+        <motion.div
+          ref={bioRef}
+          className="mt-5 min-[810px]:mt-6"
+          initial={false}
+          animate={
+            reduceMotion
+              ? { opacity: bioHidden ? 0 : 1, display: bioHidden ? "none" : "block" }
+              : {
+                  opacity: bioHidden ? 0 : 1,
+                  height: bioHidden ? 0 : "auto",
+                  marginTop: bioHidden ? 0 : undefined,
+                }
+          }
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          style={{ overflow: "hidden" }}
+          aria-hidden={bioHidden}
+        >
+          <Bio />
+        </motion.div>
       </div>
-      <BottomNav />
+      <div className="flex flex-col min-[1200px]:mt-auto">
+        <HomeRiseBlock delay={0.2} className="w-full">
+          <PortfolioChat />
+        </HomeRiseBlock>
+        <HomeRiseBlock delay={0} className="w-full">
+          <BottomNav />
+        </HomeRiseBlock>
+      </div>
     </div>
   );
 }
@@ -183,7 +216,7 @@ function ProfileCard() {
     "object-cover object-[24%_center] min-[810px]:object-left";
 
   return (
-    <div className="relative w-full h-[146px] rounded-[20px] overflow-hidden min-[810px]:h-[164px] min-[810px]:w-[450px]">
+    <div className="relative w-full h-[146px] rounded-[16px] overflow-hidden min-[810px]:h-[164px] min-[810px]:w-[450px]">
       <Link
         href="/"
         className="peer/profile-image absolute left-0 top-0 z-0 block h-full w-full overflow-hidden"
@@ -237,17 +270,30 @@ function ProfileCard() {
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 h-full w-full select-none"
+          className="pointer-events-none absolute inset-0 h-full w-full select-none min-[1200px]:hidden"
         >
-          <path
-            className="profile-card__shape"
-            d="M0 16C0 7.163 7.163 0 16 0h112c8.837 0 16 7.163 16 16v4c0 8.837 7.163 16 16 16h114c8.837 0 16 7.163 16 16v87c0 8.837-7.163 16-16 16H16C7.163 155 0 147.837 0 139V16z"
-          />
+          <path className="profile-card__shape" d={PROFILE_CARD_SHAPE_DEFAULT} />
+        </svg>
+        <svg
+          width="290"
+          height="155"
+          viewBox="0 0 290 155"
+          fill="none"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          shapeRendering="geometricPrecision"
+          className="pointer-events-none absolute inset-0 hidden h-full w-full select-none min-[1200px]:block"
+        >
+          <path className="profile-card__shape" d={PROFILE_CARD_SHAPE_DESKTOP} />
         </svg>
         <div className="absolute right-[2px] top-0 z-20 min-[810px]:hidden">
           <CvDownloadButton className="h-[28px] w-[112px] shrink-0" />
         </div>
-        <ThemeToggle className="absolute right-[8px] bottom-[8px] z-20 max-[809px]:bottom-[13px]" />
+        <ThemeToggle
+          variant="profile"
+          className="absolute right-[8px] bottom-[8px] z-20 max-[809px]:bottom-[13px] min-[810px]:max-[1199px]:right-[8px] min-[810px]:max-[1199px]:bottom-[8px] rounded-xl bg-[var(--color-profile-toggle-bg)] text-[var(--color-profile-toggle-icon)] min-[1200px]:right-0 min-[1200px]:bottom-0 min-[1200px]:h-8 min-[1200px]:w-[43px] min-[1200px]:shadow-[0_1px_2px_var(--color-shadow-soft)] min-[1200px]:hover:bg-[var(--color-profile-toggle-hover)]"
+        />
         <div className="relative z-10 box-border flex h-full w-full flex-col items-start justify-end gap-2 pl-0 pr-0 pt-0 pb-0">
           <div className="flex h-fit flex-col items-start gap-1">
             <p className="text-[22px] font-semibold leading-tight tracking-[-0.7px] text-text-primary min-[810px]:text-[26px] min-[810px]:tracking-[-0.96px]">
@@ -435,52 +481,11 @@ function Bio() {
 }
 
 function BottomNav() {
-  const pathname = usePathname();
-  const reduceMotion = useReducedMotion();
-  const [risePlay, setRisePlay] = useState(false);
-
-  const shouldRise = pathname === "/" && !reduceMotion;
-
-  useEffect(() => {
-    if (!shouldRise) {
-      return;
-    }
-    try {
-      if (typeof window !== "undefined" && sessionStorage.getItem(HOME_BOTTOM_NAV_RISE_KEY) === "1") {
-        setRisePlay(true);
-        return;
-      }
-    } catch {
-      /* ignore */
-    }
-    const id = requestAnimationFrame(() => {
-      setRisePlay(true);
-      try {
-        sessionStorage.setItem(HOME_BOTTOM_NAV_RISE_KEY, "1");
-      } catch {
-        /* ignore */
-      }
-    });
-    return () => cancelAnimationFrame(id);
-  }, [shouldRise]);
-
-  let charOffset = 0;
-  const charStagger = 0.028;
-  const gapBetweenLabels = 0.07;
-
   return (
-    <div className="mt-10 flex min-h-[48px] shrink-0 flex-wrap items-baseline gap-x-5 gap-y-2 overflow-visible px-1 pb-2 pt-3 min-[810px]:mt-20 min-[810px]:flex-nowrap min-[810px]:gap-6 min-[810px]:pt-2 min-[1200px]:mt-auto">
-      {bottomNavItems.map((item) => {
-        const baseDelay = charOffset;
-        charOffset += Array.from(item.label).length * charStagger + gapBetweenLabels;
-        return (
-          <PreviewNavLink
-            key={item.href}
-            {...item}
-            homeRise={shouldRise ? { play: risePlay, baseDelay } : null}
-          />
-        );
-      })}
+    <div className="mt-6 flex h-[48px] w-full shrink-0 items-center gap-1 overflow-visible rounded-[16px] border border-[#F9F9F9] bg-[#F9F9F9] p-1 dark:border-[var(--color-divider)] dark:bg-[var(--color-bg-muted)]">
+      {bottomNavItems.map((item) => (
+        <PreviewNavLink key={item.href} {...item} />
+      ))}
     </div>
   );
 }
@@ -491,22 +496,17 @@ function PreviewNavLink({
   previewClassName,
   glowClassName,
   images,
-  homeRise,
 }: {
   href: string;
   label: string;
   previewClassName: string;
   glowClassName?: string;
   images: NavPreviewImage[];
-  /** Set only on `/` when reduced-motion is off — per-character entrance animation. */
-  homeRise: { play: boolean; baseDelay: number } | null;
 }) {
-  const animate = homeRise !== null;
-
   return (
     <Link
       href={href}
-      className="group/nav-preview relative isolate inline-flex items-baseline text-[16px] font-medium text-text-primary outline-none underline decoration-[1.5px] underline-offset-[2px]"
+      className="group/nav-preview relative isolate flex h-[40px] min-w-0 flex-1 items-center justify-center overflow-visible rounded-[12px] bg-white px-1 text-center text-[16px] font-medium text-text-primary outline-none dark:bg-[var(--color-bg-elevated)]"
       aria-label={label}
     >
       <span
@@ -526,13 +526,8 @@ function PreviewNavLink({
           />
         ))}
       </span>
-      <span className="relative z-10">
-        <BottomNavLabel
-          text={label}
-          animate={animate}
-          play={homeRise?.play ?? true}
-          baseDelay={homeRise?.baseDelay ?? 0}
-        />
+      <span className="relative z-10 flex items-center justify-center">
+        <BottomNavLabel text={label} />
       </span>
     </Link>
   );
