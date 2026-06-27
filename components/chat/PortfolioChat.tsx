@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useChatLayout } from "@/components/chat/ChatLayoutContext";
 import { homeRiseHidden, homeRiseTransition, homeRiseVisible } from "@/lib/motion";
@@ -19,8 +20,14 @@ const MIN_INPUT_HEIGHT = 32;
 const CHAT_STACK_GAP = 8;
 const OVERLAY_GAP = 8;
 const SUGGESTIONS_TOP_MARGIN = 16;
-const SUGGESTIONS_MIN_HEIGHT = 112;
 const DESKTOP_MEDIA_QUERY = "(min-width: 1200px)";
+
+function isDesktopViewport() {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia(DESKTOP_MEDIA_QUERY).matches
+  );
+}
 
 const SUGGESTED_QUESTIONS = [
   "Tell me a bit about yourself",
@@ -320,12 +327,12 @@ export default function PortfolioChat() {
   const [suggestionsExitInstant, setSuggestionsExitInstant] = useState(false);
   const [hasMessagesOverflow, setHasMessagesOverflow] = useState(false);
   const [typingMessageIndex, setTypingMessageIndex] = useState<number | null>(null);
-  const [isDesktopChat, setIsDesktopChat] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const chatStackRef = useRef<HTMLDivElement>(null);
   const messagesPanelRef = useRef<HTMLDivElement>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const suggestionsRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const chatLayout = useChatLayout();
 
@@ -359,9 +366,10 @@ export default function PortfolioChat() {
   const showSuggestions = isFocused && messages.length === 0;
   const hasMessages = messages.length > 0;
   const isChatExpanded = hasMessages && !isMessagesHidden;
+  const useBioSlotSuggestions = showSuggestions && !isDesktopViewport();
+  const useDialogInBioSlot = isChatExpanded && !isDesktopViewport();
   const isPanelScrollable =
-    isChatExpanded &&
-    ((!isDesktopChat) || (isDesktopChat && messagesMaxHeight !== null));
+    isChatExpanded && messagesMaxHeight !== null;
 
   const updateMessagesScrollState = useCallback(() => {
     const panel = messagesPanelRef.current;
@@ -388,29 +396,12 @@ export default function PortfolioChat() {
 
   const isAssistantTyping = typingMessageIndex !== null;
 
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const mediaQuery = window.matchMedia(DESKTOP_MEDIA_QUERY);
-    const updateViewport = () => setIsDesktopChat(mediaQuery.matches);
-    updateViewport();
-    mediaQuery.addEventListener("change", updateViewport);
-
-    return () => mediaQuery.removeEventListener("change", updateViewport);
-  }, []);
-
   const updateChatLayout = useCallback(() => {
-    if (!isDesktopChat) {
-      setMessagesMaxHeight(null);
-      chatLayout?.setBioHidden(false);
-      return;
-    }
-
     if (!isChatExpanded) {
       setMessagesMaxHeight(null);
-      chatLayout?.setBioHidden(false);
+      if (isDesktopViewport() || !showSuggestions) {
+        chatLayout?.setBioHidden(false);
+      }
       return;
     }
 
@@ -421,6 +412,14 @@ export default function PortfolioChat() {
     const profileCard = chatLayout?.profileCardRef.current;
 
     if (!chatStack || !messagesPanel || !card || !profileCard || !chatLayout) {
+      return;
+    }
+
+    if (!isDesktopViewport()) {
+      const bioSlot = chatLayout.bioRef.current;
+      if (bioSlot) {
+        setMessagesMaxHeight(bioSlot.clientHeight);
+      }
       return;
     }
 
@@ -457,7 +456,7 @@ export default function PortfolioChat() {
     } else {
       setMessagesMaxHeight(null);
     }
-  }, [chatLayout, isChatExpanded, isDesktopChat]);
+  }, [chatLayout, isChatExpanded, showSuggestions]);
 
   useLayoutEffect(() => {
     updateChatLayout();
@@ -483,10 +482,12 @@ export default function PortfolioChat() {
     }
 
     window.addEventListener("resize", updateChatLayout);
+    window.visualViewport?.addEventListener("resize", updateChatLayout);
 
     return () => {
       resizeObserver.disconnect();
       window.removeEventListener("resize", updateChatLayout);
+      window.visualViewport?.removeEventListener("resize", updateChatLayout);
     };
   }, [updateChatLayout, updateMessagesScrollState, messages, isLoading, isAssistantTyping, chatLayout?.bioHidden]);
 
@@ -495,29 +496,56 @@ export default function PortfolioChat() {
   }, [messages, isLoading, isAssistantTyping, messagesMaxHeight, isPanelScrollable, updateMessagesScrollState]);
 
   const updateSuggestionsLayout = useCallback(() => {
-    if (typeof window === "undefined") {
+    if (typeof window === "undefined" || !showSuggestions) {
       return;
     }
 
     const card = cardRef.current;
-    if (!card) {
+    const suggestions = suggestionsRef.current;
+    const profileCard = chatLayout?.profileCardRef.current;
+
+    if (!card || !chatLayout) {
       return;
     }
 
     const cardTop = card.getBoundingClientRect().top;
-    const bioRect = chatLayout?.bioRef.current?.getBoundingClientRect();
-    const topBoundary = bioRect
-      ? bioRect.bottom + CHAT_STACK_GAP
-      : SUGGESTIONS_TOP_MARGIN;
+    const bio = chatLayout.bioRef.current;
+    const bioRect = bio?.getBoundingClientRect();
 
+    const getTopBoundary = () => {
+      if (!chatLayout.bioHidden && bioRect && bioRect.height > 0) {
+        return bioRect.bottom + CHAT_STACK_GAP;
+      }
+
+      if (profileCard) {
+        return profileCard.getBoundingClientRect().bottom + CHAT_STACK_GAP;
+      }
+
+      return SUGGESTIONS_TOP_MARGIN;
+    };
+
+    const topBoundary = getTopBoundary();
     const available = cardTop - OVERLAY_GAP - topBoundary;
-    setSuggestionsMaxHeight(Math.max(SUGGESTIONS_MIN_HEIGHT, available));
-  }, [chatLayout]);
+    const naturalHeight =
+      suggestions?.scrollHeight ?? SUGGESTED_QUESTIONS.length * 56;
 
-  const handleSuggestionSelect = (question: string) => {
-    setSuggestionsExitInstant(true);
-    sendMessage(question);
-  };
+    if (
+      isDesktopViewport() &&
+      naturalHeight > available &&
+      !chatLayout.bioHidden &&
+      bioRect &&
+      bioRect.height > 0
+    ) {
+      chatLayout.setBioHidden(true);
+      return;
+    }
+
+    if (naturalHeight > available) {
+      setSuggestionsMaxHeight(Math.max(available, 56));
+    } else {
+      setSuggestionsMaxHeight(null);
+    }
+  }, [chatLayout, showSuggestions]);
 
   useEffect(() => {
     if (showSuggestions) {
@@ -526,7 +554,21 @@ export default function PortfolioChat() {
   }, [showSuggestions]);
 
   useLayoutEffect(() => {
-    if (!showSuggestions) {
+    if (isDesktopViewport()) {
+      chatLayout?.setSuggestionsInBioSlot(false);
+      chatLayout?.setDialogInBioSlot(false);
+      return;
+    }
+
+    chatLayout?.setSuggestionsInBioSlot(useBioSlotSuggestions);
+    chatLayout?.setDialogInBioSlot(useDialogInBioSlot);
+  }, [useBioSlotSuggestions, useDialogInBioSlot, chatLayout]);
+
+  useLayoutEffect(() => {
+    if (!showSuggestions || !isDesktopViewport()) {
+      if (!showSuggestions) {
+        setSuggestionsMaxHeight(null);
+      }
       return;
     }
 
@@ -534,6 +576,7 @@ export default function PortfolioChat() {
 
     const resizeObserver = new ResizeObserver(updateSuggestionsLayout);
     const observed = [
+      suggestionsRef.current,
       cardRef.current,
       chatLayout?.bioRef.current,
       chatLayout?.profileCardRef.current,
@@ -546,21 +589,33 @@ export default function PortfolioChat() {
     }
 
     window.addEventListener("resize", updateSuggestionsLayout);
+    window.visualViewport?.addEventListener("resize", updateSuggestionsLayout);
 
     return () => {
       resizeObserver.disconnect();
       window.removeEventListener("resize", updateSuggestionsLayout);
+      window.visualViewport?.removeEventListener("resize", updateSuggestionsLayout);
     };
-  }, [showSuggestions, updateSuggestionsLayout]);
+  }, [showSuggestions, chatLayout, updateSuggestionsLayout]);
 
   useEffect(() => {
     if (!chatLayout?.bioHidden) {
       return;
     }
 
-    const timeoutId = window.setTimeout(updateChatLayout, 320);
+    const timeoutId = window.setTimeout(() => {
+      updateChatLayout();
+      if (showSuggestions && isDesktopViewport()) {
+        updateSuggestionsLayout();
+      }
+    }, 320);
     return () => window.clearTimeout(timeoutId);
-  }, [chatLayout?.bioHidden, updateChatLayout]);
+  }, [
+    chatLayout?.bioHidden,
+    showSuggestions,
+    updateChatLayout,
+    updateSuggestionsLayout,
+  ]);
 
   useLayoutEffect(() => {
     const panel = messagesPanelRef.current;
@@ -623,6 +678,11 @@ export default function PortfolioChat() {
     }
   };
 
+  const handleSuggestionSelect = (question: string) => {
+    setSuggestionsExitInstant(true);
+    sendMessage(question);
+  };
+
   const messagesContent = (
     <div ref={messagesRef} className={styles.messages}>
       {messages.map((message, index) => (
@@ -661,7 +721,7 @@ export default function PortfolioChat() {
         isPanelScrollable ? styles.messagesPanelScrollable : ""
       }`}
       style={
-        isDesktopChat && isChatExpanded && messagesMaxHeight !== null
+        isChatExpanded && messagesMaxHeight !== null
           ? { maxHeight: messagesMaxHeight }
           : undefined
       }
@@ -700,15 +760,125 @@ export default function PortfolioChat() {
     },
   };
 
+  const renderSuggestionButtons = () =>
+    SUGGESTED_QUESTIONS.map((question) => (
+      <button
+        key={question}
+        type="button"
+        onMouseDown={(event) => {
+          event.preventDefault();
+          handleSuggestionSelect(question);
+        }}
+        className={`${styles.suggestionItem} group text-[13px] leading-5`}
+      >
+        <span className={`${styles.suggestionInner} ${suggestionContentClassName}`}>
+          <SearchIcon className={styles.suggestionIcon} />
+          {question}
+        </span>
+      </button>
+    ));
+
+  const useAnimatedSuggestions = isDesktopViewport() && !reduceMotion;
+
+  const bioSlotDialogPortal =
+    useDialogInBioSlot &&
+    chatLayout?.dialogInBioSlot &&
+    !isMessagesHidden &&
+    chatLayout.bioRef.current
+      ? createPortal(
+          <div className={styles.dialogInBioSlot}>
+            {reduceMotion ? (
+              <div ref={chatStackRef} className={styles.chatStack}>
+                {chatDialogPanel}
+              </div>
+            ) : (
+              <motion.div
+                ref={chatStackRef}
+                key="chat-dialog-bio-slot"
+                className={styles.chatStack}
+                initial={homeRiseHidden}
+                animate={{
+                  ...homeRiseVisible,
+                  transition: homeRiseTransition,
+                }}
+              >
+                {chatDialogPanel}
+              </motion.div>
+            )}
+          </div>,
+          chatLayout.bioRef.current,
+        )
+      : null;
+
+  const bioSlotSuggestionsPortal =
+    useBioSlotSuggestions &&
+    chatLayout?.suggestionsInBioSlot &&
+    !suggestionsExitInstant &&
+    chatLayout.bioRef.current
+      ? createPortal(
+          <div
+            ref={suggestionsRef}
+            className={`${styles.suggestions} ${styles.suggestionsInBioSlot} ${styles.suggestionsScrollable}`}
+          >
+            {renderSuggestionButtons()}
+          </div>,
+          chatLayout.bioRef.current,
+        )
+      : null;
+
   return (
     <section
       className={`${styles.wrapper} portfolio-chat mx-1 mt-10 min-[810px]:mt-16 min-[1200px]:mt-0`}
       aria-label="Portfolio assistant"
     >
       <div className={styles.overlay}>
-        {reduceMotion ? (
-          showSuggestions && (
+        {useAnimatedSuggestions ? (
+          suggestionsExitInstant ? null : (
+            <AnimatePresence>
+              {showSuggestions && (
+                <motion.div
+                  ref={suggestionsRef}
+                  key="suggestions"
+                  className={`${styles.suggestions} ${
+                    suggestionsMaxHeight !== null ? styles.suggestionsScrollable : ""
+                  }`}
+                  style={
+                    suggestionsMaxHeight !== null
+                      ? { maxHeight: suggestionsMaxHeight }
+                      : undefined
+                  }
+                  variants={suggestionContainerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
+                  {SUGGESTED_QUESTIONS.map((question) => (
+                    <motion.button
+                      key={question}
+                      type="button"
+                      onMouseDown={(event) => {
+                        event.preventDefault();
+                        handleSuggestionSelect(question);
+                      }}
+                      className={`${styles.suggestionItem} group text-[13px] leading-5`}
+                      variants={suggestionItemVariants}
+                    >
+                      <span className={`${styles.suggestionInner} ${suggestionContentClassName}`}>
+                        <SearchIcon className={styles.suggestionIcon} />
+                        {question}
+                      </span>
+                    </motion.button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )
+        ) : (
+          isDesktopViewport() &&
+          showSuggestions &&
+          !suggestionsExitInstant && (
             <div
+              ref={suggestionsRef}
               className={`${styles.suggestions} ${
                 suggestionsMaxHeight !== null ? styles.suggestionsScrollable : ""
               }`}
@@ -718,65 +888,13 @@ export default function PortfolioChat() {
                   : undefined
               }
             >
-              {SUGGESTED_QUESTIONS.map((question) => (
-                <button
-                  key={question}
-                  type="button"
-                  onMouseDown={(event) => {
-                    event.preventDefault();
-                    handleSuggestionSelect(question);
-                  }}
-                  className={`${styles.suggestionItem} group text-[13px] leading-5`}
-                >
-                  <span className={`${styles.suggestionInner} ${suggestionContentClassName}`}>
-                    <SearchIcon className={styles.suggestionIcon} />
-                    {question}
-                  </span>
-                </button>
-              ))}
+              {renderSuggestionButtons()}
             </div>
           )
-        ) : suggestionsExitInstant ? null : (
-          <AnimatePresence>
-            {showSuggestions && (
-              <motion.div
-                key="suggestions"
-                className={`${styles.suggestions} ${
-                  suggestionsMaxHeight !== null ? styles.suggestionsScrollable : ""
-                }`}
-                style={
-                  suggestionsMaxHeight !== null
-                    ? { maxHeight: suggestionsMaxHeight }
-                    : undefined
-                }
-                variants={suggestionContainerVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                {SUGGESTED_QUESTIONS.map((question) => (
-                  <motion.button
-                    key={question}
-                    type="button"
-                    onMouseDown={(event) => {
-                      event.preventDefault();
-                      handleSuggestionSelect(question);
-                    }}
-                    className={`${styles.suggestionItem} group text-[13px] leading-5`}
-                    variants={suggestionItemVariants}
-                  >
-                    <span className={`${styles.suggestionInner} ${suggestionContentClassName}`}>
-                      <SearchIcon className={styles.suggestionIcon} />
-                      {question}
-                    </span>
-                  </motion.button>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
         )}
 
         {hasMessages &&
+          isDesktopViewport() &&
           (reduceMotion ? (
             !isMessagesHidden && (
               <div ref={chatStackRef} className={styles.chatStack}>
@@ -870,7 +988,7 @@ export default function PortfolioChat() {
             placeholder="Ask about my experience or projects"
             autoComplete="off"
             disabled={isLoading || isAssistantTyping}
-            className={`${styles.input} text-[14px] font-medium tracking-[-0.3px] text-text-primary placeholder:font-medium placeholder:text-[#A8A8B0]`}
+            className={`${styles.input} text-[14px] font-medium tracking-[-0.3px] text-text-primary placeholder:font-medium placeholder:text-text-tertiary`}
           />
           <button
             type="submit"
@@ -883,6 +1001,8 @@ export default function PortfolioChat() {
         </form>
       </div>
       </div>
+      {bioSlotDialogPortal}
+      {bioSlotSuggestionsPortal}
     </section>
   );
 }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
@@ -132,6 +132,22 @@ function HomeRiseBlock({
   );
 }
 
+const DESKTOP_MEDIA_QUERY = "(min-width: 1200px)";
+
+function useIsDesktopViewport() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(DESKTOP_MEDIA_QUERY);
+    const update = () => setIsDesktop(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
+  return isDesktop;
+}
+
 export default function Sidebar() {
   return (
     <ChatLayoutProvider>
@@ -143,12 +159,59 @@ export default function Sidebar() {
 function SidebarContent() {
   const chatLayout = useChatLayout();
   const reduceMotion = useReducedMotion();
+  const isDesktopViewport = useIsDesktopViewport();
+  const setBioSlotHeight = chatLayout?.setBioSlotHeight;
+  const bioMeasureRef = chatLayout?.bioMeasureRef;
+
+  useLayoutEffect(() => {
+    if (!setBioSlotHeight || !bioMeasureRef) {
+      return;
+    }
+
+    if (isDesktopViewport) {
+      setBioSlotHeight(null);
+      return;
+    }
+
+    const measureBioSlot = () => {
+      const measureEl = bioMeasureRef.current;
+      if (!measureEl) {
+        return;
+      }
+
+      setBioSlotHeight(measureEl.getBoundingClientRect().height);
+    };
+
+    measureBioSlot();
+
+    const resizeObserver = new ResizeObserver(measureBioSlot);
+    if (bioMeasureRef.current) {
+      resizeObserver.observe(bioMeasureRef.current);
+    }
+
+    window.addEventListener("resize", measureBioSlot);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", measureBioSlot);
+    };
+  }, [isDesktopViewport, setBioSlotHeight, bioMeasureRef]);
 
   if (!chatLayout) {
     return null;
   }
 
-  const { bioRef, profileCardRef, bioHidden } = chatLayout;
+  const {
+    bioRef,
+    profileCardRef,
+    bioHidden,
+    suggestionsInBioSlot,
+    dialogInBioSlot,
+    bioSlotHeight,
+  } = chatLayout;
+
+  const bioObscured = suggestionsInBioSlot || dialogInBioSlot;
+  const lockBioSlotHeight = !isDesktopViewport && bioSlotHeight !== null;
 
   return (
     <div className="h-full flex flex-col px-0 min-[810px]:px-0">
@@ -156,25 +219,43 @@ function SidebarContent() {
         <div ref={profileCardRef}>
           <ProfileCard />
         </div>
-        <motion.div
+        <div
           ref={bioRef}
-          className="mt-5 min-[810px]:mt-6"
-          initial={false}
-          animate={
-            reduceMotion
-              ? { opacity: bioHidden ? 0 : 1, display: bioHidden ? "none" : "block" }
-              : {
-                  opacity: bioHidden ? 0 : 1,
-                  height: bioHidden ? 0 : "auto",
-                  marginTop: bioHidden ? 0 : undefined,
-                }
-          }
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          style={{ overflow: "hidden" }}
-          aria-hidden={bioHidden}
+          className="relative mt-5 min-[810px]:mt-6"
+          style={lockBioSlotHeight ? { minHeight: bioSlotHeight } : undefined}
         >
-          <Bio />
-        </motion.div>
+          <div
+            ref={chatLayout.bioMeasureRef}
+            className={
+              bioObscured ? "invisible pointer-events-none select-none" : undefined
+            }
+            aria-hidden={bioObscured}
+          >
+            <motion.div
+              initial={false}
+              animate={
+                isDesktopViewport
+                  ? reduceMotion
+                    ? { opacity: bioHidden ? 0 : 1, display: bioHidden ? "none" : "block" }
+                    : {
+                        opacity: bioHidden ? 0 : 1,
+                        height: bioHidden ? 0 : "auto",
+                        marginTop: bioHidden ? 0 : undefined,
+                      }
+                  : { opacity: 1, height: "auto" }
+              }
+              transition={
+                isDesktopViewport
+                  ? { duration: bioHidden ? 0 : 0.3, ease: "easeOut" }
+                  : { duration: 0 }
+              }
+              style={{ overflow: "hidden" }}
+              aria-hidden={isDesktopViewport ? bioHidden : false}
+            >
+              <Bio />
+            </motion.div>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col min-[1200px]:mt-auto">
         <HomeRiseBlock delay={0.2} className="w-full">
