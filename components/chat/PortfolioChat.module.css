@@ -322,10 +322,18 @@
   box-sizing: border-box;
   border: none;
   background:
+    radial-gradient(ellipse 115% 78% at 0% 0%, rgba(180, 168, 235, 0.1) 0%, transparent 54%),
+    radial-gradient(ellipse 88% 68% at 100% 100%, rgba(152, 192, 245, 0.08) 0%, transparent 49%),
+    linear-gradient(145deg, #f8f7fa 0%, #f9f8fb 42%, #f7f8fa 100%);
+  box-shadow: none;
+  transition: background 220ms ease-out, box-shadow 220ms ease-out;
+}
+
+.card:focus-within {
+  background:
     radial-gradient(ellipse 115% 78% at 0% 0%, rgba(180, 168, 235, 0.28) 0%, transparent 54%),
     radial-gradient(ellipse 88% 68% at 100% 100%, rgba(152, 192, 245, 0.24) 0%, transparent 49%),
     linear-gradient(145deg, #f1ebfa 0%, #f4eefc 42%, #edf2fc 100%);
-  box-shadow: none;
 }
 
 @property --thinking-shine-x {
@@ -533,6 +541,14 @@
 }
 
 :global([data-theme="dark"]) .card {
+  background:
+    radial-gradient(ellipse 115% 78% at 0% 0%, rgba(120, 98, 196, 0.1) 0%, transparent 54%),
+    radial-gradient(ellipse 88% 68% at 100% 100%, rgba(72, 128, 196, 0.08) 0%, transparent 49%),
+    linear-gradient(145deg, #121118 0%, #131218 42%, #111217 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+:global([data-theme="dark"]) .card:focus-within {
   background:
     radial-gradient(ellipse 115% 78% at 0% 0%, rgba(120, 98, 196, 0.22) 0%, transparent 54%),
     radial-gradient(ellipse 88% 68% at 100% 100%, rgba(72, 128, 196, 0.18) 0%, transparent 49%),

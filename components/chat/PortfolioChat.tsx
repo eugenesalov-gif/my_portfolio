@@ -334,8 +334,36 @@ export default function PortfolioChat() {
   const messagesRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
+  const messagesMaxHeightRef = useRef<number | null>(null);
+  const suggestionsMaxHeightRef = useRef<number | null>(null);
   const reduceMotion = useReducedMotion();
   const chatLayout = useChatLayout();
+
+  const applyMessagesMaxHeight = useCallback((next: number | null) => {
+    if (messagesMaxHeightRef.current === next) {
+      return;
+    }
+
+    if (
+      next !== null &&
+      messagesMaxHeightRef.current !== null &&
+      Math.abs(messagesMaxHeightRef.current - next) < 2
+    ) {
+      return;
+    }
+
+    messagesMaxHeightRef.current = next;
+    setMessagesMaxHeight(next);
+  }, []);
+
+  const applySuggestionsMaxHeight = useCallback((next: number | null) => {
+    if (suggestionsMaxHeightRef.current === next) {
+      return;
+    }
+
+    suggestionsMaxHeightRef.current = next;
+    setSuggestionsMaxHeight(next);
+  }, []);
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
@@ -378,7 +406,10 @@ export default function PortfolioChat() {
       return;
     }
 
-    setHasMessagesOverflow(panel.scrollHeight > panel.clientHeight + 1);
+    const hasOverflow = panel.scrollHeight > panel.clientHeight + 1;
+    setHasMessagesOverflow((current) =>
+      current === hasOverflow ? current : hasOverflow,
+    );
   }, []);
 
   const handleMessagesPanelScroll = () => {
@@ -399,8 +430,8 @@ export default function PortfolioChat() {
 
   const updateChatLayout = useCallback(() => {
     if (!isChatExpanded) {
-      setMessagesMaxHeight(null);
-      if (isDesktopViewport() || !showSuggestions) {
+      applyMessagesMaxHeight(null);
+      if (!showSuggestions) {
         chatLayout?.setBioHidden(false);
       }
       return;
@@ -419,7 +450,7 @@ export default function PortfolioChat() {
     if (!isDesktopViewport()) {
       const bioSlot = chatLayout.bioRef.current;
       if (bioSlot) {
-        setMessagesMaxHeight(bioSlot.clientHeight);
+        applyMessagesMaxHeight(bioSlot.clientHeight);
       }
       return;
     }
@@ -448,16 +479,16 @@ export default function PortfolioChat() {
         return;
       }
 
-      setMessagesMaxHeight(null);
+      applyMessagesMaxHeight(null);
       return;
     }
 
     if (naturalHeight > available) {
-      setMessagesMaxHeight(Math.max(80, available));
+      applyMessagesMaxHeight(Math.max(80, available));
     } else {
-      setMessagesMaxHeight(null);
+      applyMessagesMaxHeight(null);
     }
-  }, [chatLayout, isChatExpanded, showSuggestions]);
+  }, [chatLayout, isChatExpanded, showSuggestions, applyMessagesMaxHeight]);
 
   useLayoutEffect(() => {
     updateChatLayout();
@@ -542,11 +573,11 @@ export default function PortfolioChat() {
     }
 
     if (naturalHeight > available) {
-      setSuggestionsMaxHeight(Math.max(available, 56));
+      applySuggestionsMaxHeight(Math.max(available, 56));
     } else {
-      setSuggestionsMaxHeight(null);
+      applySuggestionsMaxHeight(null);
     }
-  }, [chatLayout, showSuggestions]);
+  }, [chatLayout, showSuggestions, applySuggestionsMaxHeight]);
 
   useEffect(() => {
     if (showSuggestions) {
@@ -568,7 +599,7 @@ export default function PortfolioChat() {
   useLayoutEffect(() => {
     if (!showSuggestions || !isDesktopViewport()) {
       if (!showSuggestions) {
-        setSuggestionsMaxHeight(null);
+        applySuggestionsMaxHeight(null);
       }
       return;
     }
@@ -597,7 +628,7 @@ export default function PortfolioChat() {
       window.removeEventListener("resize", updateSuggestionsLayout);
       window.visualViewport?.removeEventListener("resize", updateSuggestionsLayout);
     };
-  }, [showSuggestions, chatLayout, updateSuggestionsLayout]);
+  }, [showSuggestions, chatLayout, updateSuggestionsLayout, applySuggestionsMaxHeight]);
 
   useEffect(() => {
     if (!chatLayout?.bioHidden) {
@@ -996,7 +1027,7 @@ export default function PortfolioChat() {
             autoComplete="off"
             maxLength={CHAT_MAX_MESSAGE_LENGTH}
             disabled={isLoading || isAssistantTyping}
-            className={`${styles.input} text-[14px] font-medium tracking-[-0.3px] text-text-primary placeholder:font-medium placeholder:text-text-tertiary`}
+            className={`${styles.input} text-[16px] font-medium tracking-[-0.3px] text-text-primary placeholder:font-medium placeholder:text-text-tertiary min-[810px]:text-[14px]`}
           />
           <button
             type="submit"

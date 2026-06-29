@@ -103,12 +103,25 @@ html {
 }
 
 .profile-cv-button {
-  background-color: var(--color-cv-btn-bg);
+  background: linear-gradient(0deg, rgba(1, 1, 1, 1) 0%, rgba(41, 41, 43, 1) 100%);
+  box-shadow:
+    0px 0px 0px 1px rgba(18, 18, 18, 1),
+    inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2);
   color: var(--color-cv-btn-text);
+  transition: opacity 200ms ease-out;
 }
 
-.profile-cv-button__hover {
-  background: var(--color-cv-btn-overlay);
+.profile-cv-button:hover {
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .profile-cv-button {
+  background: var(--color-cv-btn-bg);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .profile-cv-button:hover {
+  opacity: 0.92;
 }
 
 body {

@@ -39,19 +39,19 @@ export function ChatLayoutProvider({
   const [bioSlotHeight, setBioSlotHeightState] = useState<number | null>(null);
 
   const setBioHidden = useCallback((hidden: boolean) => {
-    setBioHiddenState(hidden);
+    setBioHiddenState((prev) => (prev === hidden ? prev : hidden));
   }, []);
 
   const setSuggestionsInBioSlot = useCallback((active: boolean) => {
-    setSuggestionsInBioSlotState(active);
+    setSuggestionsInBioSlotState((prev) => (prev === active ? prev : active));
   }, []);
 
   const setDialogInBioSlot = useCallback((active: boolean) => {
-    setDialogInBioSlotState(active);
+    setDialogInBioSlotState((prev) => (prev === active ? prev : active));
   }, []);
 
   const setBioSlotHeight = useCallback((height: number | null) => {
-    setBioSlotHeightState(height);
+    setBioSlotHeightState((prev) => (prev === height ? prev : height));
   }, []);
 
   const value = useMemo(

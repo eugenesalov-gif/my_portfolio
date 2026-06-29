@@ -179,7 +179,8 @@ function SidebarContent() {
         return;
       }
 
-      setBioSlotHeight(measureEl.getBoundingClientRect().height);
+      const nextHeight = Math.round(measureEl.getBoundingClientRect().height);
+      setBioSlotHeight?.(nextHeight);
     };
 
     measureBioSlot();
@@ -275,13 +276,9 @@ function CvDownloadButton({ className = "" }: { className?: string }) {
       href="https://drive.google.com/file/d/1wNJ9fGxSyQqS2zsYullXaZ86fLwSPXSH/view"
       target="_blank"
       rel="noopener noreferrer"
-      className={`profile-cv-button group relative flex items-center justify-center rounded-[10px] text-[13px] font-medium min-[810px]:rounded-[12px] min-[810px]:text-[14px] ${className}`}
+      className={`profile-cv-button relative flex items-center justify-center rounded-[10px] text-[13px] font-medium min-[810px]:rounded-[12px] min-[810px]:text-[14px] ${className}`}
     >
-      <span
-        className="profile-cv-button__hover pointer-events-none absolute inset-0 rounded-[10px] opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100 min-[810px]:rounded-[12px]"
-        aria-hidden="true"
-      />
-      <span className="relative z-10 flex items-center justify-center gap-1.5">
+      <span className="relative flex items-center justify-center gap-1.5">
         <DownloadIcon />
         <span className="min-[810px]:hidden">CV</span>
         <span className="hidden min-[810px]:inline">Download CV</span>
@@ -340,7 +337,7 @@ function ProfileCard() {
         />
       </Link>
 
-      <CvDownloadButton className="absolute top-[5px] z-20 hidden h-[32px] w-[142px] min-[810px]:left-[304px] min-[810px]:right-auto min-[810px]:flex" />
+      <CvDownloadButton className="absolute top-[6px] z-20 hidden h-[30px] w-[140px] min-[810px]:left-[305px] min-[810px]:right-auto min-[810px]:flex" />
 
       <div className="profile-card-info absolute left-auto right-[4px] top-[5px] z-10 flex h-[136px] w-[235px] flex-col items-start justify-end pl-2 pb-4 min-[810px]:left-auto min-[810px]:right-[4px] min-[810px]:h-[155px] min-[810px]:w-[290px] min-[810px]:pl-4 min-[810px]:pb-6 min-[1200px]:left-[156px] min-[1200px]:right-auto">
         <svg
