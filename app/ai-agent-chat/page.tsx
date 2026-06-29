@@ -9,6 +9,36 @@ export default function AIAgentChatPage() {
       <CasePage
         title="Creating an AI Agent Chat for Interactive Video Ads"
         description="AI-powered interactive end card that transforms video ads into a two-way dialogue, driving deeper engagement and seamless lead generation"
+        summary={{
+          preview:
+            "The AI Agent Chat project transforms passive video ads into interactive conversations, allowing viewers to engage with brands directly within the video player.",
+          sections: [
+            {
+              icon: "chart",
+              title: "User Engagement",
+              description:
+                "Users experienced 8 times more engagement time, averaging over 3 minutes, compared to traditional static end cards.",
+            },
+            {
+              icon: "pen-01",
+              title: "Design Goals",
+              description:
+                "The design aimed to create a seamless, frictionless experience by keeping interactions within the video player and allowing for a fluid conversation flow.",
+            },
+            {
+              icon: "star",
+              title: "Key Features",
+              description:
+                "The chat interface includes customizable elements like cards and media, and offers a full-screen mode for detailed interactions, enhancing user experience.",
+            },
+            {
+              icon: "checkmark-badge-01",
+              title: "Results Achieved",
+              description:
+                "Successfully launched the first AI video ad format at ShowHeroes, significantly reducing conversion friction by integrating lead generation directly into the video player.",
+            },
+          ],
+        }}
         tags={["B2C", "Artificial Intelligence", "Interactive Chat", "Web App"]}
         metrics={[
           { value: "8x", label: "engagement time" },

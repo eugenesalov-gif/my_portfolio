@@ -9,6 +9,36 @@ export default function PlayerPage() {
       <CasePage
         title="Redesigning a Video Player Ecosystem for Content and Ads"
         description="Redesigning a dual-player ecosystem with interactive formats and playlists to drive engagement and revenue."
+        summary={{
+          preview:
+            "Led the redesign of a video player ecosystem, merging a Content Player and an Ad Player into a unified, modern interface to enhance user experience and interactivity.",
+          sections: [
+            {
+              icon: "chart",
+              title: "Key Metrics",
+              description:
+                "Achieved a 10% increase in ad impressions, 16% increase in content impressions, and a 5% boost in total revenue post-redesign.",
+            },
+            {
+              icon: "pen-01",
+              title: "Design Goals",
+              description:
+                "Focused on creating a modern UI, integrating interactive features like Clipchoice ads, and developing a playlist system to improve content discovery.",
+            },
+            {
+              icon: "star",
+              title: "Testing and Iteration",
+              description:
+                "Conducted 15 A/B tests to validate design changes, ensuring user needs were met and performance issues were addressed early.",
+            },
+            {
+              icon: "login-circle-01",
+              title: "Future Directions",
+              description:
+                "Drafted a concept for a Live Streaming player to prepare for future enhancements while maintaining current product momentum.",
+            },
+          ],
+        }}
         tags={["Ad Tech", "B2B", "Video Player", "Design System", "Web App"]}
         teamMembers={[
           {

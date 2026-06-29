@@ -8,6 +8,36 @@ export default function CreatePage() {
       <CasePage
         title="Transforming a complex ad platform into a simple no-code tool"
         description="Create is the ad campaign platform that brings advertisers and publishers together to build interactive ads without code."
+        summary={{
+          preview:
+            "The Create platform simplifies ad campaign management for non-technical users, enabling them to build interactive ads without coding, resulting in a 147% revenue growth year-over-year.",
+          sections: [
+            {
+              icon: "user-03",
+              title: "Role in Redesign",
+              description:
+                "I led the UX/UI redesign, focusing on user research, navigation, permissions, and analytics, while mentoring another designer and collaborating with product and engineering teams.",
+            },
+            {
+              icon: "checkmark-badge-01",
+              title: "Key Improvements",
+              description:
+                "Implemented a scalable template library, streamlined the creation process, integrated analytics, and established roles and permissions, enhancing teamwork and reducing reporting time by 60%.",
+            },
+            {
+              icon: "money-bag-02",
+              title: "Cost Savings",
+              description:
+                "Achieved annual savings of approximately €500K by cutting analytics costs by 95% and improving operational efficiency, including reducing onboarding time by 40%.",
+            },
+            {
+              icon: "chart",
+              title: "Results",
+              description:
+                "Revenue increased from €1.3M to €3.3M, with a 35% boost in project efficiency due to better collaboration and clearer roles among team members.",
+            },
+          ],
+        }}
         tags={["Ad Tech", "B2B", "Analytics Dashboard", "Web App", "Interactive Ads", "Collaboration Tools", "SaaS Platform"]}
         metrics={[
           { value: "+147%", label: "revenue boost" },

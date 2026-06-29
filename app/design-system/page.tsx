@@ -9,6 +9,42 @@ export default function DesignSystemPage() {
       <CasePage
         title="ShowHeroes Design System"
         description="A shared design system built from scratch to keep multiple ShowHeroes products visually consistent and speed up design and development."
+        summary={{
+          preview:
+            "I developed the ShowHeroes Design System from scratch, serving as a scalable foundation for three teams, ensuring a single source of truth for design tokens and components.",
+          sections: [
+            {
+              icon: "user-03",
+              title: "Role and Responsibilities",
+              description:
+                "I initiated and managed the entire architecture of the design system, overseeing everything from token logic to Figma library organization.",
+            },
+            {
+              icon: "alert-02",
+              title: "Challenges Addressed",
+              description:
+                "The design system resolved issues of inconsistent UI, duplicated work between designers and developers, and maintenance difficulties that slowed down development.",
+            },
+            {
+              icon: "checkmark-badge-01",
+              title: "Key Achievements",
+              description:
+                "The average delivery time improved from 21 days to just 4 days, establishing a centralized governance model that allows for efficient updates and maintenance.",
+            },
+            {
+              icon: "paintbrush",
+              title: "Design System Features",
+              description:
+                "The system includes a token architecture for separating raw values from their purposes, supports light and dark modes, and features dedicated libraries for specific components like analytics charts.",
+            },
+            {
+              icon: "user-group-02",
+              title: "Impact on Teams",
+              description:
+                "Teams can now focus on user experience challenges rather than design inconsistencies, leading to faster iterations and improved collaboration.",
+            },
+          ],
+        }}
         tags={["Design System", "Design Tokens", "Component Library", "Multi-product", "B2B SaaS"]}
         metrics={[]}
         teamMembers={[

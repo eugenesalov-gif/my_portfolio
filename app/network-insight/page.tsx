@@ -10,6 +10,36 @@ export default function NetworkInsightPage() {
       <CasePage
         title="Building an Analytics Platform for Contextual Targeting"
         description="Network Insights is a ShowHeroes platform that unifies data from internal silos and external sources, giving Supply and Demand teams powerful tools to work faster and more efficiently"
+        summary={{
+          preview:
+            "Network Insights is an analytics platform designed to consolidate data from various sources, improving decision-making for C-levels and teams in Supply, Demand, and Finance.",
+          sections: [
+            {
+              icon: "user-group-02",
+              title: "User Impact",
+              description:
+                "The platform has over 300 monthly active users, significantly reducing reporting time from 2 hours to just 6 minutes.",
+            },
+            {
+              icon: "pen-01",
+              title: "Design Approach",
+              description:
+                "I led the design process, focusing on user workflows and creating a mobile-friendly interface to enhance accessibility for executives.",
+            },
+            {
+              icon: "star",
+              title: "Key Features",
+              description:
+                "The platform includes custom segment management, real-time analytics, and a user management system with defined roles to streamline operations.",
+            },
+            {
+              icon: "checkmark-badge-01",
+              title: "Results Achieved",
+              description:
+                "Launched 6 new internal tools, leading to increased user engagement and making the platform a vital daily resource rather than just a reporting tool.",
+            },
+          ],
+        }}
         tags={["Ad Tech", "B2B", "Analytics Dashboard", "Contextual Targeting", "Automation", "Big Data", "Web App"]}
         metrics={[
           { value: "924", label: "segments" },

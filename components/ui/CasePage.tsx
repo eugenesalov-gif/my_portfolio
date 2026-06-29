@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import BackButton from "./BackButton";
+import CaseSummary, { type CaseSummarySection } from "./CaseSummary";
 
 interface Section {
   label?: string;
@@ -27,10 +28,17 @@ interface CaseNavItem {
   title: string;
 }
 
+interface CaseSummaryContent {
+  preview: string;
+  sections?: CaseSummarySection[];
+  full?: string;
+}
+
 interface CasePageProps {
   title: string;
   description: string;
   tags: string[];
+  summary?: CaseSummaryContent;
   metrics?: { value: string; label: string }[];
   imagePlaceholderColor?: string;
   heroContent?: React.ReactNode;
@@ -44,6 +52,7 @@ interface CasePageProps {
 
 export default function CasePage({
   title,
+  summary,
   metrics = [],
   imagePlaceholderColor = "#E8E8EE",
   heroContent,
@@ -113,6 +122,12 @@ export default function CasePage({
       >
         {title}
       </motion.h1>
+
+      {summary && (
+        <motion.div {...scrollReveal(0.05)}>
+          <CaseSummary preview={summary.preview} sections={summary.sections} full={summary.full} />
+        </motion.div>
+      )}
 
       {/* Sections */}
       {sections.map((section, i) => (

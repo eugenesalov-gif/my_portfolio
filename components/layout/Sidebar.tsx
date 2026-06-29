@@ -123,7 +123,7 @@ function HomeRiseBlock({
   return (
     <motion.div
       className={className}
-      initial={homeRiseHidden}
+      initial={false}
       animate={homeRiseVisible}
       transition={{ ...homeRiseTransition, delay }}
     >

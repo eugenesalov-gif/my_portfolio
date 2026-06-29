@@ -22,7 +22,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
       </aside>
       <motion.main
         className="w-full min-w-0 max-w-[1000px] min-[1200px]:flex-1"
-        initial={{ opacity: 0, y: 16 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
