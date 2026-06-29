@@ -110,7 +110,7 @@ export default function CaseSummary({ preview, sections, full }: CaseSummaryProp
   return (
     <div className="mx-auto w-full max-w-[800px]">
       <div
-        className={`group relative rounded-2xl px-2 pt-3 pb-1.5 ${canExpandByCard ? "cursor-pointer" : ""}`}
+        className={`group relative overflow-hidden rounded-2xl px-2 pt-3 pb-1.5 ${canExpandByCard ? "cursor-pointer" : ""}`}
         onClick={handleCardClick}
         onKeyDown={handleCardKeyDown}
         role={canExpandByCard ? "button" : undefined}
@@ -125,6 +125,16 @@ export default function CaseSummary({ preview, sections, full }: CaseSummaryProp
           aria-hidden
           className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#EDE0F7] via-[#F2EBFC] to-[#DCE8FA] opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-[#241C34] dark:via-[#1A1628] dark:to-[#152035]"
         />
+        {expanded && (
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-14 rounded-b-2xl opacity-0 transition-opacity duration-300 group-has-[.collapse-trigger:hover]:opacity-100"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(107, 78, 155, 0.22) 0%, rgba(107, 78, 155, 0.08) 40%, transparent 100%)",
+            }}
+          />
+        )}
         <div className="relative flex flex-col gap-2">
           <div className="mx-2 flex items-center justify-start gap-1 text-[#6B4E9B] dark:text-[#B49AE0]">
             <AiStarsIcon />
@@ -174,7 +184,7 @@ export default function CaseSummary({ preview, sections, full }: CaseSummaryProp
               onClick={expanded ? handleCollapse : undefined}
               aria-expanded={expanded}
               aria-controls={contentId}
-              className="mx-auto flex h-4 w-4 items-center justify-center text-text-secondary transition-colors hover:text-text-primary"
+              className={`mx-auto flex h-4 w-9 items-center justify-center text-text-secondary transition-colors hover:text-text-primary ${expanded ? "collapse-trigger relative z-10 mt-1" : ""}`}
             >
               <span className="sr-only">{expanded ? "Collapse summary" : "Expand summary"}</span>
               <ChevronIcon expanded={expanded} />

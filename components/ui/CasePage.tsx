@@ -84,19 +84,19 @@ export default function CasePage({
 
   return (
     <div className="flex flex-col gap-8 min-[810px]:gap-10">
-      {/* Back button */}
-      <div className="sticky top-6 z-20 mt-1">
-        <BackButton />
+      {/* Close button — sticky overlay, zero layout height */}
+      <div className="sticky top-6 z-20 flex h-0 -translate-y-2 justify-end overflow-visible">
+        <BackButton variant="close" alwaysVisible />
       </div>
 
       {/* Hero image placeholder */}
       {heroContent ? (
-        <motion.div className="-mt-5 w-full relative" {...scrollReveal(0)}>
+        <motion.div className="-mt-8 w-full relative min-[810px]:-mt-10" {...scrollReveal(0)}>
           {heroContent}
         </motion.div>
       ) : (
         <motion.div
-          className="-mt-5 w-full rounded-[20px] relative"
+          className="-mt-8 w-full rounded-[20px] relative min-[810px]:-mt-10"
           style={{
             backgroundColor: imagePlaceholderColor,
             aspectRatio: "16/9",

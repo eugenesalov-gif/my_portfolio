@@ -14,7 +14,7 @@ import {
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { PROFILE_CARD_SHAPE_DEFAULT, PROFILE_CARD_SHAPE_DESKTOP } from "@/lib/profile-card-shapes";
-import { homeRiseHidden, homeRiseTransition, homeRiseVisible } from "@/lib/motion";
+import { homeRiseTransition, homeRiseVisible } from "@/lib/motion";
 
 const CV_LOTTIE_LIGHT =
   "https://lottie.host/f80c385d-318e-48e4-8435-078b09a4f8c4/sTC5j7ZKLl.lottie";
