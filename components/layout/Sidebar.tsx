@@ -47,7 +47,7 @@ const bottomNavItems: Array<{
         width: 1024,
         height: 1024,
         className:
-          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none group-hover/nav-preview:top-[12px] group-hover/nav-preview:rotate-[-2deg]",
+          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none min-[1200px]:group-hover/nav-preview:top-[12px] min-[1200px]:group-hover/nav-preview:rotate-[-2deg]",
       },
     ],
   },
@@ -62,7 +62,7 @@ const bottomNavItems: Array<{
         width: 1024,
         height: 1024,
         className:
-          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none group-hover/nav-preview:top-[12px] group-hover/nav-preview:rotate-[-2deg]",
+          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none min-[1200px]:group-hover/nav-preview:top-[12px] min-[1200px]:group-hover/nav-preview:rotate-[-2deg]",
       },
     ],
   },
@@ -77,7 +77,7 @@ const bottomNavItems: Array<{
         width: 406,
         height: 374,
         className:
-          "left-[0px] top-[28px] w-[25px] rotate-[-20deg] delay-75 group-hover/nav-preview:top-[6px] group-hover/nav-preview:rotate-[-24deg]",
+          "left-[0px] top-[28px] w-[25px] rotate-[-20deg] delay-75 min-[1200px]:group-hover/nav-preview:top-[6px] min-[1200px]:group-hover/nav-preview:rotate-[-24deg]",
       },
       {
         src: "/nav-previews/figma.png",
@@ -85,7 +85,7 @@ const bottomNavItems: Array<{
         width: 375,
         height: 370,
         className:
-          "left-[36px] top-[28px] w-[20px] rotate-[20deg] delay-75 group-hover/nav-preview:top-[6px] group-hover/nav-preview:rotate-[24deg]",
+          "left-[36px] top-[28px] w-[20px] rotate-[20deg] delay-75 min-[1200px]:group-hover/nav-preview:top-[6px] min-[1200px]:group-hover/nav-preview:rotate-[24deg]",
       },
       {
         src: "/nav-previews/spark.png",
@@ -93,7 +93,7 @@ const bottomNavItems: Array<{
         width: 433,
         height: 420,
         className:
-          "left-[12px] top-[8px] w-[31px] rotate-[5deg] group-hover/nav-preview:-top-[8px] group-hover/nav-preview:rotate-[8deg]",
+          "left-[12px] top-[8px] w-[31px] rotate-[5deg] min-[1200px]:group-hover/nav-preview:-top-[8px] min-[1200px]:group-hover/nav-preview:rotate-[8deg]",
       },
     ],
   },
@@ -588,7 +588,7 @@ function PreviewNavLink({
       aria-label={label}
     >
       <span
-        className={`pointer-events-none absolute z-0 opacity-0 transition-opacity duration-200 ease-out group-hover/nav-preview:opacity-100 group-focus-visible/nav-preview:opacity-100 ${previewClassName}`}
+        className={`pointer-events-none absolute z-0 hidden opacity-0 transition-opacity duration-200 ease-out min-[1200px]:block min-[1200px]:group-hover/nav-preview:opacity-100 min-[1200px]:group-focus-visible/nav-preview:opacity-100 ${previewClassName}`}
         aria-hidden="true"
       >
         {glowClassName && <span className={`absolute ${glowClassName}`} />}
@@ -600,7 +600,7 @@ function PreviewNavLink({
             width={image.width}
             height={image.height}
             draggable={false}
-            className={`absolute h-auto select-none drop-shadow-[0_20px_32px_rgba(29,29,38,0.24)] transition-all duration-300 ease-out [will-change:transform,opacity] group-hover/nav-preview:scale-100 group-focus-visible/nav-preview:scale-100 ${image.className}`}
+            className={`absolute h-auto select-none drop-shadow-[0_20px_32px_rgba(29,29,38,0.24)] transition-all duration-300 ease-out [will-change:transform,opacity] min-[1200px]:group-hover/nav-preview:scale-100 min-[1200px]:group-focus-visible/nav-preview:scale-100 ${image.className}`}
           />
         ))}
       </span>
