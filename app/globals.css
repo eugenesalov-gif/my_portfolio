@@ -38,6 +38,11 @@ html {
   --color-shadow-soft:    rgba(29, 29, 38, 0.06);
   --color-divider:        #EBEBEB;
   --color-tooltip-bg:     #4A4A56;
+  --color-minimap-line:         #D5D5D5;
+  --color-minimap-line-hover:   #BEBEBE;
+  --color-minimap-line-active:  #444444;
+  --color-minimap-item-hover:   #F0F0F0;
+  --color-minimap-popover-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
   --color-profile-block:  #FFFFFF;
   --color-profile-toggle-bg: #FFFFFF;
   --color-profile-toggle-hover: #F5F5F5;
@@ -79,6 +84,11 @@ html {
   --color-shadow-soft:    rgba(0, 0, 0, 0.4);
   --color-divider:        #1C1D21;
   --color-tooltip-bg:     #3A3A46;
+  --color-minimap-line:         #4A4A54;
+  --color-minimap-line-hover:   #6A6A74;
+  --color-minimap-line-active:  #F0F0F4;
+  --color-minimap-item-hover:   rgba(255, 255, 255, 0.08);
+  --color-minimap-popover-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.07);
   --color-profile-block:  #141518;
   --color-profile-toggle-bg: #141518;
   --color-profile-toggle-hover: #1A1B1F;

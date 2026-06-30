@@ -395,17 +395,17 @@ function CaseScrollMiniMap({ labels }: { labels: string[] }) {
   };
 
   return (
-    <div className="absolute left-[-34px] top-0 z-10 hidden h-full min-[1200px]:block">
+    <div className="pointer-events-none absolute left-[-34px] top-0 z-10 hidden h-full min-[1200px]:block">
       <div className="sticky" style={{ top: stickyTop }}>
         <div
-          className="relative flex flex-col gap-2 py-1"
+          className="pointer-events-auto relative flex flex-col gap-2 py-1"
           onMouseEnter={() => setIsMapHovered(true)}
           onMouseLeave={() => {
             setIsMapHovered(false);
           }}
         >
           <div
-            className={`absolute left-[-12px] top-1/2 z-20 w-[200px] -translate-y-1/2 rounded-[10px] border border-[var(--color-divider)] bg-white px-3 py-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.04)] transition-[opacity,transform] duration-150 dark:bg-[var(--color-bg-elevated)] ${
+            className={`absolute left-[-12px] top-1/2 z-20 w-[200px] -translate-y-1/2 rounded-[16px] border border-[var(--color-divider)] bg-bg-elevated p-2 shadow-[var(--color-minimap-popover-shadow)] transition-[opacity,transform] duration-150 ${
               isMapHovered ? "pointer-events-auto translate-x-0 opacity-100" : "pointer-events-none -translate-x-1 opacity-0"
             }`}
           >
@@ -415,7 +415,7 @@ function CaseScrollMiniMap({ labels }: { labels: string[] }) {
                   <button
                     type="button"
                     onClick={() => scrollToSection(index)}
-                    className={`block w-full truncate rounded-[8px] px-2 py-2 text-left text-[13px] font-medium leading-[1.35] tracking-[-0.2px] transition-colors duration-150 hover:bg-[var(--color-bg-muted)] ${
+                    className={`block w-full truncate rounded-[8px] px-2 py-2 text-left text-[13px] font-medium leading-[1.35] tracking-[-0.2px] transition-colors duration-150 hover:bg-[var(--color-minimap-item-hover)] ${
                       index === activeIndex ? "text-accent" : "text-text-secondary hover:text-text-primary"
                     }`}
                   >
@@ -433,7 +433,9 @@ function CaseScrollMiniMap({ labels }: { labels: string[] }) {
               onClick={() => scrollToSection(index)}
               aria-label={`Go to ${label}`}
               className={`block h-[2px] rounded-full transition-[color,background-color,width] duration-200 focus-visible:outline-none ${
-                index === activeIndex ? "w-[12px] bg-[#444444]" : "w-[8px] bg-[#D5D5D5] hover:bg-[#BEBEBE]"
+                index === activeIndex
+                  ? "w-[12px] bg-[var(--color-minimap-line-active)]"
+                  : "w-[8px] bg-[var(--color-minimap-line)] hover:bg-[var(--color-minimap-line-hover)]"
               }`}
             />
           ))}
