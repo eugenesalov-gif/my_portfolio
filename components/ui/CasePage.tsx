@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import BackButton from "./BackButton";
 import CaseSummary, { type CaseSummarySection } from "./CaseSummary";
@@ -92,7 +92,7 @@ export default function CasePage({
         };
 
   return (
-    <div className="relative flex flex-col gap-8 min-[810px]:gap-10">
+    <div data-case-content-root className="relative flex flex-col gap-8 min-[810px]:gap-10">
       {hasMiniMap && <CaseScrollMiniMap labels={miniMapLabels} />}
       {/* Close button — sticky overlay, zero layout height */}
       <div className="sticky top-6 z-20 flex h-0 -translate-y-2 justify-end overflow-visible">
@@ -339,18 +339,22 @@ export default function CasePage({
 
 function CaseScrollMiniMap({ labels }: { labels: string[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [stickyTop, setStickyTop] = useState(205);
+  const [minimapOffsetTop, setMinimapOffsetTop] = useState(0);
+  const [stickyPinnedTop, setStickyPinnedTop] = useState(0);
   const [isMapHovered, setIsMapHovered] = useState(false);
 
-  useEffect(() => {
-    const updateActiveSection = () => {
+  useLayoutEffect(() => {
+    const updateLayout = () => {
+      const rootEl = document.querySelector<HTMLElement>("[data-case-content-root]");
       const titleEl = document.querySelector<HTMLElement>("[data-case-title]");
-      if (titleEl) {
-        const titleTop = Math.round(titleEl.getBoundingClientRect().top);
-        const stickyOffset = 98;
-        const stickyPinnedTop = Math.round(window.innerHeight * 0.42);
-        const viewportSafeMax = Math.max(stickyPinnedTop, window.innerHeight - 120);
-        setStickyTop(Math.max(stickyPinnedTop, Math.min(titleTop + stickyOffset, viewportSafeMax)));
+      const pinnedTop = Math.round(window.innerHeight * 0.42);
+
+      setStickyPinnedTop(pinnedTop);
+
+      if (rootEl && titleEl) {
+        const rootRect = rootEl.getBoundingClientRect();
+        const titleRect = titleEl.getBoundingClientRect();
+        setMinimapOffsetTop(Math.max(0, Math.round(titleRect.top - rootRect.top)));
       }
 
       const sectionNodes = Array.from(
@@ -376,12 +380,33 @@ function CaseScrollMiniMap({ labels }: { labels: string[] }) {
       setActiveIndex(nextActive);
     };
 
-    updateActiveSection();
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    window.addEventListener("resize", updateActiveSection);
+    updateLayout();
+
+    const rafId = requestAnimationFrame(() => {
+      requestAnimationFrame(updateLayout);
+    });
+
+    const rootEl = document.querySelector<HTMLElement>("[data-case-content-root]");
+    const titleEl = document.querySelector<HTMLElement>("[data-case-title]");
+    const resizeObserver = new ResizeObserver(updateLayout);
+
+    if (rootEl) {
+      resizeObserver.observe(rootEl);
+    }
+    if (titleEl) {
+      resizeObserver.observe(titleEl);
+    }
+
+    window.addEventListener("scroll", updateLayout, { passive: true });
+    window.addEventListener("resize", updateLayout);
+    window.addEventListener("load", updateLayout);
+
     return () => {
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("resize", updateActiveSection);
+      cancelAnimationFrame(rafId);
+      resizeObserver.disconnect();
+      window.removeEventListener("scroll", updateLayout);
+      window.removeEventListener("resize", updateLayout);
+      window.removeEventListener("load", updateLayout);
     };
   }, []);
 
@@ -395,8 +420,11 @@ function CaseScrollMiniMap({ labels }: { labels: string[] }) {
   };
 
   return (
-    <div className="pointer-events-none absolute left-[-34px] top-0 z-10 hidden h-full min-[1200px]:block">
-      <div className="sticky" style={{ top: stickyTop }}>
+    <div
+      className="pointer-events-none absolute left-[-34px] top-0 z-10 hidden h-full min-[1200px]:block"
+      style={{ paddingTop: minimapOffsetTop }}
+    >
+      <div className="sticky" style={{ top: stickyPinnedTop }}>
         <div
           className="pointer-events-auto relative flex flex-col gap-2 py-1"
           onMouseEnter={() => setIsMapHovered(true)}
