@@ -222,7 +222,7 @@ function SidebarContent() {
         </div>
         <div
           ref={bioRef}
-          className="relative mt-5 min-[810px]:mt-6"
+          className="relative z-[5] mt-5 min-[810px]:mt-6"
           style={lockBioSlotHeight ? { minHeight: bioSlotHeight } : undefined}
         >
           <div
@@ -250,7 +250,7 @@ function SidebarContent() {
                   ? { duration: bioHidden ? 0 : 0.3, ease: "easeOut" }
                   : { duration: 0 }
               }
-              style={{ overflow: "hidden" }}
+              style={{ overflow: bioHidden ? "hidden" : "visible" }}
               aria-hidden={isDesktopViewport ? bioHidden : false}
             >
               <Bio />
@@ -502,7 +502,7 @@ function Bio() {
 
               <motion.span
                 aria-hidden="true"
-                className="pointer-events-none absolute left-[calc(50%-80px)] top-[calc(100%+14px)] z-20 block h-[80px] w-[180px] -translate-x-[18%]"
+                className="pointer-events-none absolute left-[calc(50%-80px)] top-[calc(100%+14px)] z-50 block h-[80px] w-[180px] -translate-x-[18%]"
                 initial={false}
                 animate={
                   isMapPreviewVisible
