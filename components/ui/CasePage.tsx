@@ -341,7 +341,6 @@ function CaseScrollMiniMap({ labels }: { labels: string[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [stickyTop, setStickyTop] = useState(205);
   const [isMapHovered, setIsMapHovered] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const updateActiveSection = () => {
@@ -403,7 +402,6 @@ function CaseScrollMiniMap({ labels }: { labels: string[] }) {
           onMouseEnter={() => setIsMapHovered(true)}
           onMouseLeave={() => {
             setIsMapHovered(false);
-            setHoveredIndex(null);
           }}
         >
           <div
@@ -416,7 +414,6 @@ function CaseScrollMiniMap({ labels }: { labels: string[] }) {
                 <li key={label}>
                   <button
                     type="button"
-                    onMouseEnter={() => setHoveredIndex(index)}
                     onClick={() => scrollToSection(index)}
                     className={`block w-full truncate rounded-[8px] px-2 py-2 text-left text-[13px] font-medium leading-[1.35] tracking-[-0.2px] transition-colors duration-150 hover:bg-[var(--color-bg-muted)] ${
                       index === activeIndex ? "text-accent" : "text-text-secondary hover:text-text-primary"
@@ -434,7 +431,6 @@ function CaseScrollMiniMap({ labels }: { labels: string[] }) {
               key={label}
               type="button"
               onClick={() => scrollToSection(index)}
-              onMouseEnter={() => setHoveredIndex(index)}
               aria-label={`Go to ${label}`}
               className={`block h-[2px] rounded-full transition-[color,background-color,width] duration-200 focus-visible:outline-none ${
                 index === activeIndex ? "w-[12px] bg-[#444444]" : "w-[8px] bg-[#D5D5D5] hover:bg-[#BEBEBE]"
