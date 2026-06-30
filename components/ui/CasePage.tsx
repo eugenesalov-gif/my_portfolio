@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import BackButton from "./BackButton";
 import CaseSummary, { type CaseSummarySection } from "./CaseSummary";
@@ -50,6 +51,10 @@ interface CasePageProps {
   compactExploreCards?: boolean;
 }
 
+function normalizeSectionLabel(label?: string) {
+  return (label ?? "").trim().toLowerCase();
+}
+
 export default function CasePage({
   title,
   summary,
@@ -68,6 +73,10 @@ export default function CasePage({
   nextCase,
   compactExploreCards = false,
 }: CasePageProps) {
+  const miniMapLabels = sections
+    .filter((section): section is Section & { label: string } => Boolean(section.label))
+    .map((section) => section.label);
+  const hasMiniMap = miniMapLabels.length > 0;
   const isCompactPreviousCard = compactExploreCards || previousCase?.href === "/player";
   const isCompactNextCard = compactExploreCards || nextCase?.href === "/network-insight";
   const reduceMotion = useReducedMotion();
@@ -83,7 +92,8 @@ export default function CasePage({
         };
 
   return (
-    <div className="flex flex-col gap-8 min-[810px]:gap-10">
+    <div className="relative flex flex-col gap-8 min-[810px]:gap-10">
+      {hasMiniMap && <CaseScrollMiniMap labels={miniMapLabels} />}
       {/* Close button — sticky overlay, zero layout height */}
       <div className="sticky top-6 z-20 flex h-0 -translate-y-2 justify-end overflow-visible">
         <BackButton variant="close" alwaysVisible />
@@ -117,6 +127,7 @@ export default function CasePage({
       )}
 
       <motion.h1
+        data-case-title
         className="mx-auto w-full max-w-[800px] text-[28px] font-semibold leading-[34px] tracking-[-0.9px] text-text-primary min-[810px]:text-[32px] min-[810px]:leading-10 min-[810px]:tracking-[-1.2px]"
         {...scrollReveal(0)}
       >
@@ -130,9 +141,17 @@ export default function CasePage({
       )}
 
       {/* Sections */}
-      {sections.map((section, i) => (
+      {sections.map((section, i) => {
+        const navIndex = section.label
+          ? miniMapLabels.findIndex(
+              (label) => normalizeSectionLabel(label) === normalizeSectionLabel(section.label),
+            )
+          : -1;
+
+        return (
         <motion.div
           key={i}
+          data-case-nav-index={navIndex >= 0 ? navIndex : undefined}
           className={`mx-auto flex w-full flex-col gap-8 min-[810px]:gap-10 ${section.contentMaxWidthClassName ?? "max-w-[800px]"} ${section.containerClassName ?? ""}`}
           {...scrollReveal(Math.min(i * 0.05, 0.25))}
         >
@@ -148,7 +167,8 @@ export default function CasePage({
             {section.content}
           </div>
         </motion.div>
-      ))}
+        );
+      })}
 
       <motion.div
         aria-hidden="true"
@@ -313,6 +333,116 @@ export default function CasePage({
           </div>
         </motion.div>
       )}
+    </div>
+  );
+}
+
+function CaseScrollMiniMap({ labels }: { labels: string[] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [stickyTop, setStickyTop] = useState(205);
+  const [isMapHovered, setIsMapHovered] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const updateActiveSection = () => {
+      const titleEl = document.querySelector<HTMLElement>("[data-case-title]");
+      if (titleEl) {
+        const titleTop = Math.round(titleEl.getBoundingClientRect().top);
+        const stickyOffset = 98;
+        const stickyPinnedTop = Math.round(window.innerHeight * 0.42);
+        const viewportSafeMax = Math.max(stickyPinnedTop, window.innerHeight - 120);
+        setStickyTop(Math.max(stickyPinnedTop, Math.min(titleTop + stickyOffset, viewportSafeMax)));
+      }
+
+      const sectionNodes = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-case-nav-index]"),
+      ).sort(
+        (a, b) =>
+          Number(a.dataset.caseNavIndex ?? "0") - Number(b.dataset.caseNavIndex ?? "0"),
+      );
+      if (sectionNodes.length === 0) {
+        return;
+      }
+
+      const anchorY = window.innerHeight * 0.36;
+      let nextActive = 0;
+      for (let i = 0; i < sectionNodes.length; i += 1) {
+        const rect = sectionNodes[i].getBoundingClientRect();
+        if (rect.top <= anchorY) {
+          nextActive = i;
+        } else {
+          break;
+        }
+      }
+      setActiveIndex(nextActive);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
+
+  const scrollToSection = (index: number) => {
+    const target = document.querySelector<HTMLElement>(`[data-case-nav-index="${index}"]`);
+    if (!target) {
+      return;
+    }
+    const top = target.getBoundingClientRect().top + window.scrollY - 96;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  return (
+    <div className="absolute left-[-34px] top-0 z-10 hidden h-full min-[1200px]:block">
+      <div className="sticky" style={{ top: stickyTop }}>
+        <div
+          className="relative flex flex-col gap-2 py-1"
+          onMouseEnter={() => setIsMapHovered(true)}
+          onMouseLeave={() => {
+            setIsMapHovered(false);
+            setHoveredIndex(null);
+          }}
+        >
+          <div
+            className={`absolute left-[-12px] top-1/2 z-20 w-[200px] -translate-y-1/2 rounded-[10px] border border-[var(--color-divider)] bg-white px-3 py-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.04)] transition-[opacity,transform] duration-150 dark:bg-[var(--color-bg-elevated)] ${
+              isMapHovered ? "pointer-events-auto translate-x-0 opacity-100" : "pointer-events-none -translate-x-1 opacity-0"
+            }`}
+          >
+            <ul className="flex flex-col gap-0.5">
+              {labels.map((label, index) => (
+                <li key={label}>
+                  <button
+                    type="button"
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onClick={() => scrollToSection(index)}
+                    className={`block w-full truncate rounded-[8px] px-2 py-2 text-left text-[13px] font-medium leading-[1.35] tracking-[-0.2px] transition-colors duration-150 hover:bg-[var(--color-bg-muted)] ${
+                      index === activeIndex ? "text-accent" : "text-text-secondary hover:text-text-primary"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {labels.map((label, index) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => scrollToSection(index)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              aria-label={`Go to ${label}`}
+              className={`block h-[2px] rounded-full transition-[color,background-color,width] duration-200 focus-visible:outline-none ${
+                index === activeIndex ? "w-[12px] bg-[#444444]" : "w-[8px] bg-[#D5D5D5] hover:bg-[#BEBEBE]"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
