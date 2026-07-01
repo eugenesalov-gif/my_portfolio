@@ -44,6 +44,11 @@ export default function RootLayout({
       <body className="antialiased">
         <ThemeScript />
         <ThemeProvider>{children}</ThemeProvider>
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="a7d77eb1-3bc5-4a77-91df-c1373cf328bd"
+          strategy="afterInteractive"
+        />
         <Script id="hotjar-tracking" strategy="afterInteractive">
           {`(function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
