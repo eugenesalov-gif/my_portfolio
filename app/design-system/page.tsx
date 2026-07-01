@@ -140,7 +140,7 @@ export default function DesignSystemPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
+              <figure className="case-figure">
                 <div className="w-full overflow-visible rounded-[12px]">
                   <img
                     src="/images/cases/design-system/listds.png"
@@ -149,7 +149,7 @@ export default function DesignSystemPage() {
                     draggable={false}
                   />
                 </div>
-              </div>
+              </figure>
             ),
           },
           {
@@ -163,7 +163,7 @@ export default function DesignSystemPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
+              <figure className="case-figure">
                 <div className="w-full overflow-visible rounded-[12px]">
                   <img
                     src="/images/cases/design-system/variables.avif"
@@ -172,7 +172,7 @@ export default function DesignSystemPage() {
                     draggable={false}
                   />
                 </div>
-              </div>
+              </figure>
             ),
           },
           {
@@ -199,7 +199,7 @@ export default function DesignSystemPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
+              <figure className="case-figure">
                 <div className="w-full overflow-visible rounded-[12px]">
                   <img
                     src="/images/cases/design-system/colords.webp"
@@ -208,7 +208,7 @@ export default function DesignSystemPage() {
                     draggable={false}
                   />
                 </div>
-              </div>
+              </figure>
             ),
           },
           {
@@ -225,7 +225,7 @@ export default function DesignSystemPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
+              <figure className="case-figure">
                 <div className="relative w-full overflow-visible rounded-[12px] [background:unset]">
                   <img
                     src="/images/cases/design-system/icons.avif"
@@ -238,7 +238,7 @@ export default function DesignSystemPage() {
                     className="pointer-events-none absolute inset-0 z-10 rounded-[8px] bg-[linear-gradient(to_top,white_0%,rgba(255,255,255,0.92)_22%,transparent_58%)]"
                   />
                 </div>
-              </div>
+              </figure>
             ),
           },
           {
@@ -255,7 +255,7 @@ export default function DesignSystemPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
+              <div className="case-images flex w-full flex-col">
                 <div className="w-full overflow-visible rounded-[12px]">
                   <img
                     src="/images/cases/design-system/dsbutton.avif"

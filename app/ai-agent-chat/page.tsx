@@ -185,7 +185,7 @@ export default function AIAgentChatPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-10">
+              <div className="case-media-group flex w-full flex-col">
                 <div className="w-full overflow-visible rounded-[12px]">
                   <img
                     src="/images/cases/ai-agent-chat/news.png"
@@ -215,7 +215,7 @@ export default function AIAgentChatPage() {
                   <li>For longer interactions, I introduced a full-screen mode. It gives the conversation space to breathe when things get detailed, without cluttering the small, compact view.</li>
                   <li>Enabled full customization for colors, assets, and tone of voice. This means brands can make the tool feel like their own without us having to rebuild it every time.</li>
                 </ul>
-                <div className="flex w-full flex-col gap-10">
+                <div className="case-media-group flex w-full flex-col">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/ai-agent-chat/createai.png"
@@ -224,7 +224,7 @@ export default function AIAgentChatPage() {
                       draggable={false}
                     />
                   </div>
-                  <div className="flex w-full flex-col gap-2">
+                  <figure className="case-figure">
                     <div className="w-full overflow-visible rounded-[12px]">
                       <img
                         src="/images/cases/ai-agent-chat/fullpage.png"
@@ -236,7 +236,7 @@ export default function AIAgentChatPage() {
                     <p className="text-center text-[15px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
                       Full screen mode
                     </p>
-                  </div>
+                  </figure>
                 </div>
               </div>
             ),

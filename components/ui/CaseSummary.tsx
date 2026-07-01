@@ -163,7 +163,7 @@ export default function CaseSummary({ preview, sections, full }: CaseSummaryProp
                       <div className="shrink-0 text-[#6B4E9B] dark:text-[#B49AE0]">
                         <SectionIcon icon={section.icon} />
                       </div>
-                      <div className="min-w-0 flex flex-col gap-1">
+                      <div className="min-w-0 flex flex-col gap-2">
                         <h3 className="h-5 text-[15px] font-semibold leading-5 tracking-[-0.3px] text-text-primary min-[810px]:text-[16px]">
                           {section.title}
                         </h3>

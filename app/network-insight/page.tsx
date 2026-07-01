@@ -154,7 +154,7 @@ export default function NetworkInsightPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
+              <figure className="case-figure">
                 <div className="w-full overflow-visible rounded-[12px]">
                   <img
                     src="/images/cases/network-insight/customsegment.png"
@@ -166,7 +166,7 @@ export default function NetworkInsightPage() {
                 <p className="text-center text-[13px] text-text-secondary">
                   Detailed view of the selected segment showing performance trends and campaign details
                 </p>
-              </div>
+              </figure>
             ),
           },
           {
@@ -180,12 +180,12 @@ export default function NetworkInsightPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
-                <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(222,222,222,1)_0%,rgba(235,235,235,1)_100%)] p-5">
+              <figure className="case-figure">
+                <div className="case-panel flex w-full flex-col rounded-[20px] bg-[linear-gradient(0deg,rgba(222,222,222,1)_0%,rgba(235,235,235,1)_100%)] p-5">
                   <h2 className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase text-[rgba(29,29,38,1)]">
                     before
                   </h2>
-                  <div className="flex w-full flex-col gap-4">
+                  <div className="case-images flex w-full flex-col">
                     <div className="w-full overflow-hidden rounded-[12px]">
                       <img
                         src="/images/cases/network-insight/oldlist.png"
@@ -204,15 +204,15 @@ export default function NetworkInsightPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </figure>
             ),
           },
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-5">
-                <div className="flex w-full flex-col gap-3">
-                  <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
+              <div className="case-media-group flex w-full flex-col">
+                <figure className="case-figure">
+                  <div className="case-panel flex w-full flex-col rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
                     <h2
                       className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase"
                       style={{ color: "rgba(255, 255, 255, 1)" }}
@@ -231,8 +231,8 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     New Network Insights interface with global map and regional revenue analytics
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/btbelow.png"
@@ -244,8 +244,8 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Updated Network Insights dashboard with new demand, supply and margin metrics providing deeper insight into market performance
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/mobile.png"
@@ -257,7 +257,7 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Mobile version with optimized dashboards and comments for quick access to analytics on the go
                   </p>
-                </div>
+                </figure>
               </div>
             ),
           },
@@ -275,8 +275,8 @@ export default function NetworkInsightPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-5">
-                <div className="flex w-full flex-col gap-3">
+              <div className="case-media-group flex w-full flex-col">
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/comments.png"
@@ -288,7 +288,7 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     New comments section for sharing analytics and real-time, enabling top management to track performance and highlight key insights
                   </p>
-                </div>
+                </figure>
                 <div className="w-full overflow-visible rounded-[12px]">
                   <img
                     src="/images/cases/network-insight/tam.png"
@@ -313,8 +313,8 @@ export default function NetworkInsightPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-6">
-                <div className="flex w-full flex-col gap-3">
+              <div className="case-media-group flex w-full flex-col">
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/segment.png"
@@ -326,7 +326,7 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Custom Segment section for creating and managing campaign segments
                   </p>
-                </div>
+                </figure>
                 <ImageCarousel
                   slides={[
                     {
@@ -368,8 +368,8 @@ export default function NetworkInsightPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-5">
-                <div className="flex w-full flex-col gap-3">
+              <div className="case-media-group flex w-full flex-col">
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/members.png"
@@ -381,8 +381,8 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     User Management section with role configuration, access permissions and member overview
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/contentvideo.png"
@@ -394,8 +394,8 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Campaign section with content video analytics and key campaign performance metrics
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/inventory.png"
@@ -407,7 +407,7 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Inventory section for analyzing top keywords, categories and segments by domain, country and language
                   </p>
-                </div>
+                </figure>
               </div>
             ),
           },
@@ -425,8 +425,8 @@ export default function NetworkInsightPage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-5">
-                <div className="flex w-full flex-col gap-3">
+              <div className="case-media-group flex w-full flex-col">
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/iab.png"
@@ -438,8 +438,8 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     IAB Overview section for analyzing content categories and subcategories with view and engagement data
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/olv.png"
@@ -451,8 +451,8 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     OLV Site List section for managing and optimizing site lists by campaign and performance parameter
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/network-insight/export.png"
@@ -464,7 +464,7 @@ export default function NetworkInsightPage() {
                   <p className="text-center text-[13px] leading-[130%] text-text-secondary">
                     Results table after report setup, featuring data export options and flexible filtering by categories and regions
                   </p>
-                </div>
+                </figure>
               </div>
             ),
           },

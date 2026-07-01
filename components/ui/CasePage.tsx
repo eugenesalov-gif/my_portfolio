@@ -152,7 +152,7 @@ export default function CasePage({
         <motion.div
           key={i}
           data-case-nav-index={navIndex >= 0 ? navIndex : undefined}
-          className={`mx-auto flex w-full flex-col gap-8 min-[810px]:gap-10 ${section.contentMaxWidthClassName ?? "max-w-[800px]"} ${section.containerClassName ?? ""}`}
+          className={`mx-auto flex w-full flex-col ${section.label ? "case-section-label-gap" : ""} ${section.contentMaxWidthClassName ?? "max-w-[800px]"} ${section.containerClassName ?? ""}`}
           {...scrollReveal(Math.min(i * 0.05, 0.25))}
         >
           {section.label && (

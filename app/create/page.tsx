@@ -145,7 +145,7 @@ export default function CreatePage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
+              <figure className="case-figure">
                 <div className="w-full overflow-visible rounded-[12px]">
                   <img
                     src="/images/cases/create/editor.png"
@@ -155,7 +155,7 @@ export default function CreatePage() {
                   />
                 </div>
                 <p className="text-center text-[13px] text-text-secondary">Create editor shown in dark theme</p>
-              </div>
+              </figure>
             ),
           },
           {
@@ -169,15 +169,15 @@ export default function CreatePage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
-                <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
+              <figure className="case-figure">
+                <div className="case-panel flex w-full flex-col rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
                   <h2
                     className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase"
                     style={{ color: "rgba(255, 255, 255, 1)" }}
                   >
                     before
                   </h2>
-                  <div className="flex w-full flex-col gap-4">
+                  <div className="case-images flex w-full flex-col">
                     <div className="w-full overflow-hidden rounded-[12px]">
                       <img
                         src="/images/cases/create/createbefore1.png"
@@ -199,14 +199,14 @@ export default function CreatePage() {
                 <p className="text-center text-[13px] text-text-secondary">
                   Legacy Create interface before redesign — creatives list and editing screen
                 </p>
-              </div>
+              </figure>
             ),
           },
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
-                <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
+              <figure className="case-figure">
+                <div className="case-panel flex w-full flex-col rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
                   <h2
                     className="w-full text-[26px] font-semibold leading-8 tracking-[-1.2px] lowercase"
                     style={{ color: "rgba(255, 255, 255, 1)" }}
@@ -225,7 +225,7 @@ export default function CreatePage() {
                 <p className="text-center text-[13px] text-text-secondary">
                   New Create interface after redesign — homepage with creatives list
                 </p>
-              </div>
+              </figure>
             ),
           },
           {
@@ -242,9 +242,9 @@ export default function CreatePage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-3">
-                <div className="flex w-full flex-col gap-5 rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
-                  <div className="flex w-full flex-col gap-4">
+              <figure className="case-figure">
+                <div className="case-panel flex w-full flex-col rounded-[20px] bg-[linear-gradient(0deg,rgba(35,35,36,1)_0%,rgba(54,54,54,1)_100%)] p-5">
+                  <div className="case-images flex w-full flex-col">
                     <div className="w-full overflow-hidden rounded-[12px]">
                       <img
                         src="/images/cases/create/interviewRi.png"
@@ -266,7 +266,7 @@ export default function CreatePage() {
                 <p className="text-center text-[13px] text-text-secondary">
                   Conducting user interviews and interface research
                 </p>
-              </div>
+              </figure>
             ),
           },
           {
@@ -283,8 +283,8 @@ export default function CreatePage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-6">
-                <div className="flex w-full flex-col gap-3">
+              <div className="case-media-group flex w-full flex-col">
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/create/template.png"
@@ -296,8 +296,8 @@ export default function CreatePage() {
                   <p className="text-center text-[13px] text-text-secondary">
                     14 new templates added and organized into subgroups for easier navigation
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/create/poll.png"
@@ -309,7 +309,7 @@ export default function CreatePage() {
                   <p className="text-center text-[13px] text-text-secondary">
                     Brand Lift Study creation with poll setup and answer options
                   </p>
-                </div>
+                </figure>
               </div>
             ),
           },
@@ -328,8 +328,8 @@ export default function CreatePage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-6">
-                <div className="flex w-full flex-col gap-3">
+              <div className="case-media-group flex w-full flex-col">
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/create/related.png"
@@ -341,8 +341,8 @@ export default function CreatePage() {
                   <p className="text-center text-[13px] text-text-secondary">
                     Format Statistics with related creatives window showing CTR, attention time, completion rate and impressions
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/create/format.png"
@@ -354,8 +354,8 @@ export default function CreatePage() {
                   <p className="text-center text-[13px] text-text-secondary">
                     Format Statistics with market overview of formats and performance results
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/create/managelocation.png"
@@ -367,7 +367,7 @@ export default function CreatePage() {
                   <p className="text-center text-[13px] text-text-secondary">
                     CTV template with location management and QR code generation
                   </p>
-                </div>
+                </figure>
               </div>
             ),
           },
@@ -385,8 +385,8 @@ export default function CreatePage() {
           {
             contentMaxWidthClassName: "max-w-[900px]",
             content: (
-              <div className="flex w-full flex-col gap-6">
-                <div className="flex w-full flex-col gap-3">
+              <div className="case-media-group flex w-full flex-col">
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/create/analytics.png"
@@ -398,8 +398,8 @@ export default function CreatePage() {
                   <p className="text-center text-[13px] text-text-secondary">
                     Analytics dashboard with time spent metrics and user engagement data
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-3">
+                </figure>
+                <figure className="case-figure">
                   <div className="w-full overflow-visible rounded-[12px]">
                     <img
                       src="/images/cases/create/teams.png"
@@ -411,7 +411,7 @@ export default function CreatePage() {
                   <p className="text-center text-[13px] text-text-secondary">
                     Team & Members with team management and member role settings
                   </p>
-                </div>
+                </figure>
               </div>
             ),
           },

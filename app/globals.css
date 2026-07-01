@@ -4,6 +4,54 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* Case study content spacing */
+  .case-section-label-gap {
+    gap: 16px;
+  }
+
+  @media (min-width: 810px) {
+    .case-section-label-gap {
+      gap: 20px;
+    }
+  }
+
+  .case-figure {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .case-figure__caption {
+    text-align: center;
+    font-size: 13px;
+    line-height: 130%;
+    color: var(--color-text-secondary);
+  }
+
+  .case-images {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .case-media-group {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .case-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+}
+
 html {
   scrollbar-gutter: stable;
 }

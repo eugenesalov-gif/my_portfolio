@@ -94,7 +94,7 @@ export default function PlayerPage() {
           {
             label: "about the project",
             content: (
-              <div className="flex flex-col gap-8">
+              <div className="case-media-group flex flex-col">
                 <div className="flex flex-col gap-6">
                   <p>
                     We were managing two separate products, a Content Player and an Ad Player. They worked, but the UI was starting to show its age, navigation felt cluttered, and they weren&apos;t built for the interactive features we wanted to launch.
@@ -141,7 +141,7 @@ export default function PlayerPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex w-full flex-col gap-2">
+                <figure className="case-figure">
                   <div
                     className="mx-auto w-fit max-w-full overflow-hidden rounded-[8px]"
                     style={{ backgroundColor: "#F5EEE8" }}
@@ -159,7 +159,7 @@ export default function PlayerPage() {
                   <p className="text-center text-[13px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
                     Redesigned Player Interface
                   </p>
-                </div>
+                </figure>
               </div>
             ),
           },
@@ -173,8 +173,8 @@ export default function PlayerPage() {
           },
           {
             content: (
-              <div className="flex flex-col gap-8">
-                <div className="flex w-full flex-col gap-2">
+              <div className="case-media-group flex flex-col">
+                <figure className="case-figure">
                   <div
                     className="mx-auto w-fit max-w-full overflow-hidden rounded-[8px]"
                     style={{ backgroundColor: "#F5EEE8" }}
@@ -192,8 +192,8 @@ export default function PlayerPage() {
                   <p className="text-center text-[13px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
                     Ad Player
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-2">
+                </figure>
+                <figure className="case-figure">
                   <div
                     className="mx-auto w-fit max-w-full overflow-hidden rounded-[8px]"
                     style={{ backgroundColor: "#F5EEE8" }}
@@ -211,7 +211,7 @@ export default function PlayerPage() {
                   <p className="text-center text-[13px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
                     VIP Mode for Content Player
                   </p>
-                </div>
+                </figure>
               </div>
             ),
           },
@@ -227,7 +227,7 @@ export default function PlayerPage() {
           },
           {
             content: (
-              <div className="flex w-full flex-col gap-2">
+              <figure className="case-figure">
                 <div
                   className="mx-auto w-fit max-w-full overflow-hidden rounded-[8px]"
                   style={{ backgroundColor: "#F5EEE8" }}
@@ -245,7 +245,7 @@ export default function PlayerPage() {
                 <p className="text-center text-[13px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
                   Previous Player UI
                 </p>
-              </div>
+              </figure>
             ),
           },
           {
@@ -262,8 +262,8 @@ export default function PlayerPage() {
           },
           {
             content: (
-              <div className="flex flex-col gap-8">
-                <div className="flex w-full flex-col gap-2">
+              <div className="case-media-group flex flex-col">
+                <figure className="case-figure">
                   <div
                     className="mx-auto w-fit max-w-full overflow-hidden rounded-[8px]"
                     style={{ backgroundColor: "#F5EEE8" }}
@@ -281,8 +281,8 @@ export default function PlayerPage() {
                   <p className="text-center text-[13px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
                     Clipchoice format
                   </p>
-                </div>
-                <div className="flex w-full flex-col gap-2">
+                </figure>
+                <figure className="case-figure">
                   <div
                     className="mx-auto w-fit max-w-full overflow-hidden rounded-[8px]"
                     style={{ backgroundColor: "#F5EEE8" }}
@@ -300,7 +300,7 @@ export default function PlayerPage() {
                   <p className="text-center text-[13px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
                     Playlist
                   </p>
-                </div>
+                </figure>
               </div>
             ),
           },
@@ -318,7 +318,7 @@ export default function PlayerPage() {
           },
           {
             content: (
-              <div className="flex w-full flex-col gap-2">
+              <figure className="case-figure">
                 <div
                   className="mx-auto w-fit max-w-full overflow-hidden rounded-[8px]"
                   style={{ backgroundColor: "#F5EEE8" }}
@@ -336,7 +336,7 @@ export default function PlayerPage() {
                 <p className="text-center text-[13px] font-medium leading-tight tracking-[-0.4px] text-text-secondary">
                   Global + item-level alerts for unavailable videos
                 </p>
-              </div>
+              </figure>
             ),
           },
           {
