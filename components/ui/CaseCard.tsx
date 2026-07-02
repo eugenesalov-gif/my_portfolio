@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import CheckoutBadge from "./CheckoutBadge";
 
 interface Metric {
@@ -28,7 +28,33 @@ export default function CaseCard({
   metrics = [],
   imagePlaceholderColor = "#E8E8EE",
 }: CaseCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [revealed, setRevealed] = useState(false);
+  const reduceMotion = useReducedMotion();
   const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      setRevealed(true);
+      return;
+    }
+
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "-60px 0px -120px 0px", threshold: 0 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [reduceMotion]);
   const isCreateCard = href === "/create";
   const isNetworkInsightCard = href === "/network-insight";
   const isDesignSystemCard = href === "/design-system";
@@ -43,8 +69,9 @@ export default function CaseCard({
 
   return (
     <motion.div
+      ref={ref}
       initial={false}
-      animate={{ opacity: 1, y: 0 }}
+      animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <Link href={href} className="block group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>

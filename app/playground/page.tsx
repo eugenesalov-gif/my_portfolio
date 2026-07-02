@@ -19,10 +19,10 @@ export default function PlaygroundPage() {
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="flex flex-col gap-8"
       >
-        <div className="sticky top-3 z-20 mt-1 w-fit min-[810px]:top-6 min-[1200px]:hidden">
-          <BackButton />
+        <div className="sticky top-6 z-20 -mb-8 flex h-0 -translate-y-2 justify-end overflow-visible min-[810px]:top-9 min-[1200px]:hidden">
+          <BackButton variant="close" alwaysVisible />
         </div>
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-4 pt-4 min-[1200px]:pt-0">
           <h1 className="text-[32px] font-semibold leading-10 tracking-[-1.2px] text-text-primary">
             Playground
           </h1>
