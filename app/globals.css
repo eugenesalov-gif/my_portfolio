@@ -450,6 +450,12 @@ body {
   transform: scale(0.92);
 }
 
+.location-map__reset-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
 .location-map__reset--visible {
   opacity: 1;
   pointer-events: auto;
