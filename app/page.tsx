@@ -72,7 +72,7 @@ export default function Home() {
       <div className="flex flex-col gap-12 min-[810px]:gap-16">
         {cases.map((c, index) => (
           <div key={c.href} className="flex flex-col gap-12 min-[810px]:gap-16">
-            <CaseCard {...c} />
+            <CaseCard {...c} revealOnMount={index < 2} />
             {index < cases.length - 1 && <div aria-hidden="true" className="divider-line" />}
           </div>
         ))}

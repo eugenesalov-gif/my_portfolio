@@ -18,6 +18,7 @@ interface CaseCardProps {
   tags: string[];
   metrics?: Metric[];
   imagePlaceholderColor?: string;
+  revealOnMount?: boolean;
 }
 
 export default function CaseCard({
@@ -27,14 +28,15 @@ export default function CaseCard({
   tags,
   metrics = [],
   imagePlaceholderColor = "#E8E8EE",
+  revealOnMount = false,
 }: CaseCardProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useState(revealOnMount);
   const reduceMotion = useReducedMotion();
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    if (reduceMotion) {
+    if (reduceMotion || revealOnMount) {
       setRevealed(true);
       return;
     }
@@ -54,7 +56,7 @@ export default function CaseCard({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [reduceMotion]);
+  }, [reduceMotion, revealOnMount]);
   const isCreateCard = href === "/create";
   const isNetworkInsightCard = href === "/network-insight";
   const isDesignSystemCard = href === "/design-system";
@@ -113,7 +115,7 @@ export default function CaseCard({
                 className="block h-auto w-full object-contain"
                 sizes="(min-width: 1200px) 640px, (min-width: 768px) 60vw, 100vw"
                 unoptimized
-                priority={false}
+                priority
               />
             )}
             {isDesignSystemCard && (
