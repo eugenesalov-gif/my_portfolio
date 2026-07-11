@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import PortfolioChat from "@/components/chat/PortfolioChat";
+import LocationMap from "@/components/LocationMap";
 import {
   ChatLayoutProvider,
   useChatLayout,
@@ -418,55 +419,8 @@ function ProfileCard() {
 }
 
 function Bio() {
-  const [isMapPreviewVisible, setIsMapPreviewVisible] = useState(false);
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
-  const hidePreviewTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const toggleMobileMapPreview = () => {
-    if (!isMobileViewport) {
-      return;
-    }
-    if (hidePreviewTimeoutRef.current) {
-      clearTimeout(hidePreviewTimeoutRef.current);
-      hidePreviewTimeoutRef.current = null;
-    }
-
-    if (isMapPreviewVisible) {
-      setIsMapPreviewVisible(false);
-      return;
-    }
-
-    setIsMapPreviewVisible(true);
-    hidePreviewTimeoutRef.current = setTimeout(() => {
-      setIsMapPreviewVisible(false);
-      hidePreviewTimeoutRef.current = null;
-    }, 3000);
-  };
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-    const mediaQuery = window.matchMedia("(max-width: 809px)");
-    const updateViewport = () => setIsMobileViewport(mediaQuery.matches);
-    updateViewport();
-    mediaQuery.addEventListener("change", updateViewport);
-
-    return () => {
-      mediaQuery.removeEventListener("change", updateViewport);
-    };
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (hidePreviewTimeoutRef.current) {
-        clearTimeout(hidePreviewTimeoutRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <div className="flex flex-col gap-3 px-1">
+    <div className="flex flex-col gap-3">
       <p className="text-[15px] font-medium leading-5 tracking-[-0.5px] text-text-primary min-[810px]:text-[16px] min-[810px]:tracking-[-0.64px]">
         Hola 👋
       </p>
@@ -476,83 +430,8 @@ function Bio() {
       <p className="text-[15px] font-medium leading-5 tracking-[-0.5px] text-text-primary min-[810px]:text-[16px] min-[810px]:tracking-[-0.64px]">
         I turn complex user jobs into simple interfaces by following the &ldquo;Shazam&rdquo; approach: do it in one button if possible.
       </p>
-      <div className="relative mt-1 h-9 overflow-visible">
-        <motion.span
-          onHoverStart={() => {
-            if (!isMobileViewport) {
-              setIsMapPreviewVisible(true);
-            }
-          }}
-          onHoverEnd={() => {
-            if (!isMobileViewport) {
-              setIsMapPreviewVisible(false);
-            }
-          }}
-          onTap={toggleMobileMapPreview}
-          className="group relative inline-flex h-full items-center gap-1.5"
-        >
-          <PinIcon />
-          <span className="text-[13px] leading-[13px] tracking-[-0.6px]">
-            <span className="font-semibold text-text-tertiary transition-colors duration-200 ease-out group-hover:text-text-secondary group-focus-visible:text-text-secondary">
-              36°43′13″ N, 4°25′13″ W
-            </span>
-            {" "}
-            <span className="relative inline-block font-semibold text-text-primary transition-colors duration-200 ease-out group-hover:text-text-secondary group-focus-visible:text-text-secondary">
-              / Now here
-
-              <motion.span
-                aria-hidden="true"
-                className="pointer-events-none absolute left-[calc(50%-80px)] top-[calc(100%+14px)] z-50 block h-[80px] w-[180px] -translate-x-[18%]"
-                initial={false}
-                animate={
-                  isMapPreviewVisible
-                    ? {
-                        opacity: [0, 1],
-                        y: [8, 17, 14],
-                        scale: [0.92, 1.02, 1],
-                        rotate: [-12, -3, -5],
-                        filter: ["blur(6px)", "blur(0px)"],
-                      }
-                    : {
-                        opacity: 0,
-                        y: 4,
-                        scale: 0.9,
-                        rotate: -5,
-                        filter: "blur(5px)",
-                      }
-                }
-                transition={
-                  isMapPreviewVisible
-                    ? {
-                        duration: 0.58,
-                        times: [0, 0.42, 1],
-                        ease: [0.16, 1, 0.3, 1],
-                        opacity: { duration: 0.2, ease: "easeOut" },
-                        filter: { duration: 0.24, ease: "easeOut" },
-                      }
-                    : {
-                        duration: 0.22,
-                        ease: [0.22, 1, 0.36, 1],
-                      }
-                }
-                style={{ transformOrigin: "14% -12%" }}
-              >
-                <span className="relative block">
-                  <span
-                    className="absolute inset-0 rounded-[18px] opacity-35 blur-[10px]"
-                    style={{ background: "rgba(22, 22, 28, 0.2)", transform: "translate(4px, 7px) scale(1.01)" }}
-                  />
-                  <img
-                    src="/images/places/map-preview-malaga.png"
-                    alt="Malaga map preview"
-                    draggable={false}
-                    className="relative z-10 block h-full w-full select-none rounded-[18px] object-cover shadow-[0_18px_40px_rgba(0,0,0,0.12),0_4px_10px_rgba(0,0,0,0.08)]"
-                  />
-                </span>
-              </motion.span>
-            </span>
-          </span>
-        </motion.span>
+      <div className="relative mt-1 h-[60px] w-full overflow-hidden rounded-[16px]">
+        <LocationMap />
       </div>
     </div>
   );
@@ -624,24 +503,5 @@ function DownloadIcon() {
         style={{ width: 22, height: 22 }}
       />
     </div>
-  );
-}
-
-function PinIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      className="text-text-tertiary"
-    >
-      <path
-        d="M12 1.25C17.275 1.25 21.75 5.61 21.75 10.926C21.75 13.639 20.6 15.921 18.987 17.804C17.379 19.68 15.285 21.193 13.318 22.396L13.307 22.403L13.296 22.41C12.9 22.633 12.454 22.75 12 22.75C11.546 22.75 11.1 22.633 10.704 22.41L10.691 22.402L10.678 22.394C8.718 21.181 6.625 19.673 5.017 17.802C3.402 15.924 2.25 13.648 2.25 10.926C2.25 5.61 6.725 1.25 12 1.25ZM3.75 10.926C3.75 13.191 4.7 15.133 6.154 16.825C7.612 18.52 9.549 19.93 11.453 21.11C11.62 21.202 11.808 21.25 12 21.25C12.192 21.25 12.381 21.201 12.548 21.109C14.453 19.942 16.391 18.528 17.848 16.828C19.301 15.131 20.25 13.183 20.25 10.926C20.25 6.456 16.466 2.75 12 2.75C7.534 2.75 3.75 6.456 3.75 10.926ZM12 6.75C14.347 6.75 16.25 8.653 16.25 11C16.25 13.347 14.347 15.25 12 15.25C9.653 15.25 7.75 13.347 7.75 11C7.75 8.653 9.653 6.75 12 6.75ZM9.25 11C9.25 12.519 10.481 13.75 12 13.75C13.519 13.75 14.75 12.519 14.75 11C14.75 9.481 13.519 8.25 12 8.25C10.481 8.25 9.25 9.481 9.25 11Z"
-        fill="currentColor"
-      />
-    </svg>
   );
 }

@@ -1,12 +1,10 @@
 import Image from "next/image";
-import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
 import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function DesignSystemPage() {
   return (
-    <PageLayout>
-      <CasePage
+    <CasePage
         title="ShowHeroes Design System"
         description="A shared design system built from scratch to keep multiple ShowHeroes products visually consistent and speed up design and development."
         summary={{
@@ -281,6 +279,5 @@ export default function DesignSystemPage() {
           },
         ]}
       />
-    </PageLayout>
   );
 }

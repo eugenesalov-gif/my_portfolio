@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import PageLayout from "@/components/layout/PageLayout";
 import { motion } from "framer-motion";
 import BackButton from "@/components/ui/BackButton";
 
@@ -82,8 +81,7 @@ const testimonials = [
 
 export default function TestimonialsPage() {
   return (
-    <PageLayout>
-      <motion.div
+    <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
@@ -129,6 +127,5 @@ export default function TestimonialsPage() {
           ))}
         </div>
       </motion.div>
-    </PageLayout>
   );
 }

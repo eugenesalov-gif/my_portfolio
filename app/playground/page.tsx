@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import PageLayout from "@/components/layout/PageLayout";
 import { motion } from "framer-motion";
 import PhotoBoothApp from "@/components/playground/PhotoBoothApp";
 import BackButton from "@/components/ui/BackButton";
@@ -12,7 +11,7 @@ export default function PlaygroundPage() {
   const [isPhotoBoothCardHovered, setIsPhotoBoothCardHovered] = useState(false);
 
   return (
-    <PageLayout>
+    <>
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -113,6 +112,6 @@ export default function PlaygroundPage() {
           </div>
         </div>
       )}
-    </PageLayout>
+    </>
   );
 }

@@ -11,7 +11,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, []);
+  }, [pathname]);
 
   return (
     <div className="relative w-full max-w-[1600px] mx-auto flex flex-col gap-10 px-4 py-3 pb-6 items-start min-[810px]:px-6 min-[810px]:py-6 min-[810px]:pb-8 min-[1200px]:flex-row min-[1200px]:gap-[60px]">

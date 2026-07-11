@@ -1,12 +1,10 @@
 import Image from "next/image";
-import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
 import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function AIAgentChatPage() {
   return (
-    <PageLayout>
-      <CasePage
+    <CasePage
         title="Creating an AI Agent Chat for Interactive Video Ads"
         description="AI-powered interactive end card that transforms video ads into a two-way dialogue, driving deeper engagement and seamless lead generation"
         summary={{
@@ -269,6 +267,5 @@ export default function AIAgentChatPage() {
           },
         ]}
       />
-    </PageLayout>
   );
 }

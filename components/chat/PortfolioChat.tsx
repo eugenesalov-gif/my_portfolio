@@ -866,7 +866,7 @@ export default function PortfolioChat() {
 
   return (
     <section
-      className={`${styles.wrapper} portfolio-chat mx-1 mt-10 min-[810px]:mt-16 min-[1200px]:mt-0`}
+      className={`${styles.wrapper} portfolio-chat mt-10 min-[810px]:mt-16 min-[1200px]:mt-0`}
       aria-label="Portfolio assistant"
     >
       <div className={styles.overlay}>

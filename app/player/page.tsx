@@ -1,12 +1,10 @@
 import Image from "next/image";
-import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
 import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function PlayerPage() {
   return (
-    <PageLayout>
-      <CasePage
+    <CasePage
         title="Redesigning a Video Player Ecosystem for Content and Ads"
         description="Redesigning a dual-player ecosystem with interactive formats and playlists to drive engagement and revenue."
         summary={{
@@ -370,6 +368,5 @@ export default function PlayerPage() {
           },
         ]}
       />
-    </PageLayout>
   );
 }

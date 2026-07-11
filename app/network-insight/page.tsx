@@ -1,13 +1,11 @@
 import Image from "next/image";
-import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
 import ImageCarousel from "@/components/ui/ImageCarousel";
 import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function NetworkInsightPage() {
   return (
-    <PageLayout>
-      <CasePage
+    <CasePage
         title="Building an Analytics Platform for Contextual Targeting"
         description="Network Insights is a ShowHeroes platform that unifies data from internal silos and external sources, giving Supply and Demand teams powerful tools to work faster and more efficiently"
         summary={{
@@ -470,6 +468,5 @@ export default function NetworkInsightPage() {
           },
         ]}
       />
-    </PageLayout>
   );
 }

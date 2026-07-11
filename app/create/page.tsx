@@ -1,11 +1,9 @@
-import PageLayout from "@/components/layout/PageLayout";
 import CasePage from "@/components/ui/CasePage";
 import BottomUpLetters from "@/components/ui/BottomUpLetters";
 
 export default function CreatePage() {
   return (
-    <PageLayout>
-      <CasePage
+    <CasePage
         title="Transforming a complex ad platform into a simple no-code tool"
         description="Create is the ad campaign platform that brings advertisers and publishers together to build interactive ads without code."
         summary={{
@@ -417,6 +415,5 @@ export default function CreatePage() {
           },
         ]}
       />
-    </PageLayout>
   );
 }

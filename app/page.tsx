@@ -1,8 +1,7 @@
-import PageLayout from "@/components/layout/PageLayout";
 import CaseCard from "@/components/ui/CaseCard";
 import Link from "next/link";
 
-const changelogText = "CHANGELOG: 30/06/2026";
+const changelogText = "CHANGELOG: 11/07/2026";
 
 const cases = [
   {
@@ -69,7 +68,7 @@ const cases = [
 
 export default function Home() {
   return (
-    <PageLayout>
+    <>
       <div className="flex flex-col gap-12 min-[810px]:gap-16">
         {cases.map((c, index) => (
           <div key={c.href} className="flex flex-col gap-12 min-[810px]:gap-16">
@@ -99,6 +98,6 @@ export default function Home() {
           ))}
         </Link>
       </footer>
-    </PageLayout>
+    </>
   );
 }

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import PageLayout from "@/components/layout/PageLayout";
 import { motion } from "framer-motion";
 import BackButton from "@/components/ui/BackButton";
 
@@ -182,8 +181,7 @@ export default function AboutMePage() {
   ];
 
   return (
-    <PageLayout>
-      <motion.div
+    <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
@@ -257,6 +255,5 @@ export default function AboutMePage() {
           </div>
         </div>
       </motion.div>
-    </PageLayout>
   );
 }

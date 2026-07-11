@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import ThemeScript from "@/components/theme/ThemeScript";
+import PageLayout from "@/components/layout/PageLayout";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -43,7 +44,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         <ThemeScript />
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <PageLayout>{children}</PageLayout>
+        </ThemeProvider>
         <Script
           src="https://cloud.umami.is/script.js"
           data-website-id="a7d77eb1-3bc5-4a77-91df-c1373cf328bd"
