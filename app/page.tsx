@@ -5,6 +5,19 @@ const changelogText = "CHANGELOG: 11/07/2026";
 
 const cases = [
   {
+    href: "/network-insight",
+    title: "Building an Analytics Platform for Contextual Targeting",
+    description:
+      "Network Insights is a ShowHeroes platform that unifies data from internal silos and external sources, giving Supply and Demand teams powerful tools to work faster and more efficiently",
+    tags: ["Ad Tech", "B2B", "Analytics Dashboard", "Contextual Targeting", "Automation", "Big Data", "Web App"],
+    metrics: [
+      { value: "6-in-1", label: "platforms combined" },
+      { value: "300", label: "monthly active users" },
+      { value: "2h→6m", label: "faster reporting" },
+    ],
+    imagePlaceholderColor: "#E0EAF5",
+  },
+  {
     href: "/create",
     title: "Transforming a complex ad platform into a simple no-code tool",
     description:
@@ -18,19 +31,6 @@ const cases = [
       { value: "+2B", label: "impressions growth" },
     ],
     imagePlaceholderColor: "#E8E8EE",
-  },
-  {
-    href: "/network-insight",
-    title: "Building an Analytics Platform for Contextual Targeting",
-    description:
-      "Network Insights is a ShowHeroes platform that unifies data from internal silos and external sources, giving Supply and Demand teams powerful tools to work faster and more efficiently",
-    tags: ["Ad Tech", "B2B", "Analytics Dashboard", "Contextual Targeting", "Automation", "Big Data", "Web App"],
-    metrics: [
-      { value: "6-in-1", label: "platforms combined" },
-      { value: "300", label: "monthly active users" },
-      { value: "2h→6m", label: "faster reporting" },
-    ],
-    imagePlaceholderColor: "#E0EAF5",
   },
   {
     href: "/design-system",
