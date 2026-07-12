@@ -123,7 +123,9 @@ export default function CaseSummary({ preview, sections, full }: CaseSummaryProp
         />
         <div
           aria-hidden
-          className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#EDE0F7] via-[#F2EBFC] to-[#DCE8FA] opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-[#241C34] dark:via-[#1A1628] dark:to-[#152035]"
+          className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-[#EDE0F7] via-[#F2EBFC] to-[#DCE8FA] transition-opacity duration-300 dark:from-[#241C34] dark:via-[#1A1628] dark:to-[#152035] ${
+            expanded ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+          }`}
         />
         {expanded && (
           <div
