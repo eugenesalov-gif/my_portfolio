@@ -285,6 +285,10 @@ body {
   --location-map-waterway-opacity: 0.75;
 }
 
+.location-map__overlay {
+  background: var(--color-bg-page);
+}
+
 .location-map__surface {
   -webkit-mask-image: radial-gradient(
     ellipse 165% 220% at var(--location-map-focal-x) var(--location-map-focal-y),

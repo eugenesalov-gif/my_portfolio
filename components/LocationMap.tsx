@@ -8,9 +8,15 @@ import {
   useRef,
   useState,
 } from "react";
+import { usePathname } from "next/navigation";
 
 const MAP_CENTER: [number, number] = [-4.4213, 36.7213];
 const MAP_ZOOM = 2;
+const MAP_INTRO_ZOOM = 0.85;
+const MAP_INTRO_DURATION = 1500;
+const MAP_OVERLAY_DURATION_MS = 350;
+const MAP_INTRO_DELAY_MS = 150;
+const MAP_INTRO_STORAGE_KEY = "location-map-intro-played";
 const GRADIENT_FOCUS_X = 0.15;
 const GRADIENT_FOCUS_Y = 0.5;
 const MAP_STYLE = "https://tiles.openfreemap.org/styles/positron";
@@ -166,13 +172,160 @@ function resetMapView(
   });
 }
 
+function shouldPlayMapIntro() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return false;
+  }
+
+  try {
+    return sessionStorage.getItem(MAP_INTRO_STORAGE_KEY) !== "1";
+  } catch {
+    return true;
+  }
+}
+
+function markMapIntroPlayed() {
+  try {
+    sessionStorage.setItem(MAP_INTRO_STORAGE_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+}
+
+function setMapInteractionsEnabled(
+  map: import("maplibre-gl").Map,
+  enabled: boolean,
+) {
+  if (enabled) {
+    map.scrollZoom.enable();
+    map.dragPan.enable();
+    map.doubleClickZoom.enable();
+    map.touchZoomRotate.enable();
+    return;
+  }
+
+  map.scrollZoom.disable();
+  map.dragPan.disable();
+  map.doubleClickZoom.disable();
+  map.touchZoomRotate.disable();
+}
+
+function playMapIntro(
+  map: import("maplibre-gl").Map,
+  container: HTMLDivElement,
+  onComplete?: () => void,
+) {
+  applyMapPadding(map, container);
+  map.jumpTo({
+    center: MAP_CENTER,
+    zoom: MAP_INTRO_ZOOM,
+  });
+  setMapInteractionsEnabled(map, false);
+
+  map.flyTo({
+    center: MAP_CENTER,
+    zoom: MAP_ZOOM,
+    duration: MAP_INTRO_DURATION,
+    essential: true,
+  });
+
+  if (onComplete) {
+    map.once("moveend", onComplete);
+  }
+}
+
 const LocationMap = forwardRef<LocationMapHandle, LocationMapProps>(
   function LocationMap({ className = "" }, ref) {
+    const pathname = usePathname();
     const containerRef = useRef<HTMLDivElement>(null);
     const rootRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<import("maplibre-gl").Map | null>(null);
-    const [isReady, setIsReady] = useState(false);
+    const introPlayingRef = useRef(false);
+    const introPlayedRef = useRef(false);
+    const introTimeoutRef = useRef<number | null>(null);
+    const prevPathnameRef = useRef(pathname);
+    const [isRevealed, setIsRevealed] = useState(false);
+    const [isMapLoaded, setIsMapLoaded] = useState(false);
     const [showResetButton, setShowResetButton] = useState(false);
+
+    const startIntro = useCallback(
+      (map: import("maplibre-gl").Map, container: HTMLDivElement) => {
+        introPlayedRef.current = true;
+        introPlayingRef.current = true;
+        setShowResetButton(false);
+
+        playMapIntro(map, container, () => {
+          introPlayingRef.current = false;
+          markMapIntroPlayed();
+          setMapInteractionsEnabled(map, true);
+          setShowResetButton(!isDefaultView(map));
+        });
+      },
+      [],
+    );
+
+    const revealMap = useCallback(
+      (map: import("maplibre-gl").Map, container: HTMLDivElement) => {
+        applyMapPadding(map, container);
+        map.resize();
+        setIsRevealed(true);
+
+        const willPlayIntro =
+          typeof window !== "undefined" &&
+          window.location.pathname === "/" &&
+          !introPlayedRef.current &&
+          shouldPlayMapIntro();
+
+        if (!willPlayIntro) {
+          return;
+        }
+
+        introPlayingRef.current = true;
+        setShowResetButton(false);
+
+        if (introTimeoutRef.current !== null) {
+          window.clearTimeout(introTimeoutRef.current);
+        }
+
+        introTimeoutRef.current = window.setTimeout(() => {
+          introTimeoutRef.current = null;
+          startIntro(map, container);
+        }, MAP_INTRO_DELAY_MS);
+      },
+      [startIntro],
+    );
+
+    const tryPlayIntro = useCallback(() => {
+      const map = mapRef.current;
+      const container = containerRef.current;
+
+      if (
+        !map ||
+        !container ||
+        pathname !== "/" ||
+        introPlayedRef.current ||
+        !shouldPlayMapIntro()
+      ) {
+        return;
+      }
+
+      applyMapPadding(map, container);
+      map.jumpTo({
+        center: MAP_CENTER,
+        zoom: MAP_INTRO_ZOOM,
+      });
+      setIsRevealed(false);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          revealMap(map, container);
+        });
+      });
+    }, [pathname, revealMap]);
 
     const handleResetView = useCallback(() => {
       const map = mapRef.current;
@@ -212,11 +365,16 @@ const LocationMap = forwardRef<LocationMapHandle, LocationMapProps>(
 
         maplibregl.setWorkerUrl("/maplibre-gl-csp-worker.js");
 
+        const playIntroOnInit =
+          typeof window !== "undefined" &&
+          window.location.pathname === "/" &&
+          shouldPlayMapIntro();
+
         const map = new maplibregl.Map({
           container,
           style: MAP_STYLE,
           center: MAP_CENTER,
-          zoom: MAP_ZOOM,
+          zoom: playIntroOnInit ? MAP_INTRO_ZOOM : MAP_ZOOM,
           interactive: true,
           scrollZoom: true,
           boxZoom: false,
@@ -252,14 +410,38 @@ const LocationMap = forwardRef<LocationMapHandle, LocationMapProps>(
 
           applyMapPadding(map, container);
           map.resize();
-          setIsReady(true);
+          setIsMapLoaded(true);
+
+          map.once("idle", () => {
+            if (cancelled) {
+              return;
+            }
+
+            revealMap(map, container);
+          });
 
           const updateResetVisibility = () => {
+            if (introPlayingRef.current) {
+              return;
+            }
+
             setShowResetButton(!isDefaultView(map));
           };
 
-          handleDragStart = () => setShowResetButton(true);
-          handleZoomStart = () => setShowResetButton(true);
+          handleDragStart = () => {
+            if (introPlayingRef.current) {
+              return;
+            }
+
+            setShowResetButton(true);
+          };
+          handleZoomStart = () => {
+            if (introPlayingRef.current) {
+              return;
+            }
+
+            setShowResetButton(true);
+          };
           handleMoveEnd = updateResetVisibility;
 
           map.on("dragstart", handleDragStart);
@@ -278,6 +460,17 @@ const LocationMap = forwardRef<LocationMapHandle, LocationMapProps>(
 
       return () => {
         cancelled = true;
+
+        if (introTimeoutRef.current !== null) {
+          window.clearTimeout(introTimeoutRef.current);
+          introTimeoutRef.current = null;
+        }
+
+        if (introPlayingRef.current) {
+          introPlayingRef.current = false;
+          introPlayedRef.current = false;
+        }
+
         resizeObserver?.disconnect();
 
         const map = mapRef.current;
@@ -289,15 +482,27 @@ const LocationMap = forwardRef<LocationMapHandle, LocationMapProps>(
 
         mapRef.current?.remove();
         mapRef.current = null;
-        setIsReady(false);
+        setIsRevealed(false);
+        setIsMapLoaded(false);
         setShowResetButton(false);
       };
-    }, []);
+    }, [revealMap]);
+
+    useEffect(() => {
+      const wasHome = prevPathnameRef.current === "/";
+      prevPathnameRef.current = pathname;
+
+      if (!isRevealed || pathname !== "/" || wasHome) {
+        return;
+      }
+
+      tryPlayIntro();
+    }, [pathname, isRevealed, tryPlayIntro]);
 
     useEffect(() => {
       const map = mapRef.current;
       const rootEl = rootRef.current;
-      if (!map || !rootEl || !isReady) {
+      if (!map || !rootEl || !isMapLoaded) {
         return;
       }
 
@@ -316,7 +521,7 @@ const LocationMap = forwardRef<LocationMapHandle, LocationMapProps>(
       });
 
       return () => observer.disconnect();
-    }, [isReady]);
+    }, [isMapLoaded]);
 
     return (
       <div
@@ -331,17 +536,15 @@ const LocationMap = forwardRef<LocationMapHandle, LocationMapProps>(
       >
         <div
           ref={containerRef}
-          className={`location-map__surface absolute inset-0 transition-opacity duration-200 ${
-            isReady ? "opacity-100" : "opacity-0"
-          }`}
+          className="location-map__surface absolute inset-0"
         />
-        {!isReady && (
-          <div
-            aria-hidden="true"
-            className="location-map__surface pointer-events-none absolute inset-0"
-            style={{ backgroundColor: "var(--color-bg-muted)" }}
-          />
-        )}
+        <div
+          aria-hidden="true"
+          className={`location-map__overlay pointer-events-none absolute inset-0 z-10 transition-opacity ease-out ${
+            isRevealed ? "opacity-0" : "opacity-100"
+          }`}
+          style={{ transitionDuration: `${MAP_OVERLAY_DURATION_MS}ms` }}
+        />
         <div aria-hidden="true" className="location-map__fade pointer-events-none absolute inset-0 z-[5]" />
         <button
           type="button"
