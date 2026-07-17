@@ -1,7 +1,7 @@
 import CaseCard from "@/components/ui/CaseCard";
 import Link from "next/link";
 
-const changelogText = "CHANGELOG: 11/07/2026";
+const changelogText = "CHANGELOG: 17/07/2026";
 
 const cases = [
   {
