@@ -81,26 +81,26 @@ export default function PlaygroundPage() {
                 />
               </button>
               <div className="pointer-events-none absolute right-0 top-10 flex w-fit flex-col gap-4 rounded-[14px] border border-[#ececec] bg-white p-4 opacity-0 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-opacity duration-200 group-hover:opacity-100">
-                <p className="mb-2 text-[20px] font-semibold leading-[0.95] tracking-[-1.2px] text-text-primary">
+                <p className="mb-2 text-[20px] font-semibold leading-[0.95] tracking-[-1.2px] text-[#1D1D26]">
                   Photo Booth
                 </p>
-                <div className="flex w-fit items-start gap-6 text-[14px] text-text-primary">
+                <div className="flex w-fit items-start gap-6 text-[14px] text-[#1D1D26]">
                   <div className="flex w-fit flex-col gap-1">
-                    <span className="h-fit w-fit text-[12px] text-text-secondary">Design</span>
+                    <span className="h-fit w-fit text-[12px] text-[#626266]">Design</span>
                     <span className="h-fit w-fit">Figma</span>
                   </div>
                   <div className="flex w-fit flex-col gap-1">
-                    <span className="h-fit w-fit text-[12px] text-text-secondary">Frontend</span>
+                    <span className="h-fit w-fit text-[12px] text-[#626266]">Frontend</span>
                     <span className="h-fit w-fit">TypeScript</span>
                     <span className="h-fit w-fit">React</span>
                     <span className="h-fit w-fit">Vite</span>
                   </div>
                   <div className="flex w-fit flex-col gap-1">
-                    <span className="h-fit w-fit text-[12px] text-text-secondary">Styling</span>
+                    <span className="h-fit w-fit text-[12px] text-[#626266]">Styling</span>
                     <span className="h-fit w-fit">Tailwind CSS</span>
                   </div>
                   <div className="flex w-fit flex-col gap-1">
-                    <span className="h-fit w-fit text-[12px] text-text-secondary">Design</span>
+                    <span className="h-fit w-fit text-[12px] text-[#626266]">Design</span>
                     <span className="h-fit w-fit whitespace-nowrap">Figma Make</span>
                     <span className="h-fit w-fit whitespace-nowrap">Claude Code</span>
                     <span className="h-fit w-fit">Cursor</span>
