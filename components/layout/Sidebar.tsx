@@ -397,7 +397,7 @@ function ProfileCard() {
             </a>
             <span className="text-text-tertiary">·</span>
             <a
-              href="mailto:eugensalov@gmail.com"
+              href="mailto:eugenesalov@gmail.com"
               className="underline tracking-[-0.2px] text-text-primary transition-colors duration-200 ease-out hover:text-text-secondary focus-visible:text-text-secondary"
             >
               email
