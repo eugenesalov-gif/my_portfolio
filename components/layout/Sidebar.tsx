@@ -2,9 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import PortfolioChat from "@/components/chat/PortfolioChat";
 import LocationMap from "@/components/LocationMap";
@@ -48,7 +53,7 @@ const bottomNavItems: Array<{
         width: 1024,
         height: 1024,
         className:
-          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none min-[1200px]:group-hover/nav-preview:top-[12px] min-[1200px]:group-hover/nav-preview:rotate-[-2deg]",
+          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none delay-0 min-[1200px]:group-hover/nav-preview:top-[12px] min-[1200px]:group-hover/nav-preview:rotate-[-2deg] min-[1200px]:group-hover/nav-preview:delay-75",
       },
     ],
   },
@@ -63,7 +68,7 @@ const bottomNavItems: Array<{
         width: 1024,
         height: 1024,
         className:
-          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none min-[1200px]:group-hover/nav-preview:top-[12px] min-[1200px]:group-hover/nav-preview:rotate-[-2deg]",
+          "left-1/2 top-[34px] w-[44px] -translate-x-1/2 rotate-[4deg] drop-shadow-none delay-0 min-[1200px]:group-hover/nav-preview:top-[12px] min-[1200px]:group-hover/nav-preview:rotate-[-2deg] min-[1200px]:group-hover/nav-preview:delay-75",
       },
     ],
   },
@@ -78,7 +83,7 @@ const bottomNavItems: Array<{
         width: 406,
         height: 374,
         className:
-          "left-[0px] top-[28px] w-[25px] rotate-[-20deg] delay-75 min-[1200px]:group-hover/nav-preview:top-[6px] min-[1200px]:group-hover/nav-preview:rotate-[-24deg]",
+          "left-[0px] top-[28px] w-[25px] rotate-[-20deg] delay-0 min-[1200px]:group-hover/nav-preview:top-[6px] min-[1200px]:group-hover/nav-preview:rotate-[-24deg] min-[1200px]:group-hover/nav-preview:delay-75",
       },
       {
         src: "/nav-previews/figma.png",
@@ -86,7 +91,7 @@ const bottomNavItems: Array<{
         width: 375,
         height: 370,
         className:
-          "left-[36px] top-[28px] w-[20px] rotate-[20deg] delay-75 min-[1200px]:group-hover/nav-preview:top-[6px] min-[1200px]:group-hover/nav-preview:rotate-[24deg]",
+          "left-[36px] top-[28px] w-[20px] rotate-[20deg] delay-0 min-[1200px]:group-hover/nav-preview:top-[6px] min-[1200px]:group-hover/nav-preview:rotate-[24deg] min-[1200px]:group-hover/nav-preview:delay-75",
       },
       {
         src: "/nav-previews/spark.png",
@@ -94,7 +99,7 @@ const bottomNavItems: Array<{
         width: 433,
         height: 420,
         className:
-          "left-[12px] top-[8px] w-[31px] rotate-[5deg] min-[1200px]:group-hover/nav-preview:-top-[8px] min-[1200px]:group-hover/nav-preview:rotate-[8deg]",
+          "left-[12px] top-[8px] w-[31px] rotate-[5deg] delay-0 min-[1200px]:group-hover/nav-preview:-top-[8px] min-[1200px]:group-hover/nav-preview:rotate-[8deg]",
       },
     ],
   },
@@ -460,14 +465,57 @@ function PreviewNavLink({
   glowClassName?: string;
   images: NavPreviewImage[];
 }) {
+  const linkRef = useRef<HTMLAnchorElement>(null);
+  const reduceMotion = useReducedMotion();
+  const isDesktopViewport = useIsDesktopViewport();
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const scale = useMotionValue(1);
+  const springConfig = { stiffness: 220, damping: 24, mass: 0.85 };
+  const smoothRotateX = useSpring(rotateX, springConfig);
+  const smoothRotateY = useSpring(rotateY, springConfig);
+  const smoothScale = useSpring(scale, springConfig);
+
+  const resetLabelTransform = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+    scale.set(1);
+  };
+
+  useEffect(() => {
+    if (!isDesktopViewport) {
+      rotateX.set(0);
+      rotateY.set(0);
+      scale.set(1);
+    }
+  }, [isDesktopViewport, rotateX, rotateY, scale]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (reduceMotion || !isDesktopViewport) return;
+    const rect = linkRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    const maxTilt = 10;
+
+    rotateY.set((x - 0.5) * maxTilt * 2);
+    rotateX.set((0.5 - y) * maxTilt * 2);
+    scale.set(1.06);
+  };
+
   return (
     <Link
+      ref={linkRef}
       href={href}
-      className="group/nav-preview relative isolate flex h-[40px] min-w-0 flex-1 items-center justify-center overflow-visible rounded-[12px] bg-white px-1 text-center text-[16px] font-medium text-text-primary outline-none dark:bg-[var(--color-bg-elevated)]"
+      className={`group/nav-preview relative isolate flex h-[40px] min-w-0 flex-1 items-center justify-center overflow-visible rounded-[12px] bg-white px-1 text-center text-[16px] font-medium text-text-primary outline-none dark:bg-[var(--color-bg-elevated)]${isDesktopViewport ? " [perspective:400px]" : ""}`}
       aria-label={label}
+      onMouseMove={isDesktopViewport ? handleMouseMove : undefined}
+      onMouseLeave={isDesktopViewport ? resetLabelTransform : undefined}
+      onBlur={isDesktopViewport ? resetLabelTransform : undefined}
     >
       <span
-        className={`pointer-events-none absolute z-0 hidden opacity-0 transition-opacity duration-200 ease-out min-[1200px]:block min-[1200px]:group-hover/nav-preview:opacity-100 min-[1200px]:group-focus-visible/nav-preview:opacity-100 ${previewClassName}`}
+        className={`pointer-events-none absolute z-0 hidden opacity-0 transition-opacity duration-100 ease-out delay-0 min-[1200px]:block min-[1200px]:group-hover/nav-preview:opacity-100 min-[1200px]:group-hover/nav-preview:delay-75 min-[1200px]:group-hover/nav-preview:duration-200 min-[1200px]:group-focus-visible/nav-preview:opacity-100 min-[1200px]:group-focus-visible/nav-preview:delay-75 min-[1200px]:group-focus-visible/nav-preview:duration-200 ${previewClassName}`}
         aria-hidden="true"
       >
         {glowClassName && <span className={`absolute ${glowClassName}`} />}
@@ -483,9 +531,20 @@ function PreviewNavLink({
           />
         ))}
       </span>
-      <span className="relative z-10 flex items-center justify-center">
+      <motion.span
+        className={`relative z-10 flex items-center justify-center${isDesktopViewport ? " [transform-style:preserve-3d] [will-change:transform]" : ""}`}
+        style={
+          isDesktopViewport
+            ? {
+                rotateX: smoothRotateX,
+                rotateY: smoothRotateY,
+                scale: smoothScale,
+              }
+            : undefined
+        }
+      >
         <BottomNavLabel text={label} />
-      </span>
+      </motion.span>
     </Link>
   );
 }

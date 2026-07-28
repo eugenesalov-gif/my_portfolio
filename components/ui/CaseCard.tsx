@@ -157,9 +157,7 @@ export default function CaseCard({
             <CheckoutBadge visible={isHovered} />
             {metrics.length > 0 && (
               <div
-                className={`theme-light-surface absolute bottom-2 right-2 hidden flex-wrap items-start justify-center rounded-[12px] bg-[rgba(150,150,150,0.2)] p-1 backdrop-blur-[12px] min-[810px]:bottom-3 min-[810px]:right-3 min-[810px]:flex min-[810px]:flex-nowrap ${
-                  href === "/player" || href === "/create" ? "gap-1" : "gap-2"
-                }`}
+                className="theme-light-surface absolute bottom-2 right-2 hidden flex-wrap items-start justify-center rounded-[12px] bg-[rgba(150,150,150,0.2)] p-1 backdrop-blur-[12px] min-[810px]:bottom-3 min-[810px]:right-3 min-[810px]:flex min-[810px]:flex-nowrap gap-1"
               >
                 {metrics.map((m, i) => (
                   <MetricChip key={i} value={m.value} label={m.label} />
